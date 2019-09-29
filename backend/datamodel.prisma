@@ -1,0 +1,35 @@
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  password: String!
+  regNo: String!
+  gender: String
+  department: Department @relation(link: INLINE)
+  faculty: Faculty @relation(link: INLINE)
+  courses: [Course]
+  level: String
+}
+
+type Course {
+  id: ID! @id
+  name: String! @unique
+  department: Department!
+  creditUnit: Int!
+  students: [User]
+  description: String!
+  level: String!
+}
+
+type Faculty {
+  id: ID! @id
+  name: String! @unique
+  departments: [Department!]!
+}
+
+type Department {
+  id: ID! @id
+  name: String! @unique
+  faculty: Faculty!
+  courses: [Course!]!
+}

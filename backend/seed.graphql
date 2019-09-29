@@ -1,0 +1,53 @@
+mutation science{
+  createFaculty(
+    data: {
+      name: "Science"
+      departments: {
+        create: [
+          {
+            name: "Microbiology"
+            courses: {
+              create: [
+                {
+                  name: "MIB 101"
+                  creditUnit: 2
+                  description: "An introduction to microbiology"
+                  level: "100L"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+}
+
+mutation engineering {
+  createFaculty(
+    data: {
+      name: "Engineering"
+      departments: {
+        create: [
+          {
+            name: "Electrical Engineering"
+            courses: {
+              create: [
+                {
+                  name: "EEN 101"
+                  creditUnit: 2
+                  description: "An introduction to Electrical Engineering"
+                  level: "100L"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ) {
+    id
+  }
+}

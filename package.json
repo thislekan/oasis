@@ -1,0 +1,25 @@
+{
+  "name": "oasis",
+  "version": "1.0.0",
+  "description": "Project Oasis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thislekan/oasis.git"
+  },
+  "author": "thislekan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thislekan/oasis/issues"
+  },
+  "homepage": "https://github.com/thislekan/oasis#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}

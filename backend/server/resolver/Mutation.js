@@ -1,26 +1,23 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+
 import dotEnv from '../../config/config';
+import { signupMiddleware, loginMiddleware } from '../middlewares/index';
 
 const Mutation = {
   createUser: async (parent, args, context) => {
+    signupMiddleware(args);
+
     const password = await bcrypt.hash(args.password, 10);
     const user = await context.prisma.createUser({ ...args, password });
     const token = jwt.sign({ userId: user.id }, dotEnv.JWT_SECRET);
-    delete user.password;
 
     return { user, token };
   },
 
   login: async (parent, args, context) => {
-    const user = await context.prisma.user({ email: args.email });
-    if (!user) throw new Error('User does not exist');
-
-    const validateUser = await bcrypt.compare(args.password, user.password);
-    if (!validateUser) throw new Error('Email or Password incorrect');
-
+    const user = await loginMiddleware(args, context);
     const token = jwt.sign({ userId: user.id }, dotEnv.JWT_SECRET);
-    delete user.password;
 
     return { token, user };
   },

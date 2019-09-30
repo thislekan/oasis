@@ -16,7 +16,6 @@ type User {
   id: ID!
   name: String!
   email: String!
-  password: String!
   regNo: String!
   gender: String
   department: Department

@@ -837,6 +837,9 @@ type User {
   faculty: Faculty
   courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
   level: String
+  phone: String
+  address: String
+  image: String
 }
 
 type UserConnection {
@@ -856,6 +859,9 @@ input UserCreateInput {
   faculty: FacultyCreateOneInput
   courses: CourseCreateManyWithoutStudentsInput
   level: String
+  phone: String
+  address: String
+  image: String
 }
 
 input UserCreateManyWithoutCoursesInput {
@@ -873,6 +879,9 @@ input UserCreateWithoutCoursesInput {
   department: DepartmentCreateOneInput
   faculty: FacultyCreateOneInput
   level: String
+  phone: String
+  address: String
+  image: String
 }
 
 type UserEdge {
@@ -895,6 +904,12 @@ enum UserOrderByInput {
   gender_DESC
   level_ASC
   level_DESC
+  phone_ASC
+  phone_DESC
+  address_ASC
+  address_DESC
+  image_ASC
+  image_DESC
 }
 
 type UserPreviousValues {
@@ -905,6 +920,9 @@ type UserPreviousValues {
   regNo: String!
   gender: String
   level: String
+  phone: String
+  address: String
+  image: String
 }
 
 input UserScalarWhereInput {
@@ -1006,6 +1024,48 @@ input UserScalarWhereInput {
   level_not_starts_with: String
   level_ends_with: String
   level_not_ends_with: String
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
+  address: String
+  address_not: String
+  address_in: [String!]
+  address_not_in: [String!]
+  address_lt: String
+  address_lte: String
+  address_gt: String
+  address_gte: String
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_not_starts_with: String
+  address_ends_with: String
+  address_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
   AND: [UserScalarWhereInput!]
   OR: [UserScalarWhereInput!]
   NOT: [UserScalarWhereInput!]
@@ -1039,6 +1099,9 @@ input UserUpdateInput {
   faculty: FacultyUpdateOneInput
   courses: CourseUpdateManyWithoutStudentsInput
   level: String
+  phone: String
+  address: String
+  image: String
 }
 
 input UserUpdateManyDataInput {
@@ -1048,6 +1111,9 @@ input UserUpdateManyDataInput {
   regNo: String
   gender: String
   level: String
+  phone: String
+  address: String
+  image: String
 }
 
 input UserUpdateManyMutationInput {
@@ -1057,6 +1123,9 @@ input UserUpdateManyMutationInput {
   regNo: String
   gender: String
   level: String
+  phone: String
+  address: String
+  image: String
 }
 
 input UserUpdateManyWithoutCoursesInput {
@@ -1085,6 +1154,9 @@ input UserUpdateWithoutCoursesDataInput {
   department: DepartmentUpdateOneInput
   faculty: FacultyUpdateOneInput
   level: String
+  phone: String
+  address: String
+  image: String
 }
 
 input UserUpdateWithWhereUniqueWithoutCoursesInput {
@@ -1202,6 +1274,48 @@ input UserWhereInput {
   level_not_starts_with: String
   level_ends_with: String
   level_not_ends_with: String
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
+  address: String
+  address_not: String
+  address_in: [String!]
+  address_not_in: [String!]
+  address_lt: String
+  address_lte: String
+  address_gt: String
+  address_gte: String
+  address_contains: String
+  address_not_contains: String
+  address_starts_with: String
+  address_not_starts_with: String
+  address_ends_with: String
+  address_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

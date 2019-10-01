@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
+import errorFormat from './errorFormat';
 import dotEnv from '../../config/config';
+
+export const expiryDate = Math.floor(Date.now() / 1000) + (60 * 60 * 72);
 
 const getUserId = (context) => {
   const Authorization = context.request.get('Authorization');
@@ -9,7 +12,7 @@ const getUserId = (context) => {
     return userId;
   }
 
-  throw new Error('Not authenticated');
+  return errorFormat('authentication', 'Please login to continue');
 };
 
 export default getUserId;

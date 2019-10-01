@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 
 import AuthValidator from '../utils/validators/authValidators';
+import ProfileValidator from '../utils/validators/profileValidator';
 import errorFormat from '../utils/errorFormat';
 
 export const validateUser = async (inputPassword, userPassword) => {
@@ -21,7 +22,12 @@ export const signupMiddleware = (args) => {
   const errors = AuthValidator.validateSignup(args);
   if (errors) return errors;
 
-  return { ...args, email: args.email.trim() };
+  return {
+    ...args,
+    email: args.email.trim(),
+    regNo: args.regNo.trim(),
+    name: args.name.trim(),
+  };
 };
 
 export const loginMiddleware = async (args, context) => {
@@ -32,4 +38,11 @@ export const loginMiddleware = async (args, context) => {
   await validateUser(args.password, user.password);
 
   return user;
+};
+
+export const profileMiddleware = (args) => {
+  const errors = ProfileValidator.validateProfileInput(args);
+  if (errors) return errors;
+
+  return '';
 };

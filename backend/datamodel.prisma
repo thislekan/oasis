@@ -9,6 +9,9 @@ type User {
   faculty: Faculty @relation(link: INLINE)
   courses: [Course]
   level: String
+  phone: String
+  address: String
+  image: String
 }
 
 type Course {

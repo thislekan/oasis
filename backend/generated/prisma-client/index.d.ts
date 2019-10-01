@@ -250,7 +250,13 @@ export type UserOrderByInput =
   | "gender_ASC"
   | "gender_DESC"
   | "level_ASC"
-  | "level_DESC";
+  | "level_DESC"
+  | "phone_ASC"
+  | "phone_DESC"
+  | "address_ASC"
+  | "address_DESC"
+  | "image_ASC"
+  | "image_DESC";
 
 export type FacultyOrderByInput =
   | "id_ASC"
@@ -414,6 +420,9 @@ export interface UserUpdateManyMutationInput {
   regNo?: Maybe<String>;
   gender?: Maybe<String>;
   level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
 }
 
 export interface DepartmentUpdateWithoutCoursesDataInput {
@@ -455,6 +464,9 @@ export interface UserUpdateInput {
   faculty?: Maybe<FacultyUpdateOneInput>;
   courses?: Maybe<CourseUpdateManyWithoutStudentsInput>;
   level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
 }
 
 export interface FacultyUpsertWithoutDepartmentsInput {
@@ -483,6 +495,9 @@ export interface UserCreateInput {
   faculty?: Maybe<FacultyCreateOneInput>;
   courses?: Maybe<CourseCreateManyWithoutStudentsInput>;
   level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
 }
 
 export interface UserUpdateManyDataInput {
@@ -492,6 +507,9 @@ export interface UserUpdateManyDataInput {
   regNo?: Maybe<String>;
   gender?: Maybe<String>;
   level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
 }
 
 export interface FacultyUpdateInput {
@@ -517,6 +535,9 @@ export interface UserUpdateWithoutCoursesDataInput {
   department?: Maybe<DepartmentUpdateOneInput>;
   faculty?: Maybe<FacultyUpdateOneInput>;
   level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
 }
 
 export interface CourseUpdateManyMutationInput {
@@ -714,6 +735,48 @@ export interface UserWhereInput {
   level_not_starts_with?: Maybe<String>;
   level_ends_with?: Maybe<String>;
   level_not_ends_with?: Maybe<String>;
+  phone?: Maybe<String>;
+  phone_not?: Maybe<String>;
+  phone_in?: Maybe<String[] | String>;
+  phone_not_in?: Maybe<String[] | String>;
+  phone_lt?: Maybe<String>;
+  phone_lte?: Maybe<String>;
+  phone_gt?: Maybe<String>;
+  phone_gte?: Maybe<String>;
+  phone_contains?: Maybe<String>;
+  phone_not_contains?: Maybe<String>;
+  phone_starts_with?: Maybe<String>;
+  phone_not_starts_with?: Maybe<String>;
+  phone_ends_with?: Maybe<String>;
+  phone_not_ends_with?: Maybe<String>;
+  address?: Maybe<String>;
+  address_not?: Maybe<String>;
+  address_in?: Maybe<String[] | String>;
+  address_not_in?: Maybe<String[] | String>;
+  address_lt?: Maybe<String>;
+  address_lte?: Maybe<String>;
+  address_gt?: Maybe<String>;
+  address_gte?: Maybe<String>;
+  address_contains?: Maybe<String>;
+  address_not_contains?: Maybe<String>;
+  address_starts_with?: Maybe<String>;
+  address_not_starts_with?: Maybe<String>;
+  address_ends_with?: Maybe<String>;
+  address_not_ends_with?: Maybe<String>;
+  image?: Maybe<String>;
+  image_not?: Maybe<String>;
+  image_in?: Maybe<String[] | String>;
+  image_not_in?: Maybe<String[] | String>;
+  image_lt?: Maybe<String>;
+  image_lte?: Maybe<String>;
+  image_gt?: Maybe<String>;
+  image_gte?: Maybe<String>;
+  image_contains?: Maybe<String>;
+  image_not_contains?: Maybe<String>;
+  image_starts_with?: Maybe<String>;
+  image_not_starts_with?: Maybe<String>;
+  image_ends_with?: Maybe<String>;
+  image_not_ends_with?: Maybe<String>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
@@ -768,6 +831,9 @@ export interface UserCreateWithoutCoursesInput {
   department?: Maybe<DepartmentCreateOneInput>;
   faculty?: Maybe<FacultyCreateOneInput>;
   level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
 }
 
 export interface CourseUpdateWithoutDepartmentDataInput {
@@ -1214,6 +1280,48 @@ export interface UserScalarWhereInput {
   level_not_starts_with?: Maybe<String>;
   level_ends_with?: Maybe<String>;
   level_not_ends_with?: Maybe<String>;
+  phone?: Maybe<String>;
+  phone_not?: Maybe<String>;
+  phone_in?: Maybe<String[] | String>;
+  phone_not_in?: Maybe<String[] | String>;
+  phone_lt?: Maybe<String>;
+  phone_lte?: Maybe<String>;
+  phone_gt?: Maybe<String>;
+  phone_gte?: Maybe<String>;
+  phone_contains?: Maybe<String>;
+  phone_not_contains?: Maybe<String>;
+  phone_starts_with?: Maybe<String>;
+  phone_not_starts_with?: Maybe<String>;
+  phone_ends_with?: Maybe<String>;
+  phone_not_ends_with?: Maybe<String>;
+  address?: Maybe<String>;
+  address_not?: Maybe<String>;
+  address_in?: Maybe<String[] | String>;
+  address_not_in?: Maybe<String[] | String>;
+  address_lt?: Maybe<String>;
+  address_lte?: Maybe<String>;
+  address_gt?: Maybe<String>;
+  address_gte?: Maybe<String>;
+  address_contains?: Maybe<String>;
+  address_not_contains?: Maybe<String>;
+  address_starts_with?: Maybe<String>;
+  address_not_starts_with?: Maybe<String>;
+  address_ends_with?: Maybe<String>;
+  address_not_ends_with?: Maybe<String>;
+  image?: Maybe<String>;
+  image_not?: Maybe<String>;
+  image_in?: Maybe<String[] | String>;
+  image_not_in?: Maybe<String[] | String>;
+  image_lt?: Maybe<String>;
+  image_lte?: Maybe<String>;
+  image_gt?: Maybe<String>;
+  image_gte?: Maybe<String>;
+  image_contains?: Maybe<String>;
+  image_not_contains?: Maybe<String>;
+  image_starts_with?: Maybe<String>;
+  image_not_starts_with?: Maybe<String>;
+  image_ends_with?: Maybe<String>;
+  image_not_ends_with?: Maybe<String>;
   AND?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
   OR?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
   NOT?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
@@ -1269,6 +1377,9 @@ export interface UserPreviousValues {
   regNo: String;
   gender?: String;
   level?: String;
+  phone?: String;
+  address?: String;
+  image?: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -1281,6 +1392,9 @@ export interface UserPreviousValuesPromise
   regNo: () => Promise<String>;
   gender: () => Promise<String>;
   level: () => Promise<String>;
+  phone: () => Promise<String>;
+  address: () => Promise<String>;
+  image: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -1293,6 +1407,9 @@ export interface UserPreviousValuesSubscription
   regNo: () => Promise<AsyncIterator<String>>;
   gender: () => Promise<AsyncIterator<String>>;
   level: () => Promise<AsyncIterator<String>>;
+  phone: () => Promise<AsyncIterator<String>>;
+  address: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
 }
 
 export interface CourseEdge {
@@ -1667,6 +1784,9 @@ export interface User {
   regNo: String;
   gender?: String;
   level?: String;
+  phone?: String;
+  address?: String;
+  image?: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -1688,6 +1808,9 @@ export interface UserPromise extends Promise<User>, Fragmentable {
     last?: Int;
   }) => T;
   level: () => Promise<String>;
+  phone: () => Promise<String>;
+  address: () => Promise<String>;
+  image: () => Promise<String>;
 }
 
 export interface UserSubscription
@@ -1711,6 +1834,9 @@ export interface UserSubscription
     last?: Int;
   }) => T;
   level: () => Promise<AsyncIterator<String>>;
+  phone: () => Promise<AsyncIterator<String>>;
+  address: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserNullablePromise
@@ -1734,6 +1860,9 @@ export interface UserNullablePromise
     last?: Int;
   }) => T;
   level: () => Promise<String>;
+  phone: () => Promise<String>;
+  address: () => Promise<String>;
+  image: () => Promise<String>;
 }
 
 export interface UserEdge {

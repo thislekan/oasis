@@ -2,16 +2,16 @@ import InputValidator from './inputValidator';
 
 export default class AuthValidator {
   static validateRegNo(args) {
-    const isEmpty = InputValidator.isEmpty(args.regNo && 'regNo', args.regNo);
-    const isAlphanumeric = InputValidator.isAlphanumeric(args.regNo && 'regNo', args.regNo);
-    const minLength = InputValidator.isMinimumLength(args.regNo && 'regNo', args.regNo, 6);
+    const isEmpty = args.regNo && InputValidator.isEmpty('regNo', args.regNo);
+    const isAlphanumeric = args.regNo && InputValidator.isAlphanumeric('regNo', args.regNo);
+    const minLength = args.regNo && InputValidator.isMinimumLength('regNo', args.regNo, 6);
     const errorMsg = isEmpty || isAlphanumeric || minLength;
 
     return errorMsg;
   }
 
   static validateEmail(args) {
-    const isEmpty = InputValidator.isEmpty(args.email && 'email', args.email);
+    const isEmpty = args.email && InputValidator.isEmpty('email', args.email);
     const isEmail = InputValidator.isEmail(args.email);
     const errorMsg = isEmpty || isEmail;
 
@@ -19,16 +19,16 @@ export default class AuthValidator {
   }
 
   static validatePassword(args) {
-    const isEmpty = InputValidator.isEmpty(args.password && 'password', args.password);
-    const minLength = InputValidator.isMinimumLength(args.password && 'password', args.password, 6);
+    const isEmpty = args.password && InputValidator.isEmpty('password', args.password);
+    const minLength = args.password && InputValidator.isMinimumLength('password', args.password, 6);
     const errorMsg = isEmpty || minLength;
 
     return errorMsg;
   }
 
   static validateName(args) {
-    const isEmpty = InputValidator.isEmpty(args.name && 'name', args.name);
-    const isAlphabet = InputValidator.isAlphabet(args.name && 'name', args.name);
+    const isEmpty = args.name && InputValidator.isEmpty('name', args.name);
+    const isAlphabet = args.name && InputValidator.isAlphabet('name', args.name);
     const errorMsg = isEmpty || isAlphabet;
 
     return errorMsg;

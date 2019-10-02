@@ -46,3 +46,32 @@ export const profileMiddleware = (args) => {
 
   return '';
 };
+
+export const confirmFaculty = async (id, context) => {
+  const faculty = await context.prisma.faculty({ id });
+  if (!faculty) return errorFormat('faculty', 'The faculty provided does not exist on our database');
+
+  return faculty;
+};
+
+export const confirmDepartment = async (id, context) => {
+  const department = await context.prisma.department({ id });
+  if (!department) return errorFormat('department', 'The department provided does not exist on our database');
+
+  return department;
+};
+
+export const fetchUserFaculty = async (id, context) => {
+  const faculty = await context.prisma.user({ id }).faculty();
+  return faculty;
+};
+
+export const fetchUserDepartment = async (id, context) => {
+  const department = await context.prisma.user({ id }).department();
+  return department;
+};
+
+export const verifyUser = (tokenId, payloadId) => {
+  if (tokenId !== payloadId) return errorFormat('authorization', 'You do not have access to this information');
+  return true;
+};

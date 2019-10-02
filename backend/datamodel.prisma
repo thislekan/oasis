@@ -3,10 +3,10 @@ type User {
   name: String!
   email: String! @unique
   password: String!
-  regNo: String!
+  regNo: String! @unique
   gender: String
-  department: Department @relation(link: INLINE)
-  faculty: Faculty @relation(link: INLINE)
+  department: Department @relation(onDelete: CASCADE)
+  faculty: Faculty @relation(onDelete: CASCADE)
   courses: [Course]
   level: String
   phone: String
@@ -35,4 +35,5 @@ type Department {
   name: String! @unique
   faculty: Faculty!
   courses: [Course!]!
+  students: [User!]!
 }

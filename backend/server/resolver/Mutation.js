@@ -2,12 +2,16 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import dotEnv from '../../config/config';
+import getUserId, { expiryDate } from '../utils/auth';
 import {
   signupMiddleware,
   loginMiddleware,
   profileMiddleware,
+  confirmFaculty,
+  confirmDepartment,
+  fetchUserDepartment,
+  fetchUserFaculty,
 } from '../middlewares/index';
-import getUserId, { expiryDate } from '../utils/auth';
 
 const Mutation = {
   createUser: async (parent, args, context) => {
@@ -33,6 +37,24 @@ const Mutation = {
     const id = await getUserId(context);
     const { data } = args;
     const user = await context.prisma.updateUser({ data, where: { id } });
+
+    return { user };
+  },
+
+  updateUserFacultyAndDept: async (parent, args, context) => {
+    const id = await getUserId(context);
+    const { data } = args;
+
+    await confirmFaculty(data.faculty, context);
+    await confirmDepartment(data.department, context);
+    data.faculty = { connect: { id: data.faculty } };
+    data.department = { connect: { id: data.department } };
+
+    const user = await context.prisma.updateUser({ data, where: { id } });
+    const faculty = await fetchUserFaculty(id, context);
+    const department = await fetchUserDepartment(id, context);
+    user.department = department;
+    user.faculty = faculty;
 
     return { user };
   },

@@ -1,11 +1,12 @@
 type Query {
-  user(userId: ID!): User
+  user(id: ID!): User
 }
 
 type Mutation {
   createUser(name: String!, email: String!, password: String!, regNo: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload
   updateProfile(data: EditUserProfile): AuthPayload
+  updateUserFacultyAndDept(data: EditUserProfile): AuthPayload
 }
 
 type AuthPayload {
@@ -21,7 +22,7 @@ type User {
   gender: String
   department: Department
   faculty: Faculty
-  courses: [Course]
+  courses: [Course]!
   level: String
   phone: String
   address: String
@@ -33,7 +34,7 @@ type Course {
   name: String!
   department: Department!
   creditUnit: Int!
-  students: [User]
+  students: [User]!
   description: String!
   level: String!
 }
@@ -57,4 +58,6 @@ input EditUserProfile {
   address: String
   phone: String
   image: String
+  faculty: String
+  department: String
 }

@@ -61,16 +61,6 @@ export const confirmDepartment = async (id, context) => {
   return department;
 };
 
-export const fetchUserFaculty = async (id, context) => {
-  const faculty = await context.prisma.user({ id }).faculty();
-  return faculty;
-};
-
-export const fetchUserDepartment = async (id, context) => {
-  const department = await context.prisma.user({ id }).department();
-  return department;
-};
-
 export const verifyUser = (tokenId, payloadId) => {
   if (tokenId !== payloadId) return errorFormat('authorization', 'You do not have access to this information');
   return true;

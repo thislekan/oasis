@@ -9,8 +9,6 @@ import {
   profileMiddleware,
   confirmFaculty,
   confirmDepartment,
-  fetchUserDepartment,
-  fetchUserFaculty,
 } from '../middlewares/index';
 
 const Mutation = {
@@ -51,10 +49,6 @@ const Mutation = {
     data.department = { connect: { id: data.department } };
 
     const user = await context.prisma.updateUser({ data, where: { id } });
-    const faculty = await fetchUserFaculty(id, context);
-    const department = await fetchUserDepartment(id, context);
-    user.department = department;
-    user.faculty = faculty;
 
     return { user };
   },

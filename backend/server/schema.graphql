@@ -1,20 +1,33 @@
 type Query {
-  user(id: ID!): User
+  student(id: ID!): Student
 }
 
 type Mutation {
-  createUser(name: String!, email: String!, password: String!, regNo: String!): AuthPayload
+  createStudent(data: CreateStudentPayload): AuthPayload
   login(email: String!, password: String!): AuthPayload
-  updateProfile(data: EditUserProfile): AuthPayload
-  updateUserFacultyAndDept(data: EditUserProfile): AuthPayload
+  updateStudentProfile(data: EditStudentProfile): AuthPayload
+  updateStudentFacultyAndDept(data: EditStudentFacultyAndDepartmentPayload): AuthPayload
 }
 
 type AuthPayload {
   token: String
-  user: User
+  user: Student
 }
 
-type User {
+type Admin {
+  id: ID!
+  name: String!
+  role: UserRole!
+}
+
+type Lecturer {
+  id: ID!
+  name: String!
+  role: UserRole!
+  courses: [Course]!
+}
+
+type Student {
   id: ID!
   name: String!
   email: String!
@@ -27,6 +40,8 @@ type User {
   phone: String
   address: String
   image: String
+  role: UserRole!
+  history: [CourseHistory]!
 }
 
 type Course {
@@ -34,9 +49,11 @@ type Course {
   name: String!
   department: Department!
   creditUnit: Int!
-  students: [User]!
+  students: [Student]!
   description: String!
   level: String!
+  semester: Semester!
+  lecturer: Lecturer
 }
 
 type Faculty {
@@ -50,14 +67,68 @@ type Department {
   name: String!
   faculty: Faculty!
   courses: [Course!]!
+  students: [Student]!
 }
 
-input EditUserProfile {
+input CreateStudentPayload {
+  name: String!
+  email: String!
+  password: String!
+  regNo: String!
+}
+
+input EditStudentProfile {
   name: String
   gender: String
   address: String
   phone: String
   image: String
-  faculty: String
-  department: String
+}
+
+input EditStudentFacultyAndDepartmentPayload {
+  department: String!
+  faculty: String!
+}
+
+type Session {
+  id: ID!
+  year: String!
+  students: [Student]!
+  courseHistory: [CourseHistory]!
+}
+
+type CourseHistory {
+  id: ID!
+  students: [Student]!
+  session: [Session]!
+  course: [Course]!
+}
+
+type Result {
+  id: ID! 
+  students: [Student]!
+  grade: Grade!
+  cleared: Boolean!
+  course: [Course]!
+}
+
+enum UserRole {
+  ADMIN
+  STUDENT
+  LECTURER
+  OTHERS
+}
+
+enum Semester {
+  FIRST_SEMESTER
+  SECOND_SEMESTER
+}
+
+enum Grade {
+  A
+  B
+  C
+  D
+  E
+  F
 }

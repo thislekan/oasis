@@ -3,7 +3,166 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateCourse {
+/* GraphQL */ `type Admin {
+  id: ID!
+  name: String!
+  role: UserRole!
+  email: String!
+  password: String!
+}
+
+type AdminConnection {
+  pageInfo: PageInfo!
+  edges: [AdminEdge]!
+  aggregate: AggregateAdmin!
+}
+
+input AdminCreateInput {
+  id: ID
+  name: String!
+  role: UserRole
+  email: String!
+  password: String!
+}
+
+type AdminEdge {
+  node: Admin!
+  cursor: String!
+}
+
+enum AdminOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  role_ASC
+  role_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+}
+
+type AdminPreviousValues {
+  id: ID!
+  name: String!
+  role: UserRole!
+  email: String!
+  password: String!
+}
+
+type AdminSubscriptionPayload {
+  mutation: MutationType!
+  node: Admin
+  updatedFields: [String!]
+  previousValues: AdminPreviousValues
+}
+
+input AdminSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AdminWhereInput
+  AND: [AdminSubscriptionWhereInput!]
+  OR: [AdminSubscriptionWhereInput!]
+  NOT: [AdminSubscriptionWhereInput!]
+}
+
+input AdminUpdateInput {
+  name: String
+  role: UserRole
+  email: String
+  password: String
+}
+
+input AdminUpdateManyMutationInput {
+  name: String
+  role: UserRole
+  email: String
+  password: String
+}
+
+input AdminWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  role: UserRole
+  role_not: UserRole
+  role_in: [UserRole!]
+  role_not_in: [UserRole!]
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  AND: [AdminWhereInput!]
+  OR: [AdminWhereInput!]
+  NOT: [AdminWhereInput!]
+}
+
+input AdminWhereUniqueInput {
+  id: ID
+  email: String
+}
+
+type AggregateAdmin {
+  count: Int!
+}
+
+type AggregateCourse {
+  count: Int!
+}
+
+type AggregateCourseHistory {
   count: Int!
 }
 
@@ -15,7 +174,19 @@ type AggregateFaculty {
   count: Int!
 }
 
-type AggregateUser {
+type AggregateLecturer {
+  count: Int!
+}
+
+type AggregateResult {
+  count: Int!
+}
+
+type AggregateSession {
+  count: Int!
+}
+
+type AggregateStudent {
   count: Int!
 }
 
@@ -28,9 +199,11 @@ type Course {
   name: String!
   department: Department!
   creditUnit: Int!
-  students(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  students(where: StudentWhereInput, orderBy: StudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Student!]
   description: String!
   level: String!
+  semester: Semester!
+  lecturer: Lecturer
 }
 
 type CourseConnection {
@@ -44,13 +217,25 @@ input CourseCreateInput {
   name: String!
   department: DepartmentCreateOneWithoutCoursesInput!
   creditUnit: Int!
-  students: UserCreateManyWithoutCoursesInput
+  students: StudentCreateManyWithoutCoursesInput
   description: String!
   level: String!
+  semester: Semester!
+  lecturer: LecturerCreateOneWithoutCoursesInput
+}
+
+input CourseCreateManyInput {
+  create: [CourseCreateInput!]
+  connect: [CourseWhereUniqueInput!]
 }
 
 input CourseCreateManyWithoutDepartmentInput {
   create: [CourseCreateWithoutDepartmentInput!]
+  connect: [CourseWhereUniqueInput!]
+}
+
+input CourseCreateManyWithoutLecturerInput {
+  create: [CourseCreateWithoutLecturerInput!]
   connect: [CourseWhereUniqueInput!]
 }
 
@@ -63,9 +248,22 @@ input CourseCreateWithoutDepartmentInput {
   id: ID
   name: String!
   creditUnit: Int!
-  students: UserCreateManyWithoutCoursesInput
+  students: StudentCreateManyWithoutCoursesInput
   description: String!
   level: String!
+  semester: Semester!
+  lecturer: LecturerCreateOneWithoutCoursesInput
+}
+
+input CourseCreateWithoutLecturerInput {
+  id: ID
+  name: String!
+  department: DepartmentCreateOneWithoutCoursesInput!
+  creditUnit: Int!
+  students: StudentCreateManyWithoutCoursesInput
+  description: String!
+  level: String!
+  semester: Semester!
 }
 
 input CourseCreateWithoutStudentsInput {
@@ -75,11 +273,200 @@ input CourseCreateWithoutStudentsInput {
   creditUnit: Int!
   description: String!
   level: String!
+  semester: Semester!
+  lecturer: LecturerCreateOneWithoutCoursesInput
 }
 
 type CourseEdge {
   node: Course!
   cursor: String!
+}
+
+type CourseHistory {
+  id: ID!
+  students(where: StudentWhereInput, orderBy: StudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Student!]
+  session(where: SessionWhereInput, orderBy: SessionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Session!]
+  course(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
+}
+
+type CourseHistoryConnection {
+  pageInfo: PageInfo!
+  edges: [CourseHistoryEdge]!
+  aggregate: AggregateCourseHistory!
+}
+
+input CourseHistoryCreateInput {
+  id: ID
+  students: StudentCreateManyWithoutHistoryInput
+  session: SessionCreateManyWithoutCourseHistoryInput
+  course: CourseCreateManyInput
+}
+
+input CourseHistoryCreateManyWithoutSessionInput {
+  create: [CourseHistoryCreateWithoutSessionInput!]
+  connect: [CourseHistoryWhereUniqueInput!]
+}
+
+input CourseHistoryCreateManyWithoutStudentsInput {
+  create: [CourseHistoryCreateWithoutStudentsInput!]
+  connect: [CourseHistoryWhereUniqueInput!]
+}
+
+input CourseHistoryCreateWithoutSessionInput {
+  id: ID
+  students: StudentCreateManyWithoutHistoryInput
+  course: CourseCreateManyInput
+}
+
+input CourseHistoryCreateWithoutStudentsInput {
+  id: ID
+  session: SessionCreateManyWithoutCourseHistoryInput
+  course: CourseCreateManyInput
+}
+
+type CourseHistoryEdge {
+  node: CourseHistory!
+  cursor: String!
+}
+
+enum CourseHistoryOrderByInput {
+  id_ASC
+  id_DESC
+}
+
+type CourseHistoryPreviousValues {
+  id: ID!
+}
+
+input CourseHistoryScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  AND: [CourseHistoryScalarWhereInput!]
+  OR: [CourseHistoryScalarWhereInput!]
+  NOT: [CourseHistoryScalarWhereInput!]
+}
+
+type CourseHistorySubscriptionPayload {
+  mutation: MutationType!
+  node: CourseHistory
+  updatedFields: [String!]
+  previousValues: CourseHistoryPreviousValues
+}
+
+input CourseHistorySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CourseHistoryWhereInput
+  AND: [CourseHistorySubscriptionWhereInput!]
+  OR: [CourseHistorySubscriptionWhereInput!]
+  NOT: [CourseHistorySubscriptionWhereInput!]
+}
+
+input CourseHistoryUpdateInput {
+  students: StudentUpdateManyWithoutHistoryInput
+  session: SessionUpdateManyWithoutCourseHistoryInput
+  course: CourseUpdateManyInput
+}
+
+input CourseHistoryUpdateManyWithoutSessionInput {
+  create: [CourseHistoryCreateWithoutSessionInput!]
+  delete: [CourseHistoryWhereUniqueInput!]
+  connect: [CourseHistoryWhereUniqueInput!]
+  set: [CourseHistoryWhereUniqueInput!]
+  disconnect: [CourseHistoryWhereUniqueInput!]
+  update: [CourseHistoryUpdateWithWhereUniqueWithoutSessionInput!]
+  upsert: [CourseHistoryUpsertWithWhereUniqueWithoutSessionInput!]
+  deleteMany: [CourseHistoryScalarWhereInput!]
+}
+
+input CourseHistoryUpdateManyWithoutStudentsInput {
+  create: [CourseHistoryCreateWithoutStudentsInput!]
+  delete: [CourseHistoryWhereUniqueInput!]
+  connect: [CourseHistoryWhereUniqueInput!]
+  set: [CourseHistoryWhereUniqueInput!]
+  disconnect: [CourseHistoryWhereUniqueInput!]
+  update: [CourseHistoryUpdateWithWhereUniqueWithoutStudentsInput!]
+  upsert: [CourseHistoryUpsertWithWhereUniqueWithoutStudentsInput!]
+  deleteMany: [CourseHistoryScalarWhereInput!]
+}
+
+input CourseHistoryUpdateWithoutSessionDataInput {
+  students: StudentUpdateManyWithoutHistoryInput
+  course: CourseUpdateManyInput
+}
+
+input CourseHistoryUpdateWithoutStudentsDataInput {
+  session: SessionUpdateManyWithoutCourseHistoryInput
+  course: CourseUpdateManyInput
+}
+
+input CourseHistoryUpdateWithWhereUniqueWithoutSessionInput {
+  where: CourseHistoryWhereUniqueInput!
+  data: CourseHistoryUpdateWithoutSessionDataInput!
+}
+
+input CourseHistoryUpdateWithWhereUniqueWithoutStudentsInput {
+  where: CourseHistoryWhereUniqueInput!
+  data: CourseHistoryUpdateWithoutStudentsDataInput!
+}
+
+input CourseHistoryUpsertWithWhereUniqueWithoutSessionInput {
+  where: CourseHistoryWhereUniqueInput!
+  update: CourseHistoryUpdateWithoutSessionDataInput!
+  create: CourseHistoryCreateWithoutSessionInput!
+}
+
+input CourseHistoryUpsertWithWhereUniqueWithoutStudentsInput {
+  where: CourseHistoryWhereUniqueInput!
+  update: CourseHistoryUpdateWithoutStudentsDataInput!
+  create: CourseHistoryCreateWithoutStudentsInput!
+}
+
+input CourseHistoryWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  students_every: StudentWhereInput
+  students_some: StudentWhereInput
+  students_none: StudentWhereInput
+  session_every: SessionWhereInput
+  session_some: SessionWhereInput
+  session_none: SessionWhereInput
+  course_every: CourseWhereInput
+  course_some: CourseWhereInput
+  course_none: CourseWhereInput
+  AND: [CourseHistoryWhereInput!]
+  OR: [CourseHistoryWhereInput!]
+  NOT: [CourseHistoryWhereInput!]
+}
+
+input CourseHistoryWhereUniqueInput {
+  id: ID
 }
 
 enum CourseOrderByInput {
@@ -93,6 +480,8 @@ enum CourseOrderByInput {
   description_DESC
   level_ASC
   level_DESC
+  semester_ASC
+  semester_DESC
 }
 
 type CoursePreviousValues {
@@ -101,6 +490,7 @@ type CoursePreviousValues {
   creditUnit: Int!
   description: String!
   level: String!
+  semester: Semester!
 }
 
 input CourseScalarWhereInput {
@@ -168,6 +558,10 @@ input CourseScalarWhereInput {
   level_not_starts_with: String
   level_ends_with: String
   level_not_ends_with: String
+  semester: Semester
+  semester_not: Semester
+  semester_in: [Semester!]
+  semester_not_in: [Semester!]
   AND: [CourseScalarWhereInput!]
   OR: [CourseScalarWhereInput!]
   NOT: [CourseScalarWhereInput!]
@@ -191,13 +585,26 @@ input CourseSubscriptionWhereInput {
   NOT: [CourseSubscriptionWhereInput!]
 }
 
+input CourseUpdateDataInput {
+  name: String
+  department: DepartmentUpdateOneRequiredWithoutCoursesInput
+  creditUnit: Int
+  students: StudentUpdateManyWithoutCoursesInput
+  description: String
+  level: String
+  semester: Semester
+  lecturer: LecturerUpdateOneWithoutCoursesInput
+}
+
 input CourseUpdateInput {
   name: String
   department: DepartmentUpdateOneRequiredWithoutCoursesInput
   creditUnit: Int
-  students: UserUpdateManyWithoutCoursesInput
+  students: StudentUpdateManyWithoutCoursesInput
   description: String
   level: String
+  semester: Semester
+  lecturer: LecturerUpdateOneWithoutCoursesInput
 }
 
 input CourseUpdateManyDataInput {
@@ -205,6 +612,19 @@ input CourseUpdateManyDataInput {
   creditUnit: Int
   description: String
   level: String
+  semester: Semester
+}
+
+input CourseUpdateManyInput {
+  create: [CourseCreateInput!]
+  update: [CourseUpdateWithWhereUniqueNestedInput!]
+  upsert: [CourseUpsertWithWhereUniqueNestedInput!]
+  delete: [CourseWhereUniqueInput!]
+  connect: [CourseWhereUniqueInput!]
+  set: [CourseWhereUniqueInput!]
+  disconnect: [CourseWhereUniqueInput!]
+  deleteMany: [CourseScalarWhereInput!]
+  updateMany: [CourseUpdateManyWithWhereNestedInput!]
 }
 
 input CourseUpdateManyMutationInput {
@@ -212,6 +632,7 @@ input CourseUpdateManyMutationInput {
   creditUnit: Int
   description: String
   level: String
+  semester: Semester
 }
 
 input CourseUpdateManyWithoutDepartmentInput {
@@ -222,6 +643,18 @@ input CourseUpdateManyWithoutDepartmentInput {
   disconnect: [CourseWhereUniqueInput!]
   update: [CourseUpdateWithWhereUniqueWithoutDepartmentInput!]
   upsert: [CourseUpsertWithWhereUniqueWithoutDepartmentInput!]
+  deleteMany: [CourseScalarWhereInput!]
+  updateMany: [CourseUpdateManyWithWhereNestedInput!]
+}
+
+input CourseUpdateManyWithoutLecturerInput {
+  create: [CourseCreateWithoutLecturerInput!]
+  delete: [CourseWhereUniqueInput!]
+  connect: [CourseWhereUniqueInput!]
+  set: [CourseWhereUniqueInput!]
+  disconnect: [CourseWhereUniqueInput!]
+  update: [CourseUpdateWithWhereUniqueWithoutLecturerInput!]
+  upsert: [CourseUpsertWithWhereUniqueWithoutLecturerInput!]
   deleteMany: [CourseScalarWhereInput!]
   updateMany: [CourseUpdateManyWithWhereNestedInput!]
 }
@@ -246,9 +679,21 @@ input CourseUpdateManyWithWhereNestedInput {
 input CourseUpdateWithoutDepartmentDataInput {
   name: String
   creditUnit: Int
-  students: UserUpdateManyWithoutCoursesInput
+  students: StudentUpdateManyWithoutCoursesInput
   description: String
   level: String
+  semester: Semester
+  lecturer: LecturerUpdateOneWithoutCoursesInput
+}
+
+input CourseUpdateWithoutLecturerDataInput {
+  name: String
+  department: DepartmentUpdateOneRequiredWithoutCoursesInput
+  creditUnit: Int
+  students: StudentUpdateManyWithoutCoursesInput
+  description: String
+  level: String
+  semester: Semester
 }
 
 input CourseUpdateWithoutStudentsDataInput {
@@ -257,6 +702,13 @@ input CourseUpdateWithoutStudentsDataInput {
   creditUnit: Int
   description: String
   level: String
+  semester: Semester
+  lecturer: LecturerUpdateOneWithoutCoursesInput
+}
+
+input CourseUpdateWithWhereUniqueNestedInput {
+  where: CourseWhereUniqueInput!
+  data: CourseUpdateDataInput!
 }
 
 input CourseUpdateWithWhereUniqueWithoutDepartmentInput {
@@ -264,15 +716,32 @@ input CourseUpdateWithWhereUniqueWithoutDepartmentInput {
   data: CourseUpdateWithoutDepartmentDataInput!
 }
 
+input CourseUpdateWithWhereUniqueWithoutLecturerInput {
+  where: CourseWhereUniqueInput!
+  data: CourseUpdateWithoutLecturerDataInput!
+}
+
 input CourseUpdateWithWhereUniqueWithoutStudentsInput {
   where: CourseWhereUniqueInput!
   data: CourseUpdateWithoutStudentsDataInput!
+}
+
+input CourseUpsertWithWhereUniqueNestedInput {
+  where: CourseWhereUniqueInput!
+  update: CourseUpdateDataInput!
+  create: CourseCreateInput!
 }
 
 input CourseUpsertWithWhereUniqueWithoutDepartmentInput {
   where: CourseWhereUniqueInput!
   update: CourseUpdateWithoutDepartmentDataInput!
   create: CourseCreateWithoutDepartmentInput!
+}
+
+input CourseUpsertWithWhereUniqueWithoutLecturerInput {
+  where: CourseWhereUniqueInput!
+  update: CourseUpdateWithoutLecturerDataInput!
+  create: CourseCreateWithoutLecturerInput!
 }
 
 input CourseUpsertWithWhereUniqueWithoutStudentsInput {
@@ -319,9 +788,9 @@ input CourseWhereInput {
   creditUnit_lte: Int
   creditUnit_gt: Int
   creditUnit_gte: Int
-  students_every: UserWhereInput
-  students_some: UserWhereInput
-  students_none: UserWhereInput
+  students_every: StudentWhereInput
+  students_some: StudentWhereInput
+  students_none: StudentWhereInput
   description: String
   description_not: String
   description_in: [String!]
@@ -350,6 +819,11 @@ input CourseWhereInput {
   level_not_starts_with: String
   level_ends_with: String
   level_not_ends_with: String
+  semester: Semester
+  semester_not: Semester
+  semester_in: [Semester!]
+  semester_not_in: [Semester!]
+  lecturer: LecturerWhereInput
   AND: [CourseWhereInput!]
   OR: [CourseWhereInput!]
   NOT: [CourseWhereInput!]
@@ -365,7 +839,7 @@ type Department {
   name: String!
   faculty: Faculty!
   courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
-  students(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  students(where: StudentWhereInput, orderBy: StudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Student!]
 }
 
 type DepartmentConnection {
@@ -379,7 +853,7 @@ input DepartmentCreateInput {
   name: String!
   faculty: FacultyCreateOneWithoutDepartmentsInput!
   courses: CourseCreateManyWithoutDepartmentInput
-  students: UserCreateManyWithoutDepartmentInput
+  students: StudentCreateManyWithoutDepartmentInput
 }
 
 input DepartmentCreateManyWithoutFacultyInput {
@@ -401,14 +875,14 @@ input DepartmentCreateWithoutCoursesInput {
   id: ID
   name: String!
   faculty: FacultyCreateOneWithoutDepartmentsInput!
-  students: UserCreateManyWithoutDepartmentInput
+  students: StudentCreateManyWithoutDepartmentInput
 }
 
 input DepartmentCreateWithoutFacultyInput {
   id: ID
   name: String!
   courses: CourseCreateManyWithoutDepartmentInput
-  students: UserCreateManyWithoutDepartmentInput
+  students: StudentCreateManyWithoutDepartmentInput
 }
 
 input DepartmentCreateWithoutStudentsInput {
@@ -491,7 +965,7 @@ input DepartmentUpdateInput {
   name: String
   faculty: FacultyUpdateOneRequiredWithoutDepartmentsInput
   courses: CourseUpdateManyWithoutDepartmentInput
-  students: UserUpdateManyWithoutDepartmentInput
+  students: StudentUpdateManyWithoutDepartmentInput
 }
 
 input DepartmentUpdateManyDataInput {
@@ -538,13 +1012,13 @@ input DepartmentUpdateOneWithoutStudentsInput {
 input DepartmentUpdateWithoutCoursesDataInput {
   name: String
   faculty: FacultyUpdateOneRequiredWithoutDepartmentsInput
-  students: UserUpdateManyWithoutDepartmentInput
+  students: StudentUpdateManyWithoutDepartmentInput
 }
 
 input DepartmentUpdateWithoutFacultyDataInput {
   name: String
   courses: CourseUpdateManyWithoutDepartmentInput
-  students: UserUpdateManyWithoutDepartmentInput
+  students: StudentUpdateManyWithoutDepartmentInput
 }
 
 input DepartmentUpdateWithoutStudentsDataInput {
@@ -607,9 +1081,9 @@ input DepartmentWhereInput {
   courses_every: CourseWhereInput
   courses_some: CourseWhereInput
   courses_none: CourseWhereInput
-  students_every: UserWhereInput
-  students_some: UserWhereInput
-  students_none: UserWhereInput
+  students_every: StudentWhereInput
+  students_some: StudentWhereInput
+  students_none: StudentWhereInput
   AND: [DepartmentWhereInput!]
   OR: [DepartmentWhereInput!]
   NOT: [DepartmentWhereInput!]
@@ -774,15 +1248,226 @@ input FacultyWhereUniqueInput {
   name: String
 }
 
+enum Grade {
+  A
+  B
+  C
+  D
+  E
+  F
+}
+
+type Lecturer {
+  id: ID!
+  name: String!
+  role: UserRole!
+  courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
+  email: String!
+  password: String!
+}
+
+type LecturerConnection {
+  pageInfo: PageInfo!
+  edges: [LecturerEdge]!
+  aggregate: AggregateLecturer!
+}
+
+input LecturerCreateInput {
+  id: ID
+  name: String!
+  role: UserRole
+  courses: CourseCreateManyWithoutLecturerInput
+  email: String!
+  password: String!
+}
+
+input LecturerCreateOneWithoutCoursesInput {
+  create: LecturerCreateWithoutCoursesInput
+  connect: LecturerWhereUniqueInput
+}
+
+input LecturerCreateWithoutCoursesInput {
+  id: ID
+  name: String!
+  role: UserRole
+  email: String!
+  password: String!
+}
+
+type LecturerEdge {
+  node: Lecturer!
+  cursor: String!
+}
+
+enum LecturerOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  role_ASC
+  role_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+}
+
+type LecturerPreviousValues {
+  id: ID!
+  name: String!
+  role: UserRole!
+  email: String!
+  password: String!
+}
+
+type LecturerSubscriptionPayload {
+  mutation: MutationType!
+  node: Lecturer
+  updatedFields: [String!]
+  previousValues: LecturerPreviousValues
+}
+
+input LecturerSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: LecturerWhereInput
+  AND: [LecturerSubscriptionWhereInput!]
+  OR: [LecturerSubscriptionWhereInput!]
+  NOT: [LecturerSubscriptionWhereInput!]
+}
+
+input LecturerUpdateInput {
+  name: String
+  role: UserRole
+  courses: CourseUpdateManyWithoutLecturerInput
+  email: String
+  password: String
+}
+
+input LecturerUpdateManyMutationInput {
+  name: String
+  role: UserRole
+  email: String
+  password: String
+}
+
+input LecturerUpdateOneWithoutCoursesInput {
+  create: LecturerCreateWithoutCoursesInput
+  update: LecturerUpdateWithoutCoursesDataInput
+  upsert: LecturerUpsertWithoutCoursesInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: LecturerWhereUniqueInput
+}
+
+input LecturerUpdateWithoutCoursesDataInput {
+  name: String
+  role: UserRole
+  email: String
+  password: String
+}
+
+input LecturerUpsertWithoutCoursesInput {
+  update: LecturerUpdateWithoutCoursesDataInput!
+  create: LecturerCreateWithoutCoursesInput!
+}
+
+input LecturerWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  role: UserRole
+  role_not: UserRole
+  role_in: [UserRole!]
+  role_not_in: [UserRole!]
+  courses_every: CourseWhereInput
+  courses_some: CourseWhereInput
+  courses_none: CourseWhereInput
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  AND: [LecturerWhereInput!]
+  OR: [LecturerWhereInput!]
+  NOT: [LecturerWhereInput!]
+}
+
+input LecturerWhereUniqueInput {
+  id: ID
+  email: String
+}
+
 scalar Long
 
 type Mutation {
+  createAdmin(data: AdminCreateInput!): Admin!
+  updateAdmin(data: AdminUpdateInput!, where: AdminWhereUniqueInput!): Admin
+  updateManyAdmins(data: AdminUpdateManyMutationInput!, where: AdminWhereInput): BatchPayload!
+  upsertAdmin(where: AdminWhereUniqueInput!, create: AdminCreateInput!, update: AdminUpdateInput!): Admin!
+  deleteAdmin(where: AdminWhereUniqueInput!): Admin
+  deleteManyAdmins(where: AdminWhereInput): BatchPayload!
   createCourse(data: CourseCreateInput!): Course!
   updateCourse(data: CourseUpdateInput!, where: CourseWhereUniqueInput!): Course
   updateManyCourses(data: CourseUpdateManyMutationInput!, where: CourseWhereInput): BatchPayload!
   upsertCourse(where: CourseWhereUniqueInput!, create: CourseCreateInput!, update: CourseUpdateInput!): Course!
   deleteCourse(where: CourseWhereUniqueInput!): Course
   deleteManyCourses(where: CourseWhereInput): BatchPayload!
+  createCourseHistory(data: CourseHistoryCreateInput!): CourseHistory!
+  updateCourseHistory(data: CourseHistoryUpdateInput!, where: CourseHistoryWhereUniqueInput!): CourseHistory
+  upsertCourseHistory(where: CourseHistoryWhereUniqueInput!, create: CourseHistoryCreateInput!, update: CourseHistoryUpdateInput!): CourseHistory!
+  deleteCourseHistory(where: CourseHistoryWhereUniqueInput!): CourseHistory
+  deleteManyCourseHistories(where: CourseHistoryWhereInput): BatchPayload!
   createDepartment(data: DepartmentCreateInput!): Department!
   updateDepartment(data: DepartmentUpdateInput!, where: DepartmentWhereUniqueInput!): Department
   updateManyDepartments(data: DepartmentUpdateManyMutationInput!, where: DepartmentWhereInput): BatchPayload!
@@ -795,12 +1480,30 @@ type Mutation {
   upsertFaculty(where: FacultyWhereUniqueInput!, create: FacultyCreateInput!, update: FacultyUpdateInput!): Faculty!
   deleteFaculty(where: FacultyWhereUniqueInput!): Faculty
   deleteManyFaculties(where: FacultyWhereInput): BatchPayload!
-  createUser(data: UserCreateInput!): User!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  deleteUser(where: UserWhereUniqueInput!): User
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createLecturer(data: LecturerCreateInput!): Lecturer!
+  updateLecturer(data: LecturerUpdateInput!, where: LecturerWhereUniqueInput!): Lecturer
+  updateManyLecturers(data: LecturerUpdateManyMutationInput!, where: LecturerWhereInput): BatchPayload!
+  upsertLecturer(where: LecturerWhereUniqueInput!, create: LecturerCreateInput!, update: LecturerUpdateInput!): Lecturer!
+  deleteLecturer(where: LecturerWhereUniqueInput!): Lecturer
+  deleteManyLecturers(where: LecturerWhereInput): BatchPayload!
+  createResult(data: ResultCreateInput!): Result!
+  updateResult(data: ResultUpdateInput!, where: ResultWhereUniqueInput!): Result
+  updateManyResults(data: ResultUpdateManyMutationInput!, where: ResultWhereInput): BatchPayload!
+  upsertResult(where: ResultWhereUniqueInput!, create: ResultCreateInput!, update: ResultUpdateInput!): Result!
+  deleteResult(where: ResultWhereUniqueInput!): Result
+  deleteManyResults(where: ResultWhereInput): BatchPayload!
+  createSession(data: SessionCreateInput!): Session!
+  updateSession(data: SessionUpdateInput!, where: SessionWhereUniqueInput!): Session
+  updateManySessions(data: SessionUpdateManyMutationInput!, where: SessionWhereInput): BatchPayload!
+  upsertSession(where: SessionWhereUniqueInput!, create: SessionCreateInput!, update: SessionUpdateInput!): Session!
+  deleteSession(where: SessionWhereUniqueInput!): Session
+  deleteManySessions(where: SessionWhereInput): BatchPayload!
+  createStudent(data: StudentCreateInput!): Student!
+  updateStudent(data: StudentUpdateInput!, where: StudentWhereUniqueInput!): Student
+  updateManyStudents(data: StudentUpdateManyMutationInput!, where: StudentWhereInput): BatchPayload!
+  upsertStudent(where: StudentWhereUniqueInput!, create: StudentCreateInput!, update: StudentUpdateInput!): Student!
+  deleteStudent(where: StudentWhereUniqueInput!): Student
+  deleteManyStudents(where: StudentWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -821,33 +1524,344 @@ type PageInfo {
 }
 
 type Query {
+  admin(where: AdminWhereUniqueInput!): Admin
+  admins(where: AdminWhereInput, orderBy: AdminOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Admin]!
+  adminsConnection(where: AdminWhereInput, orderBy: AdminOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AdminConnection!
   course(where: CourseWhereUniqueInput!): Course
   courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course]!
   coursesConnection(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CourseConnection!
+  courseHistory(where: CourseHistoryWhereUniqueInput!): CourseHistory
+  courseHistories(where: CourseHistoryWhereInput, orderBy: CourseHistoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CourseHistory]!
+  courseHistoriesConnection(where: CourseHistoryWhereInput, orderBy: CourseHistoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CourseHistoryConnection!
   department(where: DepartmentWhereUniqueInput!): Department
   departments(where: DepartmentWhereInput, orderBy: DepartmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Department]!
   departmentsConnection(where: DepartmentWhereInput, orderBy: DepartmentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DepartmentConnection!
   faculty(where: FacultyWhereUniqueInput!): Faculty
   faculties(where: FacultyWhereInput, orderBy: FacultyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Faculty]!
   facultiesConnection(where: FacultyWhereInput, orderBy: FacultyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FacultyConnection!
-  user(where: UserWhereUniqueInput!): User
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  lecturer(where: LecturerWhereUniqueInput!): Lecturer
+  lecturers(where: LecturerWhereInput, orderBy: LecturerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Lecturer]!
+  lecturersConnection(where: LecturerWhereInput, orderBy: LecturerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LecturerConnection!
+  result(where: ResultWhereUniqueInput!): Result
+  results(where: ResultWhereInput, orderBy: ResultOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Result]!
+  resultsConnection(where: ResultWhereInput, orderBy: ResultOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ResultConnection!
+  session(where: SessionWhereUniqueInput!): Session
+  sessions(where: SessionWhereInput, orderBy: SessionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Session]!
+  sessionsConnection(where: SessionWhereInput, orderBy: SessionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SessionConnection!
+  student(where: StudentWhereUniqueInput!): Student
+  students(where: StudentWhereInput, orderBy: StudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Student]!
+  studentsConnection(where: StudentWhereInput, orderBy: StudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StudentConnection!
   node(id: ID!): Node
 }
 
-type Subscription {
-  course(where: CourseSubscriptionWhereInput): CourseSubscriptionPayload
-  department(where: DepartmentSubscriptionWhereInput): DepartmentSubscriptionPayload
-  faculty(where: FacultySubscriptionWhereInput): FacultySubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+type Result {
+  id: ID!
+  students(where: StudentWhereInput, orderBy: StudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Student!]
+  grade: Grade!
+  cleared: Boolean!
+  course(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
 }
 
-type User {
+type ResultConnection {
+  pageInfo: PageInfo!
+  edges: [ResultEdge]!
+  aggregate: AggregateResult!
+}
+
+input ResultCreateInput {
+  id: ID
+  students: StudentCreateManyInput
+  grade: Grade!
+  cleared: Boolean!
+  course: CourseCreateManyInput
+}
+
+type ResultEdge {
+  node: Result!
+  cursor: String!
+}
+
+enum ResultOrderByInput {
+  id_ASC
+  id_DESC
+  grade_ASC
+  grade_DESC
+  cleared_ASC
+  cleared_DESC
+}
+
+type ResultPreviousValues {
+  id: ID!
+  grade: Grade!
+  cleared: Boolean!
+}
+
+type ResultSubscriptionPayload {
+  mutation: MutationType!
+  node: Result
+  updatedFields: [String!]
+  previousValues: ResultPreviousValues
+}
+
+input ResultSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ResultWhereInput
+  AND: [ResultSubscriptionWhereInput!]
+  OR: [ResultSubscriptionWhereInput!]
+  NOT: [ResultSubscriptionWhereInput!]
+}
+
+input ResultUpdateInput {
+  students: StudentUpdateManyInput
+  grade: Grade
+  cleared: Boolean
+  course: CourseUpdateManyInput
+}
+
+input ResultUpdateManyMutationInput {
+  grade: Grade
+  cleared: Boolean
+}
+
+input ResultWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  students_every: StudentWhereInput
+  students_some: StudentWhereInput
+  students_none: StudentWhereInput
+  grade: Grade
+  grade_not: Grade
+  grade_in: [Grade!]
+  grade_not_in: [Grade!]
+  cleared: Boolean
+  cleared_not: Boolean
+  course_every: CourseWhereInput
+  course_some: CourseWhereInput
+  course_none: CourseWhereInput
+  AND: [ResultWhereInput!]
+  OR: [ResultWhereInput!]
+  NOT: [ResultWhereInput!]
+}
+
+input ResultWhereUniqueInput {
+  id: ID
+}
+
+enum Semester {
+  FIRST_SEMESTER
+  SECOND_SEMESTER
+}
+
+type Session {
+  id: ID!
+  year: String!
+  students(where: StudentWhereInput, orderBy: StudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Student!]
+  courseHistory(where: CourseHistoryWhereInput, orderBy: CourseHistoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CourseHistory!]
+}
+
+type SessionConnection {
+  pageInfo: PageInfo!
+  edges: [SessionEdge]!
+  aggregate: AggregateSession!
+}
+
+input SessionCreateInput {
+  id: ID
+  year: String!
+  students: StudentCreateManyInput
+  courseHistory: CourseHistoryCreateManyWithoutSessionInput
+}
+
+input SessionCreateManyWithoutCourseHistoryInput {
+  create: [SessionCreateWithoutCourseHistoryInput!]
+  connect: [SessionWhereUniqueInput!]
+}
+
+input SessionCreateWithoutCourseHistoryInput {
+  id: ID
+  year: String!
+  students: StudentCreateManyInput
+}
+
+type SessionEdge {
+  node: Session!
+  cursor: String!
+}
+
+enum SessionOrderByInput {
+  id_ASC
+  id_DESC
+  year_ASC
+  year_DESC
+}
+
+type SessionPreviousValues {
+  id: ID!
+  year: String!
+}
+
+input SessionScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  year: String
+  year_not: String
+  year_in: [String!]
+  year_not_in: [String!]
+  year_lt: String
+  year_lte: String
+  year_gt: String
+  year_gte: String
+  year_contains: String
+  year_not_contains: String
+  year_starts_with: String
+  year_not_starts_with: String
+  year_ends_with: String
+  year_not_ends_with: String
+  AND: [SessionScalarWhereInput!]
+  OR: [SessionScalarWhereInput!]
+  NOT: [SessionScalarWhereInput!]
+}
+
+type SessionSubscriptionPayload {
+  mutation: MutationType!
+  node: Session
+  updatedFields: [String!]
+  previousValues: SessionPreviousValues
+}
+
+input SessionSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SessionWhereInput
+  AND: [SessionSubscriptionWhereInput!]
+  OR: [SessionSubscriptionWhereInput!]
+  NOT: [SessionSubscriptionWhereInput!]
+}
+
+input SessionUpdateInput {
+  year: String
+  students: StudentUpdateManyInput
+  courseHistory: CourseHistoryUpdateManyWithoutSessionInput
+}
+
+input SessionUpdateManyDataInput {
+  year: String
+}
+
+input SessionUpdateManyMutationInput {
+  year: String
+}
+
+input SessionUpdateManyWithoutCourseHistoryInput {
+  create: [SessionCreateWithoutCourseHistoryInput!]
+  delete: [SessionWhereUniqueInput!]
+  connect: [SessionWhereUniqueInput!]
+  set: [SessionWhereUniqueInput!]
+  disconnect: [SessionWhereUniqueInput!]
+  update: [SessionUpdateWithWhereUniqueWithoutCourseHistoryInput!]
+  upsert: [SessionUpsertWithWhereUniqueWithoutCourseHistoryInput!]
+  deleteMany: [SessionScalarWhereInput!]
+  updateMany: [SessionUpdateManyWithWhereNestedInput!]
+}
+
+input SessionUpdateManyWithWhereNestedInput {
+  where: SessionScalarWhereInput!
+  data: SessionUpdateManyDataInput!
+}
+
+input SessionUpdateWithoutCourseHistoryDataInput {
+  year: String
+  students: StudentUpdateManyInput
+}
+
+input SessionUpdateWithWhereUniqueWithoutCourseHistoryInput {
+  where: SessionWhereUniqueInput!
+  data: SessionUpdateWithoutCourseHistoryDataInput!
+}
+
+input SessionUpsertWithWhereUniqueWithoutCourseHistoryInput {
+  where: SessionWhereUniqueInput!
+  update: SessionUpdateWithoutCourseHistoryDataInput!
+  create: SessionCreateWithoutCourseHistoryInput!
+}
+
+input SessionWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  year: String
+  year_not: String
+  year_in: [String!]
+  year_not_in: [String!]
+  year_lt: String
+  year_lte: String
+  year_gt: String
+  year_gte: String
+  year_contains: String
+  year_not_contains: String
+  year_starts_with: String
+  year_not_starts_with: String
+  year_ends_with: String
+  year_not_ends_with: String
+  students_every: StudentWhereInput
+  students_some: StudentWhereInput
+  students_none: StudentWhereInput
+  courseHistory_every: CourseHistoryWhereInput
+  courseHistory_some: CourseHistoryWhereInput
+  courseHistory_none: CourseHistoryWhereInput
+  AND: [SessionWhereInput!]
+  OR: [SessionWhereInput!]
+  NOT: [SessionWhereInput!]
+}
+
+input SessionWhereUniqueInput {
+  id: ID
+}
+
+type Student {
   id: ID!
   name: String!
   email: String!
-  password: String!
   regNo: String!
   gender: String
   department: Department
@@ -857,19 +1871,22 @@ type User {
   phone: String
   address: String
   image: String
+  role: UserRole!
+  history(where: CourseHistoryWhereInput, orderBy: CourseHistoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CourseHistory!]
+  graduated: Boolean
+  password: String!
 }
 
-type UserConnection {
+type StudentConnection {
   pageInfo: PageInfo!
-  edges: [UserEdge]!
-  aggregate: AggregateUser!
+  edges: [StudentEdge]!
+  aggregate: AggregateStudent!
 }
 
-input UserCreateInput {
+input StudentCreateInput {
   id: ID
   name: String!
   email: String!
-  password: String!
   regNo: String!
   gender: String
   department: DepartmentCreateOneWithoutStudentsInput
@@ -879,23 +1896,36 @@ input UserCreateInput {
   phone: String
   address: String
   image: String
+  role: UserRole
+  history: CourseHistoryCreateManyWithoutStudentsInput
+  graduated: Boolean
+  password: String!
 }
 
-input UserCreateManyWithoutCoursesInput {
-  create: [UserCreateWithoutCoursesInput!]
-  connect: [UserWhereUniqueInput!]
+input StudentCreateManyInput {
+  create: [StudentCreateInput!]
+  connect: [StudentWhereUniqueInput!]
 }
 
-input UserCreateManyWithoutDepartmentInput {
-  create: [UserCreateWithoutDepartmentInput!]
-  connect: [UserWhereUniqueInput!]
+input StudentCreateManyWithoutCoursesInput {
+  create: [StudentCreateWithoutCoursesInput!]
+  connect: [StudentWhereUniqueInput!]
 }
 
-input UserCreateWithoutCoursesInput {
+input StudentCreateManyWithoutDepartmentInput {
+  create: [StudentCreateWithoutDepartmentInput!]
+  connect: [StudentWhereUniqueInput!]
+}
+
+input StudentCreateManyWithoutHistoryInput {
+  create: [StudentCreateWithoutHistoryInput!]
+  connect: [StudentWhereUniqueInput!]
+}
+
+input StudentCreateWithoutCoursesInput {
   id: ID
   name: String!
   email: String!
-  password: String!
   regNo: String!
   gender: String
   department: DepartmentCreateOneWithoutStudentsInput
@@ -904,13 +1934,16 @@ input UserCreateWithoutCoursesInput {
   phone: String
   address: String
   image: String
+  role: UserRole
+  history: CourseHistoryCreateManyWithoutStudentsInput
+  graduated: Boolean
+  password: String!
 }
 
-input UserCreateWithoutDepartmentInput {
+input StudentCreateWithoutDepartmentInput {
   id: ID
   name: String!
   email: String!
-  password: String!
   regNo: String!
   gender: String
   faculty: FacultyCreateOneInput
@@ -919,22 +1952,42 @@ input UserCreateWithoutDepartmentInput {
   phone: String
   address: String
   image: String
+  role: UserRole
+  history: CourseHistoryCreateManyWithoutStudentsInput
+  graduated: Boolean
+  password: String!
 }
 
-type UserEdge {
-  node: User!
+input StudentCreateWithoutHistoryInput {
+  id: ID
+  name: String!
+  email: String!
+  regNo: String!
+  gender: String
+  department: DepartmentCreateOneWithoutStudentsInput
+  faculty: FacultyCreateOneInput
+  courses: CourseCreateManyWithoutStudentsInput
+  level: String
+  phone: String
+  address: String
+  image: String
+  role: UserRole
+  graduated: Boolean
+  password: String!
+}
+
+type StudentEdge {
+  node: Student!
   cursor: String!
 }
 
-enum UserOrderByInput {
+enum StudentOrderByInput {
   id_ASC
   id_DESC
   name_ASC
   name_DESC
   email_ASC
   email_DESC
-  password_ASC
-  password_DESC
   regNo_ASC
   regNo_DESC
   gender_ASC
@@ -947,22 +2000,30 @@ enum UserOrderByInput {
   address_DESC
   image_ASC
   image_DESC
+  role_ASC
+  role_DESC
+  graduated_ASC
+  graduated_DESC
+  password_ASC
+  password_DESC
 }
 
-type UserPreviousValues {
+type StudentPreviousValues {
   id: ID!
   name: String!
   email: String!
-  password: String!
   regNo: String!
   gender: String
   level: String
   phone: String
   address: String
   image: String
+  role: UserRole!
+  graduated: Boolean
+  password: String!
 }
 
-input UserScalarWhereInput {
+input StudentScalarWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -1005,20 +2066,6 @@ input UserScalarWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
-  password: String
-  password_not: String
-  password_in: [String!]
-  password_not_in: [String!]
-  password_lt: String
-  password_lte: String
-  password_gt: String
-  password_gte: String
-  password_contains: String
-  password_not_contains: String
-  password_starts_with: String
-  password_not_starts_with: String
-  password_ends_with: String
-  password_not_ends_with: String
   regNo: String
   regNo_not: String
   regNo_in: [String!]
@@ -1103,33 +2150,52 @@ input UserScalarWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
-  AND: [UserScalarWhereInput!]
-  OR: [UserScalarWhereInput!]
-  NOT: [UserScalarWhereInput!]
+  role: UserRole
+  role_not: UserRole
+  role_in: [UserRole!]
+  role_not_in: [UserRole!]
+  graduated: Boolean
+  graduated_not: Boolean
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  AND: [StudentScalarWhereInput!]
+  OR: [StudentScalarWhereInput!]
+  NOT: [StudentScalarWhereInput!]
 }
 
-type UserSubscriptionPayload {
+type StudentSubscriptionPayload {
   mutation: MutationType!
-  node: User
+  node: Student
   updatedFields: [String!]
-  previousValues: UserPreviousValues
+  previousValues: StudentPreviousValues
 }
 
-input UserSubscriptionWhereInput {
+input StudentSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: UserWhereInput
-  AND: [UserSubscriptionWhereInput!]
-  OR: [UserSubscriptionWhereInput!]
-  NOT: [UserSubscriptionWhereInput!]
+  node: StudentWhereInput
+  AND: [StudentSubscriptionWhereInput!]
+  OR: [StudentSubscriptionWhereInput!]
+  NOT: [StudentSubscriptionWhereInput!]
 }
 
-input UserUpdateInput {
+input StudentUpdateDataInput {
   name: String
   email: String
-  password: String
   regNo: String
   gender: String
   department: DepartmentUpdateOneWithoutStudentsInput
@@ -1139,65 +2205,114 @@ input UserUpdateInput {
   phone: String
   address: String
   image: String
+  role: UserRole
+  history: CourseHistoryUpdateManyWithoutStudentsInput
+  graduated: Boolean
+  password: String
 }
 
-input UserUpdateManyDataInput {
+input StudentUpdateInput {
   name: String
   email: String
+  regNo: String
+  gender: String
+  department: DepartmentUpdateOneWithoutStudentsInput
+  faculty: FacultyUpdateOneInput
+  courses: CourseUpdateManyWithoutStudentsInput
+  level: String
+  phone: String
+  address: String
+  image: String
+  role: UserRole
+  history: CourseHistoryUpdateManyWithoutStudentsInput
+  graduated: Boolean
   password: String
+}
+
+input StudentUpdateManyDataInput {
+  name: String
+  email: String
   regNo: String
   gender: String
   level: String
   phone: String
   address: String
   image: String
+  role: UserRole
+  graduated: Boolean
+  password: String
 }
 
-input UserUpdateManyMutationInput {
+input StudentUpdateManyInput {
+  create: [StudentCreateInput!]
+  update: [StudentUpdateWithWhereUniqueNestedInput!]
+  upsert: [StudentUpsertWithWhereUniqueNestedInput!]
+  delete: [StudentWhereUniqueInput!]
+  connect: [StudentWhereUniqueInput!]
+  set: [StudentWhereUniqueInput!]
+  disconnect: [StudentWhereUniqueInput!]
+  deleteMany: [StudentScalarWhereInput!]
+  updateMany: [StudentUpdateManyWithWhereNestedInput!]
+}
+
+input StudentUpdateManyMutationInput {
   name: String
   email: String
-  password: String
   regNo: String
   gender: String
   level: String
   phone: String
   address: String
   image: String
+  role: UserRole
+  graduated: Boolean
+  password: String
 }
 
-input UserUpdateManyWithoutCoursesInput {
-  create: [UserCreateWithoutCoursesInput!]
-  delete: [UserWhereUniqueInput!]
-  connect: [UserWhereUniqueInput!]
-  set: [UserWhereUniqueInput!]
-  disconnect: [UserWhereUniqueInput!]
-  update: [UserUpdateWithWhereUniqueWithoutCoursesInput!]
-  upsert: [UserUpsertWithWhereUniqueWithoutCoursesInput!]
-  deleteMany: [UserScalarWhereInput!]
-  updateMany: [UserUpdateManyWithWhereNestedInput!]
+input StudentUpdateManyWithoutCoursesInput {
+  create: [StudentCreateWithoutCoursesInput!]
+  delete: [StudentWhereUniqueInput!]
+  connect: [StudentWhereUniqueInput!]
+  set: [StudentWhereUniqueInput!]
+  disconnect: [StudentWhereUniqueInput!]
+  update: [StudentUpdateWithWhereUniqueWithoutCoursesInput!]
+  upsert: [StudentUpsertWithWhereUniqueWithoutCoursesInput!]
+  deleteMany: [StudentScalarWhereInput!]
+  updateMany: [StudentUpdateManyWithWhereNestedInput!]
 }
 
-input UserUpdateManyWithoutDepartmentInput {
-  create: [UserCreateWithoutDepartmentInput!]
-  delete: [UserWhereUniqueInput!]
-  connect: [UserWhereUniqueInput!]
-  set: [UserWhereUniqueInput!]
-  disconnect: [UserWhereUniqueInput!]
-  update: [UserUpdateWithWhereUniqueWithoutDepartmentInput!]
-  upsert: [UserUpsertWithWhereUniqueWithoutDepartmentInput!]
-  deleteMany: [UserScalarWhereInput!]
-  updateMany: [UserUpdateManyWithWhereNestedInput!]
+input StudentUpdateManyWithoutDepartmentInput {
+  create: [StudentCreateWithoutDepartmentInput!]
+  delete: [StudentWhereUniqueInput!]
+  connect: [StudentWhereUniqueInput!]
+  set: [StudentWhereUniqueInput!]
+  disconnect: [StudentWhereUniqueInput!]
+  update: [StudentUpdateWithWhereUniqueWithoutDepartmentInput!]
+  upsert: [StudentUpsertWithWhereUniqueWithoutDepartmentInput!]
+  deleteMany: [StudentScalarWhereInput!]
+  updateMany: [StudentUpdateManyWithWhereNestedInput!]
 }
 
-input UserUpdateManyWithWhereNestedInput {
-  where: UserScalarWhereInput!
-  data: UserUpdateManyDataInput!
+input StudentUpdateManyWithoutHistoryInput {
+  create: [StudentCreateWithoutHistoryInput!]
+  delete: [StudentWhereUniqueInput!]
+  connect: [StudentWhereUniqueInput!]
+  set: [StudentWhereUniqueInput!]
+  disconnect: [StudentWhereUniqueInput!]
+  update: [StudentUpdateWithWhereUniqueWithoutHistoryInput!]
+  upsert: [StudentUpsertWithWhereUniqueWithoutHistoryInput!]
+  deleteMany: [StudentScalarWhereInput!]
+  updateMany: [StudentUpdateManyWithWhereNestedInput!]
 }
 
-input UserUpdateWithoutCoursesDataInput {
+input StudentUpdateManyWithWhereNestedInput {
+  where: StudentScalarWhereInput!
+  data: StudentUpdateManyDataInput!
+}
+
+input StudentUpdateWithoutCoursesDataInput {
   name: String
   email: String
-  password: String
   regNo: String
   gender: String
   department: DepartmentUpdateOneWithoutStudentsInput
@@ -1206,12 +2321,15 @@ input UserUpdateWithoutCoursesDataInput {
   phone: String
   address: String
   image: String
+  role: UserRole
+  history: CourseHistoryUpdateManyWithoutStudentsInput
+  graduated: Boolean
+  password: String
 }
 
-input UserUpdateWithoutDepartmentDataInput {
+input StudentUpdateWithoutDepartmentDataInput {
   name: String
   email: String
-  password: String
   regNo: String
   gender: String
   faculty: FacultyUpdateOneInput
@@ -1220,31 +2338,74 @@ input UserUpdateWithoutDepartmentDataInput {
   phone: String
   address: String
   image: String
+  role: UserRole
+  history: CourseHistoryUpdateManyWithoutStudentsInput
+  graduated: Boolean
+  password: String
 }
 
-input UserUpdateWithWhereUniqueWithoutCoursesInput {
-  where: UserWhereUniqueInput!
-  data: UserUpdateWithoutCoursesDataInput!
+input StudentUpdateWithoutHistoryDataInput {
+  name: String
+  email: String
+  regNo: String
+  gender: String
+  department: DepartmentUpdateOneWithoutStudentsInput
+  faculty: FacultyUpdateOneInput
+  courses: CourseUpdateManyWithoutStudentsInput
+  level: String
+  phone: String
+  address: String
+  image: String
+  role: UserRole
+  graduated: Boolean
+  password: String
 }
 
-input UserUpdateWithWhereUniqueWithoutDepartmentInput {
-  where: UserWhereUniqueInput!
-  data: UserUpdateWithoutDepartmentDataInput!
+input StudentUpdateWithWhereUniqueNestedInput {
+  where: StudentWhereUniqueInput!
+  data: StudentUpdateDataInput!
 }
 
-input UserUpsertWithWhereUniqueWithoutCoursesInput {
-  where: UserWhereUniqueInput!
-  update: UserUpdateWithoutCoursesDataInput!
-  create: UserCreateWithoutCoursesInput!
+input StudentUpdateWithWhereUniqueWithoutCoursesInput {
+  where: StudentWhereUniqueInput!
+  data: StudentUpdateWithoutCoursesDataInput!
 }
 
-input UserUpsertWithWhereUniqueWithoutDepartmentInput {
-  where: UserWhereUniqueInput!
-  update: UserUpdateWithoutDepartmentDataInput!
-  create: UserCreateWithoutDepartmentInput!
+input StudentUpdateWithWhereUniqueWithoutDepartmentInput {
+  where: StudentWhereUniqueInput!
+  data: StudentUpdateWithoutDepartmentDataInput!
 }
 
-input UserWhereInput {
+input StudentUpdateWithWhereUniqueWithoutHistoryInput {
+  where: StudentWhereUniqueInput!
+  data: StudentUpdateWithoutHistoryDataInput!
+}
+
+input StudentUpsertWithWhereUniqueNestedInput {
+  where: StudentWhereUniqueInput!
+  update: StudentUpdateDataInput!
+  create: StudentCreateInput!
+}
+
+input StudentUpsertWithWhereUniqueWithoutCoursesInput {
+  where: StudentWhereUniqueInput!
+  update: StudentUpdateWithoutCoursesDataInput!
+  create: StudentCreateWithoutCoursesInput!
+}
+
+input StudentUpsertWithWhereUniqueWithoutDepartmentInput {
+  where: StudentWhereUniqueInput!
+  update: StudentUpdateWithoutDepartmentDataInput!
+  create: StudentCreateWithoutDepartmentInput!
+}
+
+input StudentUpsertWithWhereUniqueWithoutHistoryInput {
+  where: StudentWhereUniqueInput!
+  update: StudentUpdateWithoutHistoryDataInput!
+  create: StudentCreateWithoutHistoryInput!
+}
+
+input StudentWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -1287,20 +2448,6 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
-  password: String
-  password_not: String
-  password_in: [String!]
-  password_not_in: [String!]
-  password_lt: String
-  password_lte: String
-  password_gt: String
-  password_gte: String
-  password_contains: String
-  password_not_contains: String
-  password_starts_with: String
-  password_not_starts_with: String
-  password_ends_with: String
-  password_not_ends_with: String
   regNo: String
   regNo_not: String
   regNo_in: [String!]
@@ -1390,15 +2537,57 @@ input UserWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
-  AND: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  NOT: [UserWhereInput!]
+  role: UserRole
+  role_not: UserRole
+  role_in: [UserRole!]
+  role_not_in: [UserRole!]
+  history_every: CourseHistoryWhereInput
+  history_some: CourseHistoryWhereInput
+  history_none: CourseHistoryWhereInput
+  graduated: Boolean
+  graduated_not: Boolean
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  AND: [StudentWhereInput!]
+  OR: [StudentWhereInput!]
+  NOT: [StudentWhereInput!]
 }
 
-input UserWhereUniqueInput {
+input StudentWhereUniqueInput {
   id: ID
   email: String
   regNo: String
+}
+
+type Subscription {
+  admin(where: AdminSubscriptionWhereInput): AdminSubscriptionPayload
+  course(where: CourseSubscriptionWhereInput): CourseSubscriptionPayload
+  courseHistory(where: CourseHistorySubscriptionWhereInput): CourseHistorySubscriptionPayload
+  department(where: DepartmentSubscriptionWhereInput): DepartmentSubscriptionPayload
+  faculty(where: FacultySubscriptionWhereInput): FacultySubscriptionPayload
+  lecturer(where: LecturerSubscriptionWhereInput): LecturerSubscriptionPayload
+  result(where: ResultSubscriptionWhereInput): ResultSubscriptionPayload
+  session(where: SessionSubscriptionWhereInput): SessionSubscriptionPayload
+  student(where: StudentSubscriptionWhereInput): StudentSubscriptionPayload
+}
+
+enum UserRole {
+  ADMIN
+  STUDENT
+  LECTURER
+  OTHERS
 }
 `
       }

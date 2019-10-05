@@ -12,11 +12,12 @@ import {
 } from '../middlewares/index';
 
 const Mutation = {
-  createUser: async (parent, args, context) => {
-    signupMiddleware(args);
+  createStudent: async (parent, args, context) => {
+    const { data } = args;
+    signupMiddleware(data);
 
-    const password = await bcrypt.hash(args.password, 10);
-    const user = await context.prisma.createUser({ ...args, password });
+    const password = await bcrypt.hash(data.password, 10);
+    const user = await context.prisma.createStudent({ ...data, password });
     const token = jwt.sign({ userId: user.id, exp: expiryDate }, dotEnv.JWT_SECRET);
 
     return { user, token };
@@ -29,17 +30,17 @@ const Mutation = {
     return { token, user };
   },
 
-  updateProfile: async (parent, args, context) => {
+  updateStudentProfile: async (parent, args, context) => {
     profileMiddleware(args);
 
     const id = await getUserId(context);
     const { data } = args;
-    const user = await context.prisma.updateUser({ data, where: { id } });
+    const user = await context.prisma.updateStudent({ data, where: { id } });
 
     return { user };
   },
 
-  updateUserFacultyAndDept: async (parent, args, context) => {
+  updateStudentFacultyAndDept: async (parent, args, context) => {
     const id = await getUserId(context);
     const { data } = args;
 
@@ -48,7 +49,7 @@ const Mutation = {
     data.faculty = { connect: { id: data.faculty } };
     data.department = { connect: { id: data.department } };
 
-    const user = await context.prisma.updateUser({ data, where: { id } });
+    const user = await context.prisma.updateStudent({ data, where: { id } });
 
     return { user };
   },

@@ -12,7 +12,7 @@ export const validateUser = async (inputPassword, userPassword) => {
 };
 
 export const findUser = async (args, context) => {
-  const user = await context.prisma.user({ email: args.email });
+  const user = await context.prisma.student({ email: args.email });
   if (!user) return errorFormat('User', 'User does not exist');
 
   return user;

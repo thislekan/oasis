@@ -13,6 +13,7 @@ mutation science{
                   creditUnit: 2
                   description: "An introduction to microbiology"
                   level: "100L"
+                  semester: FIRST_SEMESTER
                 }
               ]
             }
@@ -40,6 +41,7 @@ mutation engineering {
                   creditUnit: 2
                   description: "An introduction to Electrical Engineering"
                   level: "100L"
+                  semester: FIRST_SEMESTER
                 }
               ]
             }

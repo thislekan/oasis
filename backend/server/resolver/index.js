@@ -1,11 +1,11 @@
 import Query from './Query';
 import Mutation from './Mutation';
-import User from './User';
+import Student from './Student';
 
 const resolvers = {
   Query,
   Mutation,
-  User,
+  Student,
 };
 
 export default resolvers;

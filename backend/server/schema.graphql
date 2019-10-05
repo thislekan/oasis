@@ -7,6 +7,7 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload
   updateStudentProfile(data: EditStudentProfile): AuthPayload
   updateStudentFacultyAndDept(data: EditStudentFacultyAndDepartmentPayload): AuthPayload
+  registerCourse(data: RegisterCoursesPayload): AuthPayload
 }
 
 type AuthPayload {
@@ -90,6 +91,11 @@ input EditStudentFacultyAndDepartmentPayload {
   faculty: String!
 }
 
+input RegisterCoursesPayload {
+  courses: [String!]!
+  type: CourseRegistrationType
+}
+
 type Session {
   id: ID!
   year: String!
@@ -131,4 +137,9 @@ enum Grade {
   D
   E
   F
+}
+
+enum CourseRegistrationType {
+  ADD
+  REMOVE
 }

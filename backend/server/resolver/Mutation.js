@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import DataLoader from 'dataloader';
 
 import dotEnv from '../../config/config';
 import getUserId, { expiryDate } from '../utils/auth';
@@ -10,6 +11,7 @@ import {
   confirmFaculty,
   confirmDepartment,
 } from '../middlewares/index';
+import courseValidator from '../utils/validators/courseRegistrationValidator';
 
 const Mutation = {
   createStudent: async (parent, args, context) => {
@@ -48,8 +50,26 @@ const Mutation = {
     await confirmDepartment(data.department, context);
     data.faculty = { connect: { id: data.faculty } };
     data.department = { connect: { id: data.department } };
-
     const user = await context.prisma.updateStudent({ data, where: { id } });
+
+    return { user };
+  },
+
+  registerCourse: async (parent, args, context) => {
+    const connector = (args.data.type === 'ADD') ? 'connect' : 'disconnect';
+    const id = await getUserId(context);
+    const { data } = args;
+    const courseList = [];
+    const courseLoader = new DataLoader((list) => courseValidator.batchingFunc(list, context));
+
+    await courseValidator.isEmpty(args);
+    data.courses.forEach((element) => {
+      courseLoader.load(element);
+      courseList.push({ id: element });
+    });
+
+    const courses = { courses: { [connector]: courseList } };
+    const user = await context.prisma.updateStudent({ data: courses, where: { id } });
 
     return { user };
   },

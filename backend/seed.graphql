@@ -14,6 +14,13 @@ mutation science{
                   description: "An introduction to microbiology"
                   level: "100L"
                   semester: FIRST_SEMESTER
+                },
+                {
+                  name: "PHY 101"
+                  creditUnit: 2
+                  description: "An introduction to Mechanics"
+                  level: "100L"
+                  semester: FIRST_SEMESTER
                 }
               ]
             }
@@ -40,6 +47,13 @@ mutation engineering {
                   name: "EEN 101"
                   creditUnit: 2
                   description: "An introduction to Electrical Engineering"
+                  level: "100L"
+                  semester: FIRST_SEMESTER
+                },
+                {
+                  name: "EEN 111"
+                  creditUnit: 2
+                  description: "An introduction to Electrical circuits"
                   level: "100L"
                   semester: FIRST_SEMESTER
                 }

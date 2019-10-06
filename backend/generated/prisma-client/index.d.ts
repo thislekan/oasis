@@ -527,14 +527,14 @@ export type AdminWhereUniqueInput = AtLeastOne<{
 
 export interface CourseHistoryCreateWithoutStudentsInput {
   id?: Maybe<ID_Input>;
-  session?: Maybe<SessionCreateManyWithoutCourseHistoryInput>;
-  course?: Maybe<CourseCreateManyInput>;
+  sessions?: Maybe<SessionCreateManyWithoutCourseHistoryInput>;
+  courses?: Maybe<CourseCreateManyInput>;
 }
 
 export interface CourseHistoryUpdateInput {
   students?: Maybe<StudentUpdateManyWithoutHistoryInput>;
-  session?: Maybe<SessionUpdateManyWithoutCourseHistoryInput>;
-  course?: Maybe<CourseUpdateManyInput>;
+  sessions?: Maybe<SessionUpdateManyWithoutCourseHistoryInput>;
+  courses?: Maybe<CourseUpdateManyInput>;
 }
 
 export interface SessionCreateManyWithoutCourseHistoryInput {
@@ -1022,10 +1022,10 @@ export interface DepartmentUpdateWithoutCoursesDataInput {
   students?: Maybe<StudentUpdateManyWithoutDepartmentInput>;
 }
 
-export interface CourseHistoryUpsertWithWhereUniqueWithoutSessionInput {
+export interface CourseHistoryUpsertWithWhereUniqueWithoutSessionsInput {
   where: CourseHistoryWhereUniqueInput;
-  update: CourseHistoryUpdateWithoutSessionDataInput;
-  create: CourseHistoryCreateWithoutSessionInput;
+  update: CourseHistoryUpdateWithoutSessionsDataInput;
+  create: CourseHistoryCreateWithoutSessionsInput;
 }
 
 export interface FacultyUpdateOneRequiredWithoutDepartmentsInput {
@@ -1035,19 +1035,19 @@ export interface FacultyUpdateOneRequiredWithoutDepartmentsInput {
   connect?: Maybe<FacultyWhereUniqueInput>;
 }
 
-export interface CourseHistoryUpdateWithWhereUniqueWithoutSessionInput {
+export interface CourseHistoryUpdateWithWhereUniqueWithoutSessionsInput {
   where: CourseHistoryWhereUniqueInput;
-  data: CourseHistoryUpdateWithoutSessionDataInput;
+  data: CourseHistoryUpdateWithoutSessionsDataInput;
 }
 
 export interface FacultyUpdateWithoutDepartmentsDataInput {
   name?: Maybe<String>;
 }
 
-export interface CourseHistoryUpdateManyWithoutSessionInput {
+export interface CourseHistoryUpdateManyWithoutSessionsInput {
   create?: Maybe<
-    | CourseHistoryCreateWithoutSessionInput[]
-    | CourseHistoryCreateWithoutSessionInput
+    | CourseHistoryCreateWithoutSessionsInput[]
+    | CourseHistoryCreateWithoutSessionsInput
   >;
   delete?: Maybe<
     CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
@@ -1060,12 +1060,12 @@ export interface CourseHistoryUpdateManyWithoutSessionInput {
     CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
   >;
   update?: Maybe<
-    | CourseHistoryUpdateWithWhereUniqueWithoutSessionInput[]
-    | CourseHistoryUpdateWithWhereUniqueWithoutSessionInput
+    | CourseHistoryUpdateWithWhereUniqueWithoutSessionsInput[]
+    | CourseHistoryUpdateWithWhereUniqueWithoutSessionsInput
   >;
   upsert?: Maybe<
-    | CourseHistoryUpsertWithWhereUniqueWithoutSessionInput[]
-    | CourseHistoryUpsertWithWhereUniqueWithoutSessionInput
+    | CourseHistoryUpsertWithWhereUniqueWithoutSessionsInput[]
+    | CourseHistoryUpsertWithWhereUniqueWithoutSessionsInput
   >;
   deleteMany?: Maybe<
     CourseHistoryScalarWhereInput[] | CourseHistoryScalarWhereInput
@@ -1077,10 +1077,10 @@ export interface FacultyUpsertWithoutDepartmentsInput {
   create: FacultyCreateWithoutDepartmentsInput;
 }
 
-export interface CourseHistoryCreateWithoutSessionInput {
+export interface CourseHistoryCreateWithoutSessionsInput {
   id?: Maybe<ID_Input>;
   students?: Maybe<StudentCreateManyWithoutHistoryInput>;
-  course?: Maybe<CourseCreateManyInput>;
+  courses?: Maybe<CourseCreateManyInput>;
 }
 
 export interface StudentUpdateManyWithoutDepartmentInput {
@@ -1106,10 +1106,10 @@ export interface StudentUpdateManyWithoutDepartmentInput {
   >;
 }
 
-export interface CourseHistoryCreateManyWithoutSessionInput {
+export interface CourseHistoryCreateManyWithoutSessionsInput {
   create?: Maybe<
-    | CourseHistoryCreateWithoutSessionInput[]
-    | CourseHistoryCreateWithoutSessionInput
+    | CourseHistoryCreateWithoutSessionsInput[]
+    | CourseHistoryCreateWithoutSessionsInput
   >;
   connect?: Maybe<
     CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
@@ -1491,8 +1491,8 @@ export interface StudentCreateManyWithoutDepartmentInput {
 }
 
 export interface CourseHistoryUpdateWithoutStudentsDataInput {
-  session?: Maybe<SessionUpdateManyWithoutCourseHistoryInput>;
-  course?: Maybe<CourseUpdateManyInput>;
+  sessions?: Maybe<SessionUpdateManyWithoutCourseHistoryInput>;
+  courses?: Maybe<CourseUpdateManyInput>;
 }
 
 export interface FacultyCreateOneInput {
@@ -1804,9 +1804,9 @@ export interface LecturerUpdateWithoutCoursesDataInput {
   password?: Maybe<String>;
 }
 
-export interface CourseHistoryUpdateWithoutSessionDataInput {
+export interface CourseHistoryUpdateWithoutSessionsDataInput {
   students?: Maybe<StudentUpdateManyWithoutHistoryInput>;
-  course?: Maybe<CourseUpdateManyInput>;
+  courses?: Maybe<CourseUpdateManyInput>;
 }
 
 export interface LecturerUpsertWithoutCoursesInput {
@@ -1817,7 +1817,7 @@ export interface LecturerUpsertWithoutCoursesInput {
 export interface SessionUpdateInput {
   year?: Maybe<String>;
   students?: Maybe<StudentUpdateManyInput>;
-  courseHistory?: Maybe<CourseHistoryUpdateManyWithoutSessionInput>;
+  courseHistory?: Maybe<CourseHistoryUpdateManyWithoutSessionsInput>;
 }
 
 export interface CourseUpsertWithWhereUniqueWithoutStudentsInput {
@@ -1830,7 +1830,7 @@ export interface SessionCreateInput {
   id?: Maybe<ID_Input>;
   year: String;
   students?: Maybe<StudentCreateManyInput>;
-  courseHistory?: Maybe<CourseHistoryCreateManyWithoutSessionInput>;
+  courseHistory?: Maybe<CourseHistoryCreateManyWithoutSessionsInput>;
 }
 
 export interface CourseScalarWhereInput {
@@ -2548,12 +2548,12 @@ export interface CourseHistoryWhereInput {
   students_every?: Maybe<StudentWhereInput>;
   students_some?: Maybe<StudentWhereInput>;
   students_none?: Maybe<StudentWhereInput>;
-  session_every?: Maybe<SessionWhereInput>;
-  session_some?: Maybe<SessionWhereInput>;
-  session_none?: Maybe<SessionWhereInput>;
-  course_every?: Maybe<CourseWhereInput>;
-  course_some?: Maybe<CourseWhereInput>;
-  course_none?: Maybe<CourseWhereInput>;
+  sessions_every?: Maybe<SessionWhereInput>;
+  sessions_some?: Maybe<SessionWhereInput>;
+  sessions_none?: Maybe<SessionWhereInput>;
+  courses_every?: Maybe<CourseWhereInput>;
+  courses_some?: Maybe<CourseWhereInput>;
+  courses_none?: Maybe<CourseWhereInput>;
   AND?: Maybe<CourseHistoryWhereInput[] | CourseHistoryWhereInput>;
   OR?: Maybe<CourseHistoryWhereInput[] | CourseHistoryWhereInput>;
   NOT?: Maybe<CourseHistoryWhereInput[] | CourseHistoryWhereInput>;
@@ -2646,8 +2646,8 @@ export interface StudentCreateManyWithoutHistoryInput {
 export interface CourseHistoryCreateInput {
   id?: Maybe<ID_Input>;
   students?: Maybe<StudentCreateManyWithoutHistoryInput>;
-  session?: Maybe<SessionCreateManyWithoutCourseHistoryInput>;
-  course?: Maybe<CourseCreateManyInput>;
+  sessions?: Maybe<SessionCreateManyWithoutCourseHistoryInput>;
+  courses?: Maybe<CourseCreateManyInput>;
 }
 
 export interface CourseUpdateManyMutationInput {
@@ -3545,7 +3545,7 @@ export interface CourseHistoryPromise
     first?: Int;
     last?: Int;
   }) => T;
-  session: <T = FragmentableArray<Session>>(args?: {
+  sessions: <T = FragmentableArray<Session>>(args?: {
     where?: SessionWhereInput;
     orderBy?: SessionOrderByInput;
     skip?: Int;
@@ -3554,7 +3554,7 @@ export interface CourseHistoryPromise
     first?: Int;
     last?: Int;
   }) => T;
-  course: <T = FragmentableArray<Course>>(args?: {
+  courses: <T = FragmentableArray<Course>>(args?: {
     where?: CourseWhereInput;
     orderBy?: CourseOrderByInput;
     skip?: Int;
@@ -3578,7 +3578,7 @@ export interface CourseHistorySubscription
     first?: Int;
     last?: Int;
   }) => T;
-  session: <T = Promise<AsyncIterator<SessionSubscription>>>(args?: {
+  sessions: <T = Promise<AsyncIterator<SessionSubscription>>>(args?: {
     where?: SessionWhereInput;
     orderBy?: SessionOrderByInput;
     skip?: Int;
@@ -3587,7 +3587,7 @@ export interface CourseHistorySubscription
     first?: Int;
     last?: Int;
   }) => T;
-  course: <T = Promise<AsyncIterator<CourseSubscription>>>(args?: {
+  courses: <T = Promise<AsyncIterator<CourseSubscription>>>(args?: {
     where?: CourseWhereInput;
     orderBy?: CourseOrderByInput;
     skip?: Int;
@@ -3611,7 +3611,7 @@ export interface CourseHistoryNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
-  session: <T = FragmentableArray<Session>>(args?: {
+  sessions: <T = FragmentableArray<Session>>(args?: {
     where?: SessionWhereInput;
     orderBy?: SessionOrderByInput;
     skip?: Int;
@@ -3620,7 +3620,7 @@ export interface CourseHistoryNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
-  course: <T = FragmentableArray<Course>>(args?: {
+  courses: <T = FragmentableArray<Course>>(args?: {
     where?: CourseWhereInput;
     orderBy?: CourseOrderByInput;
     skip?: Int;

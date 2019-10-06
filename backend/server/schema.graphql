@@ -1,5 +1,6 @@
 type Query {
   student(id: ID!): Student
+  fetchStudents(filter: String, skip: Int, first: Int, orderBy: StudentOrderByInput): StudentsPayload
 }
 
 type Mutation {
@@ -13,6 +14,11 @@ type Mutation {
 type AuthPayload {
   token: String
   user: Student
+}
+
+type StudentsPayload {
+  students: [Student]!
+  count: Int!
 }
 
 type Admin {
@@ -106,8 +112,8 @@ type Session {
 type CourseHistory {
   id: ID!
   students: [Student]!
-  session: [Session]!
-  course: [Course]!
+  sessions: [Session]!
+  courses: [Course]!
 }
 
 type Result {
@@ -142,4 +148,13 @@ enum Grade {
 enum CourseRegistrationType {
   ADD
   REMOVE
+}
+
+enum StudentOrderByInput {
+  name_ASC
+  name_DESC
+  regNo_ASC
+  regNo_DESC
+  level_ASC
+  level_DESC
 }

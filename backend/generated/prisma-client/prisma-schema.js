@@ -285,8 +285,8 @@ type CourseEdge {
 type CourseHistory {
   id: ID!
   students(where: StudentWhereInput, orderBy: StudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Student!]
-  session(where: SessionWhereInput, orderBy: SessionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Session!]
-  course(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
+  sessions(where: SessionWhereInput, orderBy: SessionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Session!]
+  courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
 }
 
 type CourseHistoryConnection {
@@ -298,12 +298,12 @@ type CourseHistoryConnection {
 input CourseHistoryCreateInput {
   id: ID
   students: StudentCreateManyWithoutHistoryInput
-  session: SessionCreateManyWithoutCourseHistoryInput
-  course: CourseCreateManyInput
+  sessions: SessionCreateManyWithoutCourseHistoryInput
+  courses: CourseCreateManyInput
 }
 
-input CourseHistoryCreateManyWithoutSessionInput {
-  create: [CourseHistoryCreateWithoutSessionInput!]
+input CourseHistoryCreateManyWithoutSessionsInput {
+  create: [CourseHistoryCreateWithoutSessionsInput!]
   connect: [CourseHistoryWhereUniqueInput!]
 }
 
@@ -312,16 +312,16 @@ input CourseHistoryCreateManyWithoutStudentsInput {
   connect: [CourseHistoryWhereUniqueInput!]
 }
 
-input CourseHistoryCreateWithoutSessionInput {
+input CourseHistoryCreateWithoutSessionsInput {
   id: ID
   students: StudentCreateManyWithoutHistoryInput
-  course: CourseCreateManyInput
+  courses: CourseCreateManyInput
 }
 
 input CourseHistoryCreateWithoutStudentsInput {
   id: ID
-  session: SessionCreateManyWithoutCourseHistoryInput
-  course: CourseCreateManyInput
+  sessions: SessionCreateManyWithoutCourseHistoryInput
+  courses: CourseCreateManyInput
 }
 
 type CourseHistoryEdge {
@@ -378,18 +378,18 @@ input CourseHistorySubscriptionWhereInput {
 
 input CourseHistoryUpdateInput {
   students: StudentUpdateManyWithoutHistoryInput
-  session: SessionUpdateManyWithoutCourseHistoryInput
-  course: CourseUpdateManyInput
+  sessions: SessionUpdateManyWithoutCourseHistoryInput
+  courses: CourseUpdateManyInput
 }
 
-input CourseHistoryUpdateManyWithoutSessionInput {
-  create: [CourseHistoryCreateWithoutSessionInput!]
+input CourseHistoryUpdateManyWithoutSessionsInput {
+  create: [CourseHistoryCreateWithoutSessionsInput!]
   delete: [CourseHistoryWhereUniqueInput!]
   connect: [CourseHistoryWhereUniqueInput!]
   set: [CourseHistoryWhereUniqueInput!]
   disconnect: [CourseHistoryWhereUniqueInput!]
-  update: [CourseHistoryUpdateWithWhereUniqueWithoutSessionInput!]
-  upsert: [CourseHistoryUpsertWithWhereUniqueWithoutSessionInput!]
+  update: [CourseHistoryUpdateWithWhereUniqueWithoutSessionsInput!]
+  upsert: [CourseHistoryUpsertWithWhereUniqueWithoutSessionsInput!]
   deleteMany: [CourseHistoryScalarWhereInput!]
 }
 
@@ -404,19 +404,19 @@ input CourseHistoryUpdateManyWithoutStudentsInput {
   deleteMany: [CourseHistoryScalarWhereInput!]
 }
 
-input CourseHistoryUpdateWithoutSessionDataInput {
+input CourseHistoryUpdateWithoutSessionsDataInput {
   students: StudentUpdateManyWithoutHistoryInput
-  course: CourseUpdateManyInput
+  courses: CourseUpdateManyInput
 }
 
 input CourseHistoryUpdateWithoutStudentsDataInput {
-  session: SessionUpdateManyWithoutCourseHistoryInput
-  course: CourseUpdateManyInput
+  sessions: SessionUpdateManyWithoutCourseHistoryInput
+  courses: CourseUpdateManyInput
 }
 
-input CourseHistoryUpdateWithWhereUniqueWithoutSessionInput {
+input CourseHistoryUpdateWithWhereUniqueWithoutSessionsInput {
   where: CourseHistoryWhereUniqueInput!
-  data: CourseHistoryUpdateWithoutSessionDataInput!
+  data: CourseHistoryUpdateWithoutSessionsDataInput!
 }
 
 input CourseHistoryUpdateWithWhereUniqueWithoutStudentsInput {
@@ -424,10 +424,10 @@ input CourseHistoryUpdateWithWhereUniqueWithoutStudentsInput {
   data: CourseHistoryUpdateWithoutStudentsDataInput!
 }
 
-input CourseHistoryUpsertWithWhereUniqueWithoutSessionInput {
+input CourseHistoryUpsertWithWhereUniqueWithoutSessionsInput {
   where: CourseHistoryWhereUniqueInput!
-  update: CourseHistoryUpdateWithoutSessionDataInput!
-  create: CourseHistoryCreateWithoutSessionInput!
+  update: CourseHistoryUpdateWithoutSessionsDataInput!
+  create: CourseHistoryCreateWithoutSessionsInput!
 }
 
 input CourseHistoryUpsertWithWhereUniqueWithoutStudentsInput {
@@ -454,12 +454,12 @@ input CourseHistoryWhereInput {
   students_every: StudentWhereInput
   students_some: StudentWhereInput
   students_none: StudentWhereInput
-  session_every: SessionWhereInput
-  session_some: SessionWhereInput
-  session_none: SessionWhereInput
-  course_every: CourseWhereInput
-  course_some: CourseWhereInput
-  course_none: CourseWhereInput
+  sessions_every: SessionWhereInput
+  sessions_some: SessionWhereInput
+  sessions_none: SessionWhereInput
+  courses_every: CourseWhereInput
+  courses_some: CourseWhereInput
+  courses_none: CourseWhereInput
   AND: [CourseHistoryWhereInput!]
   OR: [CourseHistoryWhereInput!]
   NOT: [CourseHistoryWhereInput!]
@@ -1684,7 +1684,7 @@ input SessionCreateInput {
   id: ID
   year: String!
   students: StudentCreateManyInput
-  courseHistory: CourseHistoryCreateManyWithoutSessionInput
+  courseHistory: CourseHistoryCreateManyWithoutSessionsInput
 }
 
 input SessionCreateManyWithoutCourseHistoryInput {
@@ -1770,7 +1770,7 @@ input SessionSubscriptionWhereInput {
 input SessionUpdateInput {
   year: String
   students: StudentUpdateManyInput
-  courseHistory: CourseHistoryUpdateManyWithoutSessionInput
+  courseHistory: CourseHistoryUpdateManyWithoutSessionsInput
 }
 
 input SessionUpdateManyDataInput {

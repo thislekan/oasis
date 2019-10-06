@@ -4,6 +4,7 @@ import DataLoader from 'dataloader';
 
 import dotEnv from '../../config/config';
 import getUserId, { expiryDate } from '../utils/auth';
+import courseValidator from '../utils/validators/courseRegistrationValidator';
 import {
   signupMiddleware,
   loginMiddleware,
@@ -11,7 +12,6 @@ import {
   confirmFaculty,
   confirmDepartment,
 } from '../middlewares/index';
-import courseValidator from '../utils/validators/courseRegistrationValidator';
 
 const Mutation = {
   createStudent: async (parent, args, context) => {

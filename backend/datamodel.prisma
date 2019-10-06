@@ -70,8 +70,8 @@ type Session {
 type CourseHistory {
   id: ID! @id
   students: [Student]!
-  session: [Session]!
-  course: [Course]!
+  sessions: [Session]!
+  courses: [Course]!
 }
 
 type Result {

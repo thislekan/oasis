@@ -16,12 +16,13 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
-  admin: (where?: AdminWhereInput) => Promise<boolean>;
   course: (where?: CourseWhereInput) => Promise<boolean>;
   courseHistory: (where?: CourseHistoryWhereInput) => Promise<boolean>;
   department: (where?: DepartmentWhereInput) => Promise<boolean>;
   faculty: (where?: FacultyWhereInput) => Promise<boolean>;
+  grade: (where?: GradeWhereInput) => Promise<boolean>;
   lecturer: (where?: LecturerWhereInput) => Promise<boolean>;
+  nextOfKin: (where?: NextOfKinWhereInput) => Promise<boolean>;
   result: (where?: ResultWhereInput) => Promise<boolean>;
   session: (where?: SessionWhereInput) => Promise<boolean>;
   student: (where?: StudentWhereInput) => Promise<boolean>;
@@ -46,25 +47,6 @@ export interface Prisma {
    * Queries
    */
 
-  admin: (where: AdminWhereUniqueInput) => AdminNullablePromise;
-  admins: (args?: {
-    where?: AdminWhereInput;
-    orderBy?: AdminOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Admin>;
-  adminsConnection: (args?: {
-    where?: AdminWhereInput;
-    orderBy?: AdminOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => AdminConnectionPromise;
   course: (where: CourseWhereUniqueInput) => CourseNullablePromise;
   courses: (args?: {
     where?: CourseWhereInput;
@@ -143,6 +125,25 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => FacultyConnectionPromise;
+  grade: (where: GradeWhereUniqueInput) => GradeNullablePromise;
+  grades: (args?: {
+    where?: GradeWhereInput;
+    orderBy?: GradeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Grade>;
+  gradesConnection: (args?: {
+    where?: GradeWhereInput;
+    orderBy?: GradeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => GradeConnectionPromise;
   lecturer: (where: LecturerWhereUniqueInput) => LecturerNullablePromise;
   lecturers: (args?: {
     where?: LecturerWhereInput;
@@ -162,6 +163,25 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => LecturerConnectionPromise;
+  nextOfKin: (where: NextOfKinWhereUniqueInput) => NextOfKinNullablePromise;
+  nextOfKins: (args?: {
+    where?: NextOfKinWhereInput;
+    orderBy?: NextOfKinOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<NextOfKin>;
+  nextOfKinsConnection: (args?: {
+    where?: NextOfKinWhereInput;
+    orderBy?: NextOfKinOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => NextOfKinConnectionPromise;
   result: (where: ResultWhereUniqueInput) => ResultNullablePromise;
   results: (args?: {
     where?: ResultWhereInput;
@@ -225,22 +245,6 @@ export interface Prisma {
    * Mutations
    */
 
-  createAdmin: (data: AdminCreateInput) => AdminPromise;
-  updateAdmin: (args: {
-    data: AdminUpdateInput;
-    where: AdminWhereUniqueInput;
-  }) => AdminPromise;
-  updateManyAdmins: (args: {
-    data: AdminUpdateManyMutationInput;
-    where?: AdminWhereInput;
-  }) => BatchPayloadPromise;
-  upsertAdmin: (args: {
-    where: AdminWhereUniqueInput;
-    create: AdminCreateInput;
-    update: AdminUpdateInput;
-  }) => AdminPromise;
-  deleteAdmin: (where: AdminWhereUniqueInput) => AdminPromise;
-  deleteManyAdmins: (where?: AdminWhereInput) => BatchPayloadPromise;
   createCourse: (data: CourseCreateInput) => CoursePromise;
   updateCourse: (args: {
     data: CourseUpdateInput;
@@ -305,6 +309,22 @@ export interface Prisma {
   }) => FacultyPromise;
   deleteFaculty: (where: FacultyWhereUniqueInput) => FacultyPromise;
   deleteManyFaculties: (where?: FacultyWhereInput) => BatchPayloadPromise;
+  createGrade: (data: GradeCreateInput) => GradePromise;
+  updateGrade: (args: {
+    data: GradeUpdateInput;
+    where: GradeWhereUniqueInput;
+  }) => GradePromise;
+  updateManyGrades: (args: {
+    data: GradeUpdateManyMutationInput;
+    where?: GradeWhereInput;
+  }) => BatchPayloadPromise;
+  upsertGrade: (args: {
+    where: GradeWhereUniqueInput;
+    create: GradeCreateInput;
+    update: GradeUpdateInput;
+  }) => GradePromise;
+  deleteGrade: (where: GradeWhereUniqueInput) => GradePromise;
+  deleteManyGrades: (where?: GradeWhereInput) => BatchPayloadPromise;
   createLecturer: (data: LecturerCreateInput) => LecturerPromise;
   updateLecturer: (args: {
     data: LecturerUpdateInput;
@@ -321,6 +341,22 @@ export interface Prisma {
   }) => LecturerPromise;
   deleteLecturer: (where: LecturerWhereUniqueInput) => LecturerPromise;
   deleteManyLecturers: (where?: LecturerWhereInput) => BatchPayloadPromise;
+  createNextOfKin: (data: NextOfKinCreateInput) => NextOfKinPromise;
+  updateNextOfKin: (args: {
+    data: NextOfKinUpdateInput;
+    where: NextOfKinWhereUniqueInput;
+  }) => NextOfKinPromise;
+  updateManyNextOfKins: (args: {
+    data: NextOfKinUpdateManyMutationInput;
+    where?: NextOfKinWhereInput;
+  }) => BatchPayloadPromise;
+  upsertNextOfKin: (args: {
+    where: NextOfKinWhereUniqueInput;
+    create: NextOfKinCreateInput;
+    update: NextOfKinUpdateInput;
+  }) => NextOfKinPromise;
+  deleteNextOfKin: (where: NextOfKinWhereUniqueInput) => NextOfKinPromise;
+  deleteManyNextOfKins: (where?: NextOfKinWhereInput) => BatchPayloadPromise;
   createResult: (data: ResultCreateInput) => ResultPromise;
   updateResult: (args: {
     data: ResultUpdateInput;
@@ -378,9 +414,6 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  admin: (
-    where?: AdminSubscriptionWhereInput
-  ) => AdminSubscriptionPayloadSubscription;
   course: (
     where?: CourseSubscriptionWhereInput
   ) => CourseSubscriptionPayloadSubscription;
@@ -393,9 +426,15 @@ export interface Subscription {
   faculty: (
     where?: FacultySubscriptionWhereInput
   ) => FacultySubscriptionPayloadSubscription;
+  grade: (
+    where?: GradeSubscriptionWhereInput
+  ) => GradeSubscriptionPayloadSubscription;
   lecturer: (
     where?: LecturerSubscriptionWhereInput
   ) => LecturerSubscriptionPayloadSubscription;
+  nextOfKin: (
+    where?: NextOfKinSubscriptionWhereInput
+  ) => NextOfKinSubscriptionPayloadSubscription;
   result: (
     where?: ResultSubscriptionWhereInput
   ) => ResultSubscriptionPayloadSubscription;
@@ -415,47 +454,29 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type FacultyOrderByInput =
+export type GradeOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "name_ASC"
-  | "name_DESC";
+  | "semester_ASC"
+  | "semester_DESC"
+  | "test_ASC"
+  | "test_DESC"
+  | "exam_ASC"
+  | "exam_DESC"
+  | "grade_ASC"
+  | "grade_DESC"
+  | "cleared_ASC"
+  | "cleared_DESC";
 
 export type Semester = "FIRST_SEMESTER" | "SECOND_SEMESTER";
+
+export type CourseHistoryOrderByInput = "id_ASC" | "id_DESC";
 
 export type SessionOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "year_ASC"
   | "year_DESC";
-
-export type ResultOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "grade_ASC"
-  | "grade_DESC"
-  | "cleared_ASC"
-  | "cleared_DESC";
-
-export type DepartmentOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC";
-
-export type CourseOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "creditUnit_ASC"
-  | "creditUnit_DESC"
-  | "description_ASC"
-  | "description_DESC"
-  | "level_ASC"
-  | "level_DESC"
-  | "semester_ASC"
-  | "semester_DESC";
 
 export type StudentOrderByInput =
   | "id_ASC"
@@ -483,11 +504,43 @@ export type StudentOrderByInput =
   | "password_ASC"
   | "password_DESC";
 
-export type CourseHistoryOrderByInput = "id_ASC" | "id_DESC";
+export type NextOfKinOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "address_ASC"
+  | "address_DESC"
+  | "phone_ASC"
+  | "phone_DESC"
+  | "relationship_ASC"
+  | "relationship_DESC";
+
+export type GradeType = "A" | "B" | "C" | "D" | "E" | "F";
+
+export type DepartmentOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC";
+
+export type CourseOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "creditUnit_ASC"
+  | "creditUnit_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "level_ASC"
+  | "level_DESC"
+  | "semester_ASC"
+  | "semester_DESC";
 
 export type UserRole = "ADMIN" | "STUDENT" | "LECTURER" | "OTHERS";
-
-export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export type LecturerOrderByInput =
   | "id_ASC"
@@ -501,66 +554,59 @@ export type LecturerOrderByInput =
   | "password_ASC"
   | "password_DESC";
 
-export type AdminOrderByInput =
+export type ResultOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "semester_ASC"
+  | "semester_DESC";
+
+export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+
+export type FacultyOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "name_ASC"
-  | "name_DESC"
-  | "role_ASC"
-  | "role_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "password_ASC"
-  | "password_DESC";
+  | "name_DESC";
 
-export type Grade = "A" | "B" | "C" | "D" | "E" | "F";
-
-export interface DepartmentUpdateWithWhereUniqueWithoutFacultyInput {
-  where: DepartmentWhereUniqueInput;
-  data: DepartmentUpdateWithoutFacultyDataInput;
+export interface CourseUpdateWithWhereUniqueWithoutDepartmentInput {
+  where: CourseWhereUniqueInput;
+  data: CourseUpdateWithoutDepartmentDataInput;
 }
 
-export type AdminWhereUniqueInput = AtLeastOne<{
+export type CourseWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
-  email?: Maybe<String>;
+  name?: Maybe<String>;
 }>;
 
-export interface CourseHistoryCreateWithoutStudentsInput {
-  id?: Maybe<ID_Input>;
-  sessions?: Maybe<SessionCreateManyWithoutCourseHistoryInput>;
-  courses?: Maybe<CourseCreateManyInput>;
-}
-
-export interface CourseHistoryUpdateInput {
-  students?: Maybe<StudentUpdateManyWithoutHistoryInput>;
-  sessions?: Maybe<SessionUpdateManyWithoutCourseHistoryInput>;
-  courses?: Maybe<CourseUpdateManyInput>;
-}
-
-export interface SessionCreateManyWithoutCourseHistoryInput {
+export interface CourseHistoryUpdateManyWithoutStudentInput {
   create?: Maybe<
-    | SessionCreateWithoutCourseHistoryInput[]
-    | SessionCreateWithoutCourseHistoryInput
+    | CourseHistoryCreateWithoutStudentInput[]
+    | CourseHistoryCreateWithoutStudentInput
   >;
-  connect?: Maybe<SessionWhereUniqueInput[] | SessionWhereUniqueInput>;
+  delete?: Maybe<
+    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
+  >;
+  connect?: Maybe<
+    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
+  >;
+  set?: Maybe<CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput>;
+  disconnect?: Maybe<
+    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
+  >;
+  update?: Maybe<
+    | CourseHistoryUpdateWithWhereUniqueWithoutStudentInput[]
+    | CourseHistoryUpdateWithWhereUniqueWithoutStudentInput
+  >;
+  upsert?: Maybe<
+    | CourseHistoryUpsertWithWhereUniqueWithoutStudentInput[]
+    | CourseHistoryUpsertWithWhereUniqueWithoutStudentInput
+  >;
+  deleteMany?: Maybe<
+    CourseHistoryScalarWhereInput[] | CourseHistoryScalarWhereInput
+  >;
 }
 
-export interface DepartmentUpdateOneWithoutStudentsInput {
-  create?: Maybe<DepartmentCreateWithoutStudentsInput>;
-  update?: Maybe<DepartmentUpdateWithoutStudentsDataInput>;
-  upsert?: Maybe<DepartmentUpsertWithoutStudentsInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<DepartmentWhereUniqueInput>;
-}
-
-export interface SessionCreateWithoutCourseHistoryInput {
-  id?: Maybe<ID_Input>;
-  year: String;
-  students?: Maybe<StudentCreateManyInput>;
-}
-
-export interface FacultyWhereInput {
+export interface GradeWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -575,31 +621,122 @@ export interface FacultyWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  departments_every?: Maybe<DepartmentWhereInput>;
-  departments_some?: Maybe<DepartmentWhereInput>;
-  departments_none?: Maybe<DepartmentWhereInput>;
-  AND?: Maybe<FacultyWhereInput[] | FacultyWhereInput>;
-  OR?: Maybe<FacultyWhereInput[] | FacultyWhereInput>;
-  NOT?: Maybe<FacultyWhereInput[] | FacultyWhereInput>;
+  session?: Maybe<SessionWhereInput>;
+  semester?: Maybe<Semester>;
+  semester_not?: Maybe<Semester>;
+  semester_in?: Maybe<Semester[] | Semester>;
+  semester_not_in?: Maybe<Semester[] | Semester>;
+  student?: Maybe<StudentWhereInput>;
+  course?: Maybe<CourseWhereInput>;
+  test?: Maybe<Int>;
+  test_not?: Maybe<Int>;
+  test_in?: Maybe<Int[] | Int>;
+  test_not_in?: Maybe<Int[] | Int>;
+  test_lt?: Maybe<Int>;
+  test_lte?: Maybe<Int>;
+  test_gt?: Maybe<Int>;
+  test_gte?: Maybe<Int>;
+  exam?: Maybe<Int>;
+  exam_not?: Maybe<Int>;
+  exam_in?: Maybe<Int[] | Int>;
+  exam_not_in?: Maybe<Int[] | Int>;
+  exam_lt?: Maybe<Int>;
+  exam_lte?: Maybe<Int>;
+  exam_gt?: Maybe<Int>;
+  exam_gte?: Maybe<Int>;
+  grade?: Maybe<GradeType>;
+  grade_not?: Maybe<GradeType>;
+  grade_in?: Maybe<GradeType[] | GradeType>;
+  grade_not_in?: Maybe<GradeType[] | GradeType>;
+  cleared?: Maybe<Boolean>;
+  cleared_not?: Maybe<Boolean>;
+  AND?: Maybe<GradeWhereInput[] | GradeWhereInput>;
+  OR?: Maybe<GradeWhereInput[] | GradeWhereInput>;
+  NOT?: Maybe<GradeWhereInput[] | GradeWhereInput>;
 }
 
-export interface StudentCreateManyInput {
-  create?: Maybe<StudentCreateInput[] | StudentCreateInput>;
-  connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+export interface GradeCreateInput {
+  id?: Maybe<ID_Input>;
+  session: SessionCreateOneInput;
+  semester: Semester;
+  student: StudentCreateOneInput;
+  course: CourseCreateOneInput;
+  test?: Maybe<Int>;
+  exam?: Maybe<Int>;
+  grade: GradeType;
+  cleared: Boolean;
+}
+
+export interface DepartmentUpsertWithoutCoursesInput {
+  update: DepartmentUpdateWithoutCoursesDataInput;
+  create: DepartmentCreateWithoutCoursesInput;
+}
+
+export interface SessionCreateOneInput {
+  create?: Maybe<SessionCreateInput>;
+  connect?: Maybe<SessionWhereUniqueInput>;
+}
+
+export interface CourseHistoryUpdateWithWhereUniqueWithoutStudentInput {
+  where: CourseHistoryWhereUniqueInput;
+  data: CourseHistoryUpdateWithoutStudentDataInput;
+}
+
+export interface SessionCreateInput {
+  id?: Maybe<ID_Input>;
+  year: String;
+  students?: Maybe<StudentCreateManyInput>;
+  courseHistory?: Maybe<CourseHistoryCreateManyWithoutSessionInput>;
+}
+
+export interface SessionWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  year?: Maybe<String>;
+  year_not?: Maybe<String>;
+  year_in?: Maybe<String[] | String>;
+  year_not_in?: Maybe<String[] | String>;
+  year_lt?: Maybe<String>;
+  year_lte?: Maybe<String>;
+  year_gt?: Maybe<String>;
+  year_gte?: Maybe<String>;
+  year_contains?: Maybe<String>;
+  year_not_contains?: Maybe<String>;
+  year_starts_with?: Maybe<String>;
+  year_not_starts_with?: Maybe<String>;
+  year_ends_with?: Maybe<String>;
+  year_not_ends_with?: Maybe<String>;
+  students_every?: Maybe<StudentWhereInput>;
+  students_some?: Maybe<StudentWhereInput>;
+  students_none?: Maybe<StudentWhereInput>;
+  courseHistory_every?: Maybe<CourseHistoryWhereInput>;
+  courseHistory_some?: Maybe<CourseHistoryWhereInput>;
+  courseHistory_none?: Maybe<CourseHistoryWhereInput>;
+  AND?: Maybe<SessionWhereInput[] | SessionWhereInput>;
+  OR?: Maybe<SessionWhereInput[] | SessionWhereInput>;
+  NOT?: Maybe<SessionWhereInput[] | SessionWhereInput>;
+}
+
+export interface CourseHistoryCreateManyWithoutSessionInput {
+  create?: Maybe<
+    | CourseHistoryCreateWithoutSessionInput[]
+    | CourseHistoryCreateWithoutSessionInput
+  >;
+  connect?: Maybe<
+    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
+  >;
 }
 
 export interface StudentWhereInput {
@@ -757,155 +894,16 @@ export interface StudentWhereInput {
   password_not_starts_with?: Maybe<String>;
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
+  nextOfKin?: Maybe<NextOfKinWhereInput>;
   AND?: Maybe<StudentWhereInput[] | StudentWhereInput>;
   OR?: Maybe<StudentWhereInput[] | StudentWhereInput>;
   NOT?: Maybe<StudentWhereInput[] | StudentWhereInput>;
 }
 
-export interface StudentCreateInput {
+export interface CourseHistoryCreateWithoutSessionInput {
   id?: Maybe<ID_Input>;
-  name: String;
-  email: String;
-  regNo: String;
-  gender?: Maybe<String>;
-  department?: Maybe<DepartmentCreateOneWithoutStudentsInput>;
-  faculty?: Maybe<FacultyCreateOneInput>;
-  courses?: Maybe<CourseCreateManyWithoutStudentsInput>;
-  level?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  image?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  history?: Maybe<CourseHistoryCreateManyWithoutStudentsInput>;
-  graduated?: Maybe<Boolean>;
-  password: String;
-}
-
-export interface SessionWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  year?: Maybe<String>;
-  year_not?: Maybe<String>;
-  year_in?: Maybe<String[] | String>;
-  year_not_in?: Maybe<String[] | String>;
-  year_lt?: Maybe<String>;
-  year_lte?: Maybe<String>;
-  year_gt?: Maybe<String>;
-  year_gte?: Maybe<String>;
-  year_contains?: Maybe<String>;
-  year_not_contains?: Maybe<String>;
-  year_starts_with?: Maybe<String>;
-  year_not_starts_with?: Maybe<String>;
-  year_ends_with?: Maybe<String>;
-  year_not_ends_with?: Maybe<String>;
-  students_every?: Maybe<StudentWhereInput>;
-  students_some?: Maybe<StudentWhereInput>;
-  students_none?: Maybe<StudentWhereInput>;
-  courseHistory_every?: Maybe<CourseHistoryWhereInput>;
-  courseHistory_some?: Maybe<CourseHistoryWhereInput>;
-  courseHistory_none?: Maybe<CourseHistoryWhereInput>;
-  AND?: Maybe<SessionWhereInput[] | SessionWhereInput>;
-  OR?: Maybe<SessionWhereInput[] | SessionWhereInput>;
-  NOT?: Maybe<SessionWhereInput[] | SessionWhereInput>;
-}
-
-export interface CourseCreateManyWithoutStudentsInput {
-  create?: Maybe<
-    CourseCreateWithoutStudentsInput[] | CourseCreateWithoutStudentsInput
-  >;
-  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-}
-
-export interface LecturerWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  role_not?: Maybe<UserRole>;
-  role_in?: Maybe<UserRole[] | UserRole>;
-  role_not_in?: Maybe<UserRole[] | UserRole>;
-  courses_every?: Maybe<CourseWhereInput>;
-  courses_some?: Maybe<CourseWhereInput>;
-  courses_none?: Maybe<CourseWhereInput>;
-  email?: Maybe<String>;
-  email_not?: Maybe<String>;
-  email_in?: Maybe<String[] | String>;
-  email_not_in?: Maybe<String[] | String>;
-  email_lt?: Maybe<String>;
-  email_lte?: Maybe<String>;
-  email_gt?: Maybe<String>;
-  email_gte?: Maybe<String>;
-  email_contains?: Maybe<String>;
-  email_not_contains?: Maybe<String>;
-  email_starts_with?: Maybe<String>;
-  email_not_starts_with?: Maybe<String>;
-  email_ends_with?: Maybe<String>;
-  email_not_ends_with?: Maybe<String>;
-  password?: Maybe<String>;
-  password_not?: Maybe<String>;
-  password_in?: Maybe<String[] | String>;
-  password_not_in?: Maybe<String[] | String>;
-  password_lt?: Maybe<String>;
-  password_lte?: Maybe<String>;
-  password_gt?: Maybe<String>;
-  password_gte?: Maybe<String>;
-  password_contains?: Maybe<String>;
-  password_not_contains?: Maybe<String>;
-  password_starts_with?: Maybe<String>;
-  password_not_starts_with?: Maybe<String>;
-  password_ends_with?: Maybe<String>;
-  password_not_ends_with?: Maybe<String>;
-  AND?: Maybe<LecturerWhereInput[] | LecturerWhereInput>;
-  OR?: Maybe<LecturerWhereInput[] | LecturerWhereInput>;
-  NOT?: Maybe<LecturerWhereInput[] | LecturerWhereInput>;
-}
-
-export interface CourseCreateWithoutStudentsInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  department: DepartmentCreateOneWithoutCoursesInput;
-  creditUnit: Int;
-  description: String;
-  level: String;
-  semester: Semester;
-  lecturer?: Maybe<LecturerCreateOneWithoutCoursesInput>;
+  student: StudentCreateOneWithoutHistoryInput;
+  result: ResultCreateOneInput;
 }
 
 export interface SessionSubscriptionWhereInput {
@@ -919,699 +917,45 @@ export interface SessionSubscriptionWhereInput {
   NOT?: Maybe<SessionSubscriptionWhereInput[] | SessionSubscriptionWhereInput>;
 }
 
-export interface LecturerCreateOneWithoutCoursesInput {
-  create?: Maybe<LecturerCreateWithoutCoursesInput>;
-  connect?: Maybe<LecturerWhereUniqueInput>;
+export interface StudentCreateOneWithoutHistoryInput {
+  create?: Maybe<StudentCreateWithoutHistoryInput>;
+  connect?: Maybe<StudentWhereUniqueInput>;
 }
 
-export interface LecturerSubscriptionWhereInput {
+export interface NextOfKinSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<LecturerWhereInput>;
+  node?: Maybe<NextOfKinWhereInput>;
   AND?: Maybe<
-    LecturerSubscriptionWhereInput[] | LecturerSubscriptionWhereInput
-  >;
-  OR?: Maybe<LecturerSubscriptionWhereInput[] | LecturerSubscriptionWhereInput>;
-  NOT?: Maybe<
-    LecturerSubscriptionWhereInput[] | LecturerSubscriptionWhereInput
-  >;
-}
-
-export interface LecturerCreateWithoutCoursesInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  role?: Maybe<UserRole>;
-  email: String;
-  password: String;
-}
-
-export interface DepartmentSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<DepartmentWhereInput>;
-  AND?: Maybe<
-    DepartmentSubscriptionWhereInput[] | DepartmentSubscriptionWhereInput
+    NextOfKinSubscriptionWhereInput[] | NextOfKinSubscriptionWhereInput
   >;
   OR?: Maybe<
-    DepartmentSubscriptionWhereInput[] | DepartmentSubscriptionWhereInput
+    NextOfKinSubscriptionWhereInput[] | NextOfKinSubscriptionWhereInput
   >;
   NOT?: Maybe<
-    DepartmentSubscriptionWhereInput[] | DepartmentSubscriptionWhereInput
+    NextOfKinSubscriptionWhereInput[] | NextOfKinSubscriptionWhereInput
   >;
 }
 
-export interface CourseCreateManyInput {
-  create?: Maybe<CourseCreateInput[] | CourseCreateInput>;
-  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-}
-
-export interface CourseSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<CourseWhereInput>;
-  AND?: Maybe<CourseSubscriptionWhereInput[] | CourseSubscriptionWhereInput>;
-  OR?: Maybe<CourseSubscriptionWhereInput[] | CourseSubscriptionWhereInput>;
-  NOT?: Maybe<CourseSubscriptionWhereInput[] | CourseSubscriptionWhereInput>;
-}
-
-export interface CourseUpdateInput {
-  name?: Maybe<String>;
-  department?: Maybe<DepartmentUpdateOneRequiredWithoutCoursesInput>;
-  creditUnit?: Maybe<Int>;
-  students?: Maybe<StudentUpdateManyWithoutCoursesInput>;
-  description?: Maybe<String>;
-  level?: Maybe<String>;
-  semester?: Maybe<Semester>;
-  lecturer?: Maybe<LecturerUpdateOneWithoutCoursesInput>;
-}
-
-export interface StudentUpdateManyMutationInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  regNo?: Maybe<String>;
-  gender?: Maybe<String>;
-  level?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  image?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  graduated?: Maybe<Boolean>;
-  password?: Maybe<String>;
-}
-
-export interface DepartmentUpdateOneRequiredWithoutCoursesInput {
-  create?: Maybe<DepartmentCreateWithoutCoursesInput>;
-  update?: Maybe<DepartmentUpdateWithoutCoursesDataInput>;
-  upsert?: Maybe<DepartmentUpsertWithoutCoursesInput>;
-  connect?: Maybe<DepartmentWhereUniqueInput>;
-}
-
-export interface SessionUpdateManyMutationInput {
-  year?: Maybe<String>;
-}
-
-export interface DepartmentUpdateWithoutCoursesDataInput {
-  name?: Maybe<String>;
-  faculty?: Maybe<FacultyUpdateOneRequiredWithoutDepartmentsInput>;
-  students?: Maybe<StudentUpdateManyWithoutDepartmentInput>;
-}
-
-export interface CourseHistoryUpsertWithWhereUniqueWithoutSessionsInput {
-  where: CourseHistoryWhereUniqueInput;
-  update: CourseHistoryUpdateWithoutSessionsDataInput;
-  create: CourseHistoryCreateWithoutSessionsInput;
-}
-
-export interface FacultyUpdateOneRequiredWithoutDepartmentsInput {
-  create?: Maybe<FacultyCreateWithoutDepartmentsInput>;
-  update?: Maybe<FacultyUpdateWithoutDepartmentsDataInput>;
-  upsert?: Maybe<FacultyUpsertWithoutDepartmentsInput>;
-  connect?: Maybe<FacultyWhereUniqueInput>;
-}
-
-export interface CourseHistoryUpdateWithWhereUniqueWithoutSessionsInput {
-  where: CourseHistoryWhereUniqueInput;
-  data: CourseHistoryUpdateWithoutSessionsDataInput;
-}
-
-export interface FacultyUpdateWithoutDepartmentsDataInput {
-  name?: Maybe<String>;
-}
-
-export interface CourseHistoryUpdateManyWithoutSessionsInput {
-  create?: Maybe<
-    | CourseHistoryCreateWithoutSessionsInput[]
-    | CourseHistoryCreateWithoutSessionsInput
-  >;
-  delete?: Maybe<
-    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
-  >;
-  connect?: Maybe<
-    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
-  >;
-  set?: Maybe<CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput>;
-  disconnect?: Maybe<
-    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
-  >;
-  update?: Maybe<
-    | CourseHistoryUpdateWithWhereUniqueWithoutSessionsInput[]
-    | CourseHistoryUpdateWithWhereUniqueWithoutSessionsInput
-  >;
-  upsert?: Maybe<
-    | CourseHistoryUpsertWithWhereUniqueWithoutSessionsInput[]
-    | CourseHistoryUpsertWithWhereUniqueWithoutSessionsInput
-  >;
-  deleteMany?: Maybe<
-    CourseHistoryScalarWhereInput[] | CourseHistoryScalarWhereInput
-  >;
-}
-
-export interface FacultyUpsertWithoutDepartmentsInput {
-  update: FacultyUpdateWithoutDepartmentsDataInput;
-  create: FacultyCreateWithoutDepartmentsInput;
-}
-
-export interface CourseHistoryCreateWithoutSessionsInput {
-  id?: Maybe<ID_Input>;
-  students?: Maybe<StudentCreateManyWithoutHistoryInput>;
-  courses?: Maybe<CourseCreateManyInput>;
-}
-
-export interface StudentUpdateManyWithoutDepartmentInput {
-  create?: Maybe<
-    StudentCreateWithoutDepartmentInput[] | StudentCreateWithoutDepartmentInput
-  >;
-  delete?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  set?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  disconnect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  update?: Maybe<
-    | StudentUpdateWithWhereUniqueWithoutDepartmentInput[]
-    | StudentUpdateWithWhereUniqueWithoutDepartmentInput
-  >;
-  upsert?: Maybe<
-    | StudentUpsertWithWhereUniqueWithoutDepartmentInput[]
-    | StudentUpsertWithWhereUniqueWithoutDepartmentInput
-  >;
-  deleteMany?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
-  updateMany?: Maybe<
-    | StudentUpdateManyWithWhereNestedInput[]
-    | StudentUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface CourseHistoryCreateManyWithoutSessionsInput {
-  create?: Maybe<
-    | CourseHistoryCreateWithoutSessionsInput[]
-    | CourseHistoryCreateWithoutSessionsInput
-  >;
-  connect?: Maybe<
-    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
-  >;
-}
-
-export interface StudentUpdateWithWhereUniqueWithoutDepartmentInput {
-  where: StudentWhereUniqueInput;
-  data: StudentUpdateWithoutDepartmentDataInput;
-}
-
-export interface ResultUpdateManyMutationInput {
-  grade?: Maybe<Grade>;
-  cleared?: Maybe<Boolean>;
-}
-
-export interface StudentUpdateWithoutDepartmentDataInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  regNo?: Maybe<String>;
-  gender?: Maybe<String>;
-  faculty?: Maybe<FacultyUpdateOneInput>;
-  courses?: Maybe<CourseUpdateManyWithoutStudentsInput>;
-  level?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  image?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  history?: Maybe<CourseHistoryUpdateManyWithoutStudentsInput>;
-  graduated?: Maybe<Boolean>;
-  password?: Maybe<String>;
-}
-
-export type LecturerWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  email?: Maybe<String>;
-}>;
-
-export interface FacultyUpdateOneInput {
-  create?: Maybe<FacultyCreateInput>;
-  update?: Maybe<FacultyUpdateDataInput>;
-  upsert?: Maybe<FacultyUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<FacultyWhereUniqueInput>;
-}
-
-export interface LecturerUpdateManyMutationInput {
-  name?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-}
-
-export interface FacultyUpdateDataInput {
-  name?: Maybe<String>;
-  departments?: Maybe<DepartmentUpdateManyWithoutFacultyInput>;
-}
-
-export interface CourseUpdateWithoutLecturerDataInput {
-  name?: Maybe<String>;
-  department?: Maybe<DepartmentUpdateOneRequiredWithoutCoursesInput>;
-  creditUnit?: Maybe<Int>;
-  students?: Maybe<StudentUpdateManyWithoutCoursesInput>;
-  description?: Maybe<String>;
-  level?: Maybe<String>;
-  semester?: Maybe<Semester>;
-}
-
-export interface DepartmentUpdateManyWithoutFacultyInput {
-  create?: Maybe<
-    DepartmentCreateWithoutFacultyInput[] | DepartmentCreateWithoutFacultyInput
-  >;
-  delete?: Maybe<DepartmentWhereUniqueInput[] | DepartmentWhereUniqueInput>;
-  connect?: Maybe<DepartmentWhereUniqueInput[] | DepartmentWhereUniqueInput>;
-  set?: Maybe<DepartmentWhereUniqueInput[] | DepartmentWhereUniqueInput>;
-  disconnect?: Maybe<DepartmentWhereUniqueInput[] | DepartmentWhereUniqueInput>;
-  update?: Maybe<
-    | DepartmentUpdateWithWhereUniqueWithoutFacultyInput[]
-    | DepartmentUpdateWithWhereUniqueWithoutFacultyInput
-  >;
-  upsert?: Maybe<
-    | DepartmentUpsertWithWhereUniqueWithoutFacultyInput[]
-    | DepartmentUpsertWithWhereUniqueWithoutFacultyInput
-  >;
-  deleteMany?: Maybe<DepartmentScalarWhereInput[] | DepartmentScalarWhereInput>;
-  updateMany?: Maybe<
-    | DepartmentUpdateManyWithWhereNestedInput[]
-    | DepartmentUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface CourseUpdateWithWhereUniqueWithoutLecturerInput {
-  where: CourseWhereUniqueInput;
-  data: CourseUpdateWithoutLecturerDataInput;
-}
-
-export interface StudentUpdateWithWhereUniqueWithoutHistoryInput {
-  where: StudentWhereUniqueInput;
-  data: StudentUpdateWithoutHistoryDataInput;
-}
-
-export interface ResultWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  students_every?: Maybe<StudentWhereInput>;
-  students_some?: Maybe<StudentWhereInput>;
-  students_none?: Maybe<StudentWhereInput>;
-  grade?: Maybe<Grade>;
-  grade_not?: Maybe<Grade>;
-  grade_in?: Maybe<Grade[] | Grade>;
-  grade_not_in?: Maybe<Grade[] | Grade>;
-  cleared?: Maybe<Boolean>;
-  cleared_not?: Maybe<Boolean>;
-  course_every?: Maybe<CourseWhereInput>;
-  course_some?: Maybe<CourseWhereInput>;
-  course_none?: Maybe<CourseWhereInput>;
-  AND?: Maybe<ResultWhereInput[] | ResultWhereInput>;
-  OR?: Maybe<ResultWhereInput[] | ResultWhereInput>;
-  NOT?: Maybe<ResultWhereInput[] | ResultWhereInput>;
-}
-
-export interface DepartmentUpdateWithoutFacultyDataInput {
-  name?: Maybe<String>;
-  courses?: Maybe<CourseUpdateManyWithoutDepartmentInput>;
-  students?: Maybe<StudentUpdateManyWithoutDepartmentInput>;
-}
-
-export interface LecturerUpdateInput {
-  name?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  courses?: Maybe<CourseUpdateManyWithoutLecturerInput>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-}
-
-export interface CourseUpdateManyWithoutDepartmentInput {
-  create?: Maybe<
-    CourseCreateWithoutDepartmentInput[] | CourseCreateWithoutDepartmentInput
-  >;
-  delete?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  set?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  disconnect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  update?: Maybe<
-    | CourseUpdateWithWhereUniqueWithoutDepartmentInput[]
-    | CourseUpdateWithWhereUniqueWithoutDepartmentInput
-  >;
-  upsert?: Maybe<
-    | CourseUpsertWithWhereUniqueWithoutDepartmentInput[]
-    | CourseUpsertWithWhereUniqueWithoutDepartmentInput
-  >;
-  deleteMany?: Maybe<CourseScalarWhereInput[] | CourseScalarWhereInput>;
-  updateMany?: Maybe<
-    | CourseUpdateManyWithWhereNestedInput[]
-    | CourseUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface CourseCreateManyWithoutLecturerInput {
-  create?: Maybe<
-    CourseCreateWithoutLecturerInput[] | CourseCreateWithoutLecturerInput
-  >;
-  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-}
-
-export interface CourseUpdateWithWhereUniqueWithoutDepartmentInput {
-  where: CourseWhereUniqueInput;
-  data: CourseUpdateWithoutDepartmentDataInput;
-}
-
-export interface LecturerCreateInput {
+export interface StudentCreateWithoutHistoryInput {
   id?: Maybe<ID_Input>;
   name: String;
-  role?: Maybe<UserRole>;
-  courses?: Maybe<CourseCreateManyWithoutLecturerInput>;
   email: String;
+  regNo: String;
+  gender?: Maybe<String>;
+  department?: Maybe<DepartmentCreateOneWithoutStudentsInput>;
+  faculty?: Maybe<FacultyCreateOneInput>;
+  courses?: Maybe<CourseCreateManyWithoutStudentsInput>;
+  level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  graduated?: Maybe<Boolean>;
   password: String;
-}
-
-export interface CourseUpdateWithoutDepartmentDataInput {
-  name?: Maybe<String>;
-  creditUnit?: Maybe<Int>;
-  students?: Maybe<StudentUpdateManyWithoutCoursesInput>;
-  description?: Maybe<String>;
-  level?: Maybe<String>;
-  semester?: Maybe<Semester>;
-  lecturer?: Maybe<LecturerUpdateOneWithoutCoursesInput>;
-}
-
-export interface FacultyUpdateInput {
-  name?: Maybe<String>;
-  departments?: Maybe<DepartmentUpdateManyWithoutFacultyInput>;
-}
-
-export interface StudentUpdateManyWithoutCoursesInput {
-  create?: Maybe<
-    StudentCreateWithoutCoursesInput[] | StudentCreateWithoutCoursesInput
-  >;
-  delete?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  set?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  disconnect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  update?: Maybe<
-    | StudentUpdateWithWhereUniqueWithoutCoursesInput[]
-    | StudentUpdateWithWhereUniqueWithoutCoursesInput
-  >;
-  upsert?: Maybe<
-    | StudentUpsertWithWhereUniqueWithoutCoursesInput[]
-    | StudentUpsertWithWhereUniqueWithoutCoursesInput
-  >;
-  deleteMany?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
-  updateMany?: Maybe<
-    | StudentUpdateManyWithWhereNestedInput[]
-    | StudentUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface DepartmentUpdateManyMutationInput {
-  name?: Maybe<String>;
-}
-
-export interface StudentUpdateWithWhereUniqueWithoutCoursesInput {
-  where: StudentWhereUniqueInput;
-  data: StudentUpdateWithoutCoursesDataInput;
-}
-
-export interface DepartmentCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  faculty: FacultyCreateOneWithoutDepartmentsInput;
-  courses?: Maybe<CourseCreateManyWithoutDepartmentInput>;
-  students?: Maybe<StudentCreateManyWithoutDepartmentInput>;
-}
-
-export interface StudentUpdateWithoutCoursesDataInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  regNo?: Maybe<String>;
-  gender?: Maybe<String>;
-  department?: Maybe<DepartmentUpdateOneWithoutStudentsInput>;
-  faculty?: Maybe<FacultyUpdateOneInput>;
-  level?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  image?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  history?: Maybe<CourseHistoryUpdateManyWithoutStudentsInput>;
-  graduated?: Maybe<Boolean>;
-  password?: Maybe<String>;
-}
-
-export interface AdminCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  role?: Maybe<UserRole>;
-  email: String;
-  password: String;
-}
-
-export interface StudentUpdateManyWithoutHistoryInput {
-  create?: Maybe<
-    StudentCreateWithoutHistoryInput[] | StudentCreateWithoutHistoryInput
-  >;
-  delete?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  set?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  disconnect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  update?: Maybe<
-    | StudentUpdateWithWhereUniqueWithoutHistoryInput[]
-    | StudentUpdateWithWhereUniqueWithoutHistoryInput
-  >;
-  upsert?: Maybe<
-    | StudentUpsertWithWhereUniqueWithoutHistoryInput[]
-    | StudentUpsertWithWhereUniqueWithoutHistoryInput
-  >;
-  deleteMany?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
-  updateMany?: Maybe<
-    | StudentUpdateManyWithWhereNestedInput[]
-    | StudentUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface AdminUpdateManyMutationInput {
-  name?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-}
-
-export interface DepartmentUpdateWithoutStudentsDataInput {
-  name?: Maybe<String>;
-  faculty?: Maybe<FacultyUpdateOneRequiredWithoutDepartmentsInput>;
-  courses?: Maybe<CourseUpdateManyWithoutDepartmentInput>;
-}
-
-export interface StudentUpdateWithoutHistoryDataInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  regNo?: Maybe<String>;
-  gender?: Maybe<String>;
-  department?: Maybe<DepartmentUpdateOneWithoutStudentsInput>;
-  faculty?: Maybe<FacultyUpdateOneInput>;
-  courses?: Maybe<CourseUpdateManyWithoutStudentsInput>;
-  level?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  image?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  graduated?: Maybe<Boolean>;
-  password?: Maybe<String>;
-}
-
-export interface DepartmentUpsertWithoutStudentsInput {
-  update: DepartmentUpdateWithoutStudentsDataInput;
-  create: DepartmentCreateWithoutStudentsInput;
-}
-
-export interface DepartmentCreateOneWithoutCoursesInput {
-  create?: Maybe<DepartmentCreateWithoutCoursesInput>;
-  connect?: Maybe<DepartmentWhereUniqueInput>;
-}
-
-export interface CourseHistoryUpdateManyWithoutStudentsInput {
-  create?: Maybe<
-    | CourseHistoryCreateWithoutStudentsInput[]
-    | CourseHistoryCreateWithoutStudentsInput
-  >;
-  delete?: Maybe<
-    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
-  >;
-  connect?: Maybe<
-    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
-  >;
-  set?: Maybe<CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput>;
-  disconnect?: Maybe<
-    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
-  >;
-  update?: Maybe<
-    | CourseHistoryUpdateWithWhereUniqueWithoutStudentsInput[]
-    | CourseHistoryUpdateWithWhereUniqueWithoutStudentsInput
-  >;
-  upsert?: Maybe<
-    | CourseHistoryUpsertWithWhereUniqueWithoutStudentsInput[]
-    | CourseHistoryUpsertWithWhereUniqueWithoutStudentsInput
-  >;
-  deleteMany?: Maybe<
-    CourseHistoryScalarWhereInput[] | CourseHistoryScalarWhereInput
-  >;
-}
-
-export interface FacultyCreateOneWithoutDepartmentsInput {
-  create?: Maybe<FacultyCreateWithoutDepartmentsInput>;
-  connect?: Maybe<FacultyWhereUniqueInput>;
-}
-
-export interface CourseHistoryUpdateWithWhereUniqueWithoutStudentsInput {
-  where: CourseHistoryWhereUniqueInput;
-  data: CourseHistoryUpdateWithoutStudentsDataInput;
-}
-
-export interface StudentCreateManyWithoutDepartmentInput {
-  create?: Maybe<
-    StudentCreateWithoutDepartmentInput[] | StudentCreateWithoutDepartmentInput
-  >;
-  connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-}
-
-export interface CourseHistoryUpdateWithoutStudentsDataInput {
-  sessions?: Maybe<SessionUpdateManyWithoutCourseHistoryInput>;
-  courses?: Maybe<CourseUpdateManyInput>;
-}
-
-export interface FacultyCreateOneInput {
-  create?: Maybe<FacultyCreateInput>;
-  connect?: Maybe<FacultyWhereUniqueInput>;
-}
-
-export interface SessionUpdateManyWithoutCourseHistoryInput {
-  create?: Maybe<
-    | SessionCreateWithoutCourseHistoryInput[]
-    | SessionCreateWithoutCourseHistoryInput
-  >;
-  delete?: Maybe<SessionWhereUniqueInput[] | SessionWhereUniqueInput>;
-  connect?: Maybe<SessionWhereUniqueInput[] | SessionWhereUniqueInput>;
-  set?: Maybe<SessionWhereUniqueInput[] | SessionWhereUniqueInput>;
-  disconnect?: Maybe<SessionWhereUniqueInput[] | SessionWhereUniqueInput>;
-  update?: Maybe<
-    | SessionUpdateWithWhereUniqueWithoutCourseHistoryInput[]
-    | SessionUpdateWithWhereUniqueWithoutCourseHistoryInput
-  >;
-  upsert?: Maybe<
-    | SessionUpsertWithWhereUniqueWithoutCourseHistoryInput[]
-    | SessionUpsertWithWhereUniqueWithoutCourseHistoryInput
-  >;
-  deleteMany?: Maybe<SessionScalarWhereInput[] | SessionScalarWhereInput>;
-  updateMany?: Maybe<
-    | SessionUpdateManyWithWhereNestedInput[]
-    | SessionUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface DepartmentCreateManyWithoutFacultyInput {
-  create?: Maybe<
-    DepartmentCreateWithoutFacultyInput[] | DepartmentCreateWithoutFacultyInput
-  >;
-  connect?: Maybe<DepartmentWhereUniqueInput[] | DepartmentWhereUniqueInput>;
-}
-
-export interface SessionUpdateWithWhereUniqueWithoutCourseHistoryInput {
-  where: SessionWhereUniqueInput;
-  data: SessionUpdateWithoutCourseHistoryDataInput;
-}
-
-export interface CourseCreateManyWithoutDepartmentInput {
-  create?: Maybe<
-    CourseCreateWithoutDepartmentInput[] | CourseCreateWithoutDepartmentInput
-  >;
-  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-}
-
-export interface SessionUpdateWithoutCourseHistoryDataInput {
-  year?: Maybe<String>;
-  students?: Maybe<StudentUpdateManyInput>;
-}
-
-export interface StudentCreateManyWithoutCoursesInput {
-  create?: Maybe<
-    StudentCreateWithoutCoursesInput[] | StudentCreateWithoutCoursesInput
-  >;
-  connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-}
-
-export interface StudentUpdateManyInput {
-  create?: Maybe<StudentCreateInput[] | StudentCreateInput>;
-  update?: Maybe<
-    | StudentUpdateWithWhereUniqueNestedInput[]
-    | StudentUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | StudentUpsertWithWhereUniqueNestedInput[]
-    | StudentUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  set?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  disconnect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
-  deleteMany?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
-  updateMany?: Maybe<
-    | StudentUpdateManyWithWhereNestedInput[]
-    | StudentUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface DepartmentCreateOneWithoutStudentsInput {
-  create?: Maybe<DepartmentCreateWithoutStudentsInput>;
-  connect?: Maybe<DepartmentWhereUniqueInput>;
-}
-
-export interface StudentUpdateWithWhereUniqueNestedInput {
-  where: StudentWhereUniqueInput;
-  data: StudentUpdateDataInput;
-}
-
-export interface CourseHistoryCreateManyWithoutStudentsInput {
-  create?: Maybe<
-    | CourseHistoryCreateWithoutStudentsInput[]
-    | CourseHistoryCreateWithoutStudentsInput
-  >;
-  connect?: Maybe<
-    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
-  >;
-}
-
-export interface StudentUpdateDataInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  regNo?: Maybe<String>;
-  gender?: Maybe<String>;
-  department?: Maybe<DepartmentUpdateOneWithoutStudentsInput>;
-  faculty?: Maybe<FacultyUpdateOneInput>;
-  courses?: Maybe<CourseUpdateManyWithoutStudentsInput>;
-  level?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  image?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  history?: Maybe<CourseHistoryUpdateManyWithoutStudentsInput>;
-  graduated?: Maybe<Boolean>;
-  password?: Maybe<String>;
+  nextOfKin?: Maybe<NextOfKinCreateOneWithoutStudentInput>;
 }
 
 export interface CourseWhereInput {
@@ -1693,60 +1037,27 @@ export interface CourseWhereInput {
   NOT?: Maybe<CourseWhereInput[] | CourseWhereInput>;
 }
 
-export interface CourseUpdateManyWithoutStudentsInput {
-  create?: Maybe<
-    CourseCreateWithoutStudentsInput[] | CourseCreateWithoutStudentsInput
-  >;
-  delete?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  set?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  disconnect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  update?: Maybe<
-    | CourseUpdateWithWhereUniqueWithoutStudentsInput[]
-    | CourseUpdateWithWhereUniqueWithoutStudentsInput
-  >;
-  upsert?: Maybe<
-    | CourseUpsertWithWhereUniqueWithoutStudentsInput[]
-    | CourseUpsertWithWhereUniqueWithoutStudentsInput
-  >;
-  deleteMany?: Maybe<CourseScalarWhereInput[] | CourseScalarWhereInput>;
-  updateMany?: Maybe<
-    | CourseUpdateManyWithWhereNestedInput[]
-    | CourseUpdateManyWithWhereNestedInput
-  >;
+export interface CourseCreateOneInput {
+  create?: Maybe<CourseCreateInput>;
+  connect?: Maybe<CourseWhereUniqueInput>;
 }
 
-export interface StudentSubscriptionWhereInput {
+export interface FacultySubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<StudentWhereInput>;
-  AND?: Maybe<StudentSubscriptionWhereInput[] | StudentSubscriptionWhereInput>;
-  OR?: Maybe<StudentSubscriptionWhereInput[] | StudentSubscriptionWhereInput>;
-  NOT?: Maybe<StudentSubscriptionWhereInput[] | StudentSubscriptionWhereInput>;
+  node?: Maybe<FacultyWhereInput>;
+  AND?: Maybe<FacultySubscriptionWhereInput[] | FacultySubscriptionWhereInput>;
+  OR?: Maybe<FacultySubscriptionWhereInput[] | FacultySubscriptionWhereInput>;
+  NOT?: Maybe<FacultySubscriptionWhereInput[] | FacultySubscriptionWhereInput>;
 }
 
-export interface CourseUpdateWithWhereUniqueWithoutStudentsInput {
-  where: CourseWhereUniqueInput;
-  data: CourseUpdateWithoutStudentsDataInput;
-}
-
-export interface ResultSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ResultWhereInput>;
-  AND?: Maybe<ResultSubscriptionWhereInput[] | ResultSubscriptionWhereInput>;
-  OR?: Maybe<ResultSubscriptionWhereInput[] | ResultSubscriptionWhereInput>;
-  NOT?: Maybe<ResultSubscriptionWhereInput[] | ResultSubscriptionWhereInput>;
-}
-
-export interface CourseUpdateWithoutStudentsDataInput {
+export interface CourseUpdateInput {
   name?: Maybe<String>;
   department?: Maybe<DepartmentUpdateOneRequiredWithoutCoursesInput>;
   creditUnit?: Maybe<Int>;
+  students?: Maybe<StudentUpdateManyWithoutCoursesInput>;
   description?: Maybe<String>;
   level?: Maybe<String>;
   semester?: Maybe<Semester>;
@@ -1770,16 +1081,106 @@ export interface CourseHistorySubscriptionWhereInput {
   >;
 }
 
-export interface LecturerUpdateOneWithoutCoursesInput {
-  create?: Maybe<LecturerCreateWithoutCoursesInput>;
-  update?: Maybe<LecturerUpdateWithoutCoursesDataInput>;
-  upsert?: Maybe<LecturerUpsertWithoutCoursesInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<LecturerWhereUniqueInput>;
+export interface DepartmentUpdateOneRequiredWithoutCoursesInput {
+  create?: Maybe<DepartmentCreateWithoutCoursesInput>;
+  update?: Maybe<DepartmentUpdateWithoutCoursesDataInput>;
+  upsert?: Maybe<DepartmentUpsertWithoutCoursesInput>;
+  connect?: Maybe<DepartmentWhereUniqueInput>;
 }
 
-export interface StudentUpdateInput {
+export interface StudentUpdateManyMutationInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  regNo?: Maybe<String>;
+  gender?: Maybe<String>;
+  level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  graduated?: Maybe<Boolean>;
+  password?: Maybe<String>;
+}
+
+export interface DepartmentUpdateWithoutCoursesDataInput {
+  name?: Maybe<String>;
+  faculty?: Maybe<FacultyUpdateOneRequiredWithoutDepartmentsInput>;
+  students?: Maybe<StudentUpdateManyWithoutDepartmentInput>;
+}
+
+export type CourseHistoryWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface FacultyUpdateOneRequiredWithoutDepartmentsInput {
+  create?: Maybe<FacultyCreateWithoutDepartmentsInput>;
+  update?: Maybe<FacultyUpdateWithoutDepartmentsDataInput>;
+  upsert?: Maybe<FacultyUpsertWithoutDepartmentsInput>;
+  connect?: Maybe<FacultyWhereUniqueInput>;
+}
+
+export interface SessionUpdateInput {
+  year?: Maybe<String>;
+  students?: Maybe<StudentUpdateManyInput>;
+  courseHistory?: Maybe<CourseHistoryUpdateManyWithoutSessionInput>;
+}
+
+export interface FacultyUpdateWithoutDepartmentsDataInput {
+  name?: Maybe<String>;
+}
+
+export type DepartmentWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  name?: Maybe<String>;
+}>;
+
+export interface FacultyUpsertWithoutDepartmentsInput {
+  update: FacultyUpdateWithoutDepartmentsDataInput;
+  create: FacultyCreateWithoutDepartmentsInput;
+}
+
+export interface NextOfKinUpdateManyMutationInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  address?: Maybe<String>;
+  phone?: Maybe<String>;
+  relationship?: Maybe<String>;
+}
+
+export interface StudentUpdateManyWithoutDepartmentInput {
+  create?: Maybe<
+    StudentCreateWithoutDepartmentInput[] | StudentCreateWithoutDepartmentInput
+  >;
+  delete?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+  connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+  set?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+  disconnect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+  update?: Maybe<
+    | StudentUpdateWithWhereUniqueWithoutDepartmentInput[]
+    | StudentUpdateWithWhereUniqueWithoutDepartmentInput
+  >;
+  upsert?: Maybe<
+    | StudentUpsertWithWhereUniqueWithoutDepartmentInput[]
+    | StudentUpsertWithWhereUniqueWithoutDepartmentInput
+  >;
+  deleteMany?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
+  updateMany?: Maybe<
+    | StudentUpdateManyWithWhereNestedInput[]
+    | StudentUpdateManyWithWhereNestedInput
+  >;
+}
+
+export type FacultyWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  name?: Maybe<String>;
+}>;
+
+export interface StudentUpdateWithWhereUniqueWithoutDepartmentInput {
+  where: StudentWhereUniqueInput;
+  data: StudentUpdateWithoutDepartmentDataInput;
+}
+
+export interface StudentUpdateWithoutNextOfKinDataInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
   regNo?: Maybe<String>;
@@ -1792,9 +1193,705 @@ export interface StudentUpdateInput {
   address?: Maybe<String>;
   image?: Maybe<String>;
   role?: Maybe<UserRole>;
-  history?: Maybe<CourseHistoryUpdateManyWithoutStudentsInput>;
+  history?: Maybe<CourseHistoryUpdateManyWithoutStudentInput>;
   graduated?: Maybe<Boolean>;
   password?: Maybe<String>;
+}
+
+export interface StudentUpdateWithoutDepartmentDataInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  regNo?: Maybe<String>;
+  gender?: Maybe<String>;
+  faculty?: Maybe<FacultyUpdateOneInput>;
+  courses?: Maybe<CourseUpdateManyWithoutStudentsInput>;
+  level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  history?: Maybe<CourseHistoryUpdateManyWithoutStudentInput>;
+  graduated?: Maybe<Boolean>;
+  password?: Maybe<String>;
+  nextOfKin?: Maybe<NextOfKinUpdateOneWithoutStudentInput>;
+}
+
+export interface NextOfKinUpdateInput {
+  name?: Maybe<String>;
+  student?: Maybe<StudentUpdateOneRequiredWithoutNextOfKinInput>;
+  email?: Maybe<String>;
+  address?: Maybe<String>;
+  phone?: Maybe<String>;
+  relationship?: Maybe<String>;
+}
+
+export interface FacultyUpdateOneInput {
+  create?: Maybe<FacultyCreateInput>;
+  update?: Maybe<FacultyUpdateDataInput>;
+  upsert?: Maybe<FacultyUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<FacultyWhereUniqueInput>;
+}
+
+export interface StudentCreateWithoutNextOfKinInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  email: String;
+  regNo: String;
+  gender?: Maybe<String>;
+  department?: Maybe<DepartmentCreateOneWithoutStudentsInput>;
+  faculty?: Maybe<FacultyCreateOneInput>;
+  courses?: Maybe<CourseCreateManyWithoutStudentsInput>;
+  level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  history?: Maybe<CourseHistoryCreateManyWithoutStudentInput>;
+  graduated?: Maybe<Boolean>;
+  password: String;
+}
+
+export interface FacultyUpdateDataInput {
+  name?: Maybe<String>;
+  departments?: Maybe<DepartmentUpdateManyWithoutFacultyInput>;
+}
+
+export interface NextOfKinCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  student: StudentCreateOneWithoutNextOfKinInput;
+  email: String;
+  address: String;
+  phone: String;
+  relationship: String;
+}
+
+export interface DepartmentUpdateManyWithoutFacultyInput {
+  create?: Maybe<
+    DepartmentCreateWithoutFacultyInput[] | DepartmentCreateWithoutFacultyInput
+  >;
+  delete?: Maybe<DepartmentWhereUniqueInput[] | DepartmentWhereUniqueInput>;
+  connect?: Maybe<DepartmentWhereUniqueInput[] | DepartmentWhereUniqueInput>;
+  set?: Maybe<DepartmentWhereUniqueInput[] | DepartmentWhereUniqueInput>;
+  disconnect?: Maybe<DepartmentWhereUniqueInput[] | DepartmentWhereUniqueInput>;
+  update?: Maybe<
+    | DepartmentUpdateWithWhereUniqueWithoutFacultyInput[]
+    | DepartmentUpdateWithWhereUniqueWithoutFacultyInput
+  >;
+  upsert?: Maybe<
+    | DepartmentUpsertWithWhereUniqueWithoutFacultyInput[]
+    | DepartmentUpsertWithWhereUniqueWithoutFacultyInput
+  >;
+  deleteMany?: Maybe<DepartmentScalarWhereInput[] | DepartmentScalarWhereInput>;
+  updateMany?: Maybe<
+    | DepartmentUpdateManyWithWhereNestedInput[]
+    | DepartmentUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface DepartmentWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  faculty?: Maybe<FacultyWhereInput>;
+  courses_every?: Maybe<CourseWhereInput>;
+  courses_some?: Maybe<CourseWhereInput>;
+  courses_none?: Maybe<CourseWhereInput>;
+  students_every?: Maybe<StudentWhereInput>;
+  students_some?: Maybe<StudentWhereInput>;
+  students_none?: Maybe<StudentWhereInput>;
+  AND?: Maybe<DepartmentWhereInput[] | DepartmentWhereInput>;
+  OR?: Maybe<DepartmentWhereInput[] | DepartmentWhereInput>;
+  NOT?: Maybe<DepartmentWhereInput[] | DepartmentWhereInput>;
+}
+
+export interface DepartmentUpdateWithWhereUniqueWithoutFacultyInput {
+  where: DepartmentWhereUniqueInput;
+  data: DepartmentUpdateWithoutFacultyDataInput;
+}
+
+export interface CourseUpsertWithWhereUniqueWithoutLecturerInput {
+  where: CourseWhereUniqueInput;
+  update: CourseUpdateWithoutLecturerDataInput;
+  create: CourseCreateWithoutLecturerInput;
+}
+
+export interface DepartmentUpdateWithoutFacultyDataInput {
+  name?: Maybe<String>;
+  courses?: Maybe<CourseUpdateManyWithoutDepartmentInput>;
+  students?: Maybe<StudentUpdateManyWithoutDepartmentInput>;
+}
+
+export type NextOfKinWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+}>;
+
+export interface CourseUpdateManyWithoutDepartmentInput {
+  create?: Maybe<
+    CourseCreateWithoutDepartmentInput[] | CourseCreateWithoutDepartmentInput
+  >;
+  delete?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+  set?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+  disconnect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+  update?: Maybe<
+    | CourseUpdateWithWhereUniqueWithoutDepartmentInput[]
+    | CourseUpdateWithWhereUniqueWithoutDepartmentInput
+  >;
+  upsert?: Maybe<
+    | CourseUpsertWithWhereUniqueWithoutDepartmentInput[]
+    | CourseUpsertWithWhereUniqueWithoutDepartmentInput
+  >;
+  deleteMany?: Maybe<CourseScalarWhereInput[] | CourseScalarWhereInput>;
+  updateMany?: Maybe<
+    | CourseUpdateManyWithWhereNestedInput[]
+    | CourseUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface CourseUpdateManyWithoutLecturerInput {
+  create?: Maybe<
+    CourseCreateWithoutLecturerInput[] | CourseCreateWithoutLecturerInput
+  >;
+  delete?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+  set?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+  disconnect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+  update?: Maybe<
+    | CourseUpdateWithWhereUniqueWithoutLecturerInput[]
+    | CourseUpdateWithWhereUniqueWithoutLecturerInput
+  >;
+  upsert?: Maybe<
+    | CourseUpsertWithWhereUniqueWithoutLecturerInput[]
+    | CourseUpsertWithWhereUniqueWithoutLecturerInput
+  >;
+  deleteMany?: Maybe<CourseScalarWhereInput[] | CourseScalarWhereInput>;
+  updateMany?: Maybe<
+    | CourseUpdateManyWithWhereNestedInput[]
+    | CourseUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface CourseUpdateManyMutationInput {
+  name?: Maybe<String>;
+  creditUnit?: Maybe<Int>;
+  description?: Maybe<String>;
+  level?: Maybe<String>;
+  semester?: Maybe<Semester>;
+}
+
+export interface CourseCreateWithoutLecturerInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  department: DepartmentCreateOneWithoutCoursesInput;
+  creditUnit: Int;
+  students?: Maybe<StudentCreateManyWithoutCoursesInput>;
+  description: String;
+  level: String;
+  semester: Semester;
+}
+
+export interface CourseUpdateWithoutDepartmentDataInput {
+  name?: Maybe<String>;
+  creditUnit?: Maybe<Int>;
+  students?: Maybe<StudentUpdateManyWithoutCoursesInput>;
+  description?: Maybe<String>;
+  level?: Maybe<String>;
+  semester?: Maybe<Semester>;
+  lecturer?: Maybe<LecturerUpdateOneWithoutCoursesInput>;
+}
+
+export interface CourseCreateManyWithoutLecturerInput {
+  create?: Maybe<
+    CourseCreateWithoutLecturerInput[] | CourseCreateWithoutLecturerInput
+  >;
+  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+}
+
+export interface StudentUpdateManyWithoutCoursesInput {
+  create?: Maybe<
+    StudentCreateWithoutCoursesInput[] | StudentCreateWithoutCoursesInput
+  >;
+  delete?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+  connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+  set?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+  disconnect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+  update?: Maybe<
+    | StudentUpdateWithWhereUniqueWithoutCoursesInput[]
+    | StudentUpdateWithWhereUniqueWithoutCoursesInput
+  >;
+  upsert?: Maybe<
+    | StudentUpsertWithWhereUniqueWithoutCoursesInput[]
+    | StudentUpsertWithWhereUniqueWithoutCoursesInput
+  >;
+  deleteMany?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
+  updateMany?: Maybe<
+    | StudentUpdateManyWithWhereNestedInput[]
+    | StudentUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface GradeUpdateManyMutationInput {
+  semester?: Maybe<Semester>;
+  test?: Maybe<Int>;
+  exam?: Maybe<Int>;
+  grade?: Maybe<GradeType>;
+  cleared?: Maybe<Boolean>;
+}
+
+export interface StudentUpdateWithWhereUniqueWithoutCoursesInput {
+  where: StudentWhereUniqueInput;
+  data: StudentUpdateWithoutCoursesDataInput;
+}
+
+export type SessionWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface StudentUpdateWithoutCoursesDataInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  regNo?: Maybe<String>;
+  gender?: Maybe<String>;
+  department?: Maybe<DepartmentUpdateOneWithoutStudentsInput>;
+  faculty?: Maybe<FacultyUpdateOneInput>;
+  level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  history?: Maybe<CourseHistoryUpdateManyWithoutStudentInput>;
+  graduated?: Maybe<Boolean>;
+  password?: Maybe<String>;
+  nextOfKin?: Maybe<NextOfKinUpdateOneWithoutStudentInput>;
+}
+
+export interface FacultyUpdateInput {
+  name?: Maybe<String>;
+  departments?: Maybe<DepartmentUpdateManyWithoutFacultyInput>;
+}
+
+export interface DepartmentUpdateOneWithoutStudentsInput {
+  create?: Maybe<DepartmentCreateWithoutStudentsInput>;
+  update?: Maybe<DepartmentUpdateWithoutStudentsDataInput>;
+  upsert?: Maybe<DepartmentUpsertWithoutStudentsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<DepartmentWhereUniqueInput>;
+}
+
+export interface DepartmentUpdateInput {
+  name?: Maybe<String>;
+  faculty?: Maybe<FacultyUpdateOneRequiredWithoutDepartmentsInput>;
+  courses?: Maybe<CourseUpdateManyWithoutDepartmentInput>;
+  students?: Maybe<StudentUpdateManyWithoutDepartmentInput>;
+}
+
+export interface DepartmentUpdateWithoutStudentsDataInput {
+  name?: Maybe<String>;
+  faculty?: Maybe<FacultyUpdateOneRequiredWithoutDepartmentsInput>;
+  courses?: Maybe<CourseUpdateManyWithoutDepartmentInput>;
+}
+
+export interface DepartmentCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  faculty: FacultyCreateOneWithoutDepartmentsInput;
+  courses?: Maybe<CourseCreateManyWithoutDepartmentInput>;
+  students?: Maybe<StudentCreateManyWithoutDepartmentInput>;
+}
+
+export interface DepartmentUpsertWithoutStudentsInput {
+  update: DepartmentUpdateWithoutStudentsDataInput;
+  create: DepartmentCreateWithoutStudentsInput;
+}
+
+export interface CourseHistoryCreateInput {
+  id?: Maybe<ID_Input>;
+  student: StudentCreateOneWithoutHistoryInput;
+  session: SessionCreateOneWithoutCourseHistoryInput;
+  result: ResultCreateOneInput;
+}
+
+export interface ResultWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  students?: Maybe<StudentWhereInput>;
+  grades_every?: Maybe<GradeWhereInput>;
+  grades_some?: Maybe<GradeWhereInput>;
+  grades_none?: Maybe<GradeWhereInput>;
+  semester?: Maybe<Semester>;
+  semester_not?: Maybe<Semester>;
+  semester_in?: Maybe<Semester[] | Semester>;
+  semester_not_in?: Maybe<Semester[] | Semester>;
+  AND?: Maybe<ResultWhereInput[] | ResultWhereInput>;
+  OR?: Maybe<ResultWhereInput[] | ResultWhereInput>;
+  NOT?: Maybe<ResultWhereInput[] | ResultWhereInput>;
+}
+
+export interface CourseCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  department: DepartmentCreateOneWithoutCoursesInput;
+  creditUnit: Int;
+  students?: Maybe<StudentCreateManyWithoutCoursesInput>;
+  description: String;
+  level: String;
+  semester: Semester;
+  lecturer?: Maybe<LecturerCreateOneWithoutCoursesInput>;
+}
+
+export interface NextOfKinWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  student?: Maybe<StudentWhereInput>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  address?: Maybe<String>;
+  address_not?: Maybe<String>;
+  address_in?: Maybe<String[] | String>;
+  address_not_in?: Maybe<String[] | String>;
+  address_lt?: Maybe<String>;
+  address_lte?: Maybe<String>;
+  address_gt?: Maybe<String>;
+  address_gte?: Maybe<String>;
+  address_contains?: Maybe<String>;
+  address_not_contains?: Maybe<String>;
+  address_starts_with?: Maybe<String>;
+  address_not_starts_with?: Maybe<String>;
+  address_ends_with?: Maybe<String>;
+  address_not_ends_with?: Maybe<String>;
+  phone?: Maybe<String>;
+  phone_not?: Maybe<String>;
+  phone_in?: Maybe<String[] | String>;
+  phone_not_in?: Maybe<String[] | String>;
+  phone_lt?: Maybe<String>;
+  phone_lte?: Maybe<String>;
+  phone_gt?: Maybe<String>;
+  phone_gte?: Maybe<String>;
+  phone_contains?: Maybe<String>;
+  phone_not_contains?: Maybe<String>;
+  phone_starts_with?: Maybe<String>;
+  phone_not_starts_with?: Maybe<String>;
+  phone_ends_with?: Maybe<String>;
+  phone_not_ends_with?: Maybe<String>;
+  relationship?: Maybe<String>;
+  relationship_not?: Maybe<String>;
+  relationship_in?: Maybe<String[] | String>;
+  relationship_not_in?: Maybe<String[] | String>;
+  relationship_lt?: Maybe<String>;
+  relationship_lte?: Maybe<String>;
+  relationship_gt?: Maybe<String>;
+  relationship_gte?: Maybe<String>;
+  relationship_contains?: Maybe<String>;
+  relationship_not_contains?: Maybe<String>;
+  relationship_starts_with?: Maybe<String>;
+  relationship_not_starts_with?: Maybe<String>;
+  relationship_ends_with?: Maybe<String>;
+  relationship_not_ends_with?: Maybe<String>;
+  AND?: Maybe<NextOfKinWhereInput[] | NextOfKinWhereInput>;
+  OR?: Maybe<NextOfKinWhereInput[] | NextOfKinWhereInput>;
+  NOT?: Maybe<NextOfKinWhereInput[] | NextOfKinWhereInput>;
+}
+
+export interface DepartmentCreateWithoutCoursesInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  faculty: FacultyCreateOneWithoutDepartmentsInput;
+  students?: Maybe<StudentCreateManyWithoutDepartmentInput>;
+}
+
+export interface CourseHistoryUpdateWithoutStudentDataInput {
+  session?: Maybe<SessionUpdateOneRequiredWithoutCourseHistoryInput>;
+  result?: Maybe<ResultUpdateOneRequiredInput>;
+}
+
+export interface FacultyCreateWithoutDepartmentsInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+}
+
+export interface SessionUpdateOneRequiredWithoutCourseHistoryInput {
+  create?: Maybe<SessionCreateWithoutCourseHistoryInput>;
+  update?: Maybe<SessionUpdateWithoutCourseHistoryDataInput>;
+  upsert?: Maybe<SessionUpsertWithoutCourseHistoryInput>;
+  connect?: Maybe<SessionWhereUniqueInput>;
+}
+
+export interface StudentCreateWithoutDepartmentInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  email: String;
+  regNo: String;
+  gender?: Maybe<String>;
+  faculty?: Maybe<FacultyCreateOneInput>;
+  courses?: Maybe<CourseCreateManyWithoutStudentsInput>;
+  level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  history?: Maybe<CourseHistoryCreateManyWithoutStudentInput>;
+  graduated?: Maybe<Boolean>;
+  password: String;
+  nextOfKin?: Maybe<NextOfKinCreateOneWithoutStudentInput>;
+}
+
+export interface SessionUpdateWithoutCourseHistoryDataInput {
+  year?: Maybe<String>;
+  students?: Maybe<StudentUpdateManyInput>;
+}
+
+export interface FacultyCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  departments?: Maybe<DepartmentCreateManyWithoutFacultyInput>;
+}
+
+export interface StudentUpdateManyInput {
+  create?: Maybe<StudentCreateInput[] | StudentCreateInput>;
+  update?: Maybe<
+    | StudentUpdateWithWhereUniqueNestedInput[]
+    | StudentUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | StudentUpsertWithWhereUniqueNestedInput[]
+    | StudentUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+  connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+  set?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+  disconnect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
+  deleteMany?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
+  updateMany?: Maybe<
+    | StudentUpdateManyWithWhereNestedInput[]
+    | StudentUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface DepartmentCreateWithoutFacultyInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  courses?: Maybe<CourseCreateManyWithoutDepartmentInput>;
+  students?: Maybe<StudentCreateManyWithoutDepartmentInput>;
+}
+
+export interface StudentUpdateWithWhereUniqueNestedInput {
+  where: StudentWhereUniqueInput;
+  data: StudentUpdateDataInput;
+}
+
+export interface CourseCreateWithoutDepartmentInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  creditUnit: Int;
+  students?: Maybe<StudentCreateManyWithoutCoursesInput>;
+  description: String;
+  level: String;
+  semester: Semester;
+  lecturer?: Maybe<LecturerCreateOneWithoutCoursesInput>;
+}
+
+export interface StudentUpdateDataInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  regNo?: Maybe<String>;
+  gender?: Maybe<String>;
+  department?: Maybe<DepartmentUpdateOneWithoutStudentsInput>;
+  faculty?: Maybe<FacultyUpdateOneInput>;
+  courses?: Maybe<CourseUpdateManyWithoutStudentsInput>;
+  level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  history?: Maybe<CourseHistoryUpdateManyWithoutStudentInput>;
+  graduated?: Maybe<Boolean>;
+  password?: Maybe<String>;
+  nextOfKin?: Maybe<NextOfKinUpdateOneWithoutStudentInput>;
+}
+
+export interface StudentCreateWithoutCoursesInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  email: String;
+  regNo: String;
+  gender?: Maybe<String>;
+  department?: Maybe<DepartmentCreateOneWithoutStudentsInput>;
+  faculty?: Maybe<FacultyCreateOneInput>;
+  level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  history?: Maybe<CourseHistoryCreateManyWithoutStudentInput>;
+  graduated?: Maybe<Boolean>;
+  password: String;
+  nextOfKin?: Maybe<NextOfKinCreateOneWithoutStudentInput>;
+}
+
+export interface CourseUpdateManyWithoutStudentsInput {
+  create?: Maybe<
+    CourseCreateWithoutStudentsInput[] | CourseCreateWithoutStudentsInput
+  >;
+  delete?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+  set?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+  disconnect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+  update?: Maybe<
+    | CourseUpdateWithWhereUniqueWithoutStudentsInput[]
+    | CourseUpdateWithWhereUniqueWithoutStudentsInput
+  >;
+  upsert?: Maybe<
+    | CourseUpsertWithWhereUniqueWithoutStudentsInput[]
+    | CourseUpsertWithWhereUniqueWithoutStudentsInput
+  >;
+  deleteMany?: Maybe<CourseScalarWhereInput[] | CourseScalarWhereInput>;
+  updateMany?: Maybe<
+    | CourseUpdateManyWithWhereNestedInput[]
+    | CourseUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface DepartmentCreateWithoutStudentsInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  faculty: FacultyCreateOneWithoutDepartmentsInput;
+  courses?: Maybe<CourseCreateManyWithoutDepartmentInput>;
+}
+
+export interface CourseUpdateWithWhereUniqueWithoutStudentsInput {
+  where: CourseWhereUniqueInput;
+  data: CourseUpdateWithoutStudentsDataInput;
+}
+
+export interface CourseHistoryCreateWithoutStudentInput {
+  id?: Maybe<ID_Input>;
+  session: SessionCreateOneWithoutCourseHistoryInput;
+  result: ResultCreateOneInput;
+}
+
+export interface CourseUpdateWithoutStudentsDataInput {
+  name?: Maybe<String>;
+  department?: Maybe<DepartmentUpdateOneRequiredWithoutCoursesInput>;
+  creditUnit?: Maybe<Int>;
+  description?: Maybe<String>;
+  level?: Maybe<String>;
+  semester?: Maybe<Semester>;
+  lecturer?: Maybe<LecturerUpdateOneWithoutCoursesInput>;
+}
+
+export interface SessionCreateWithoutCourseHistoryInput {
+  id?: Maybe<ID_Input>;
+  year: String;
+  students?: Maybe<StudentCreateManyInput>;
+}
+
+export interface LecturerUpdateOneWithoutCoursesInput {
+  create?: Maybe<LecturerCreateWithoutCoursesInput>;
+  update?: Maybe<LecturerUpdateWithoutCoursesDataInput>;
+  upsert?: Maybe<LecturerUpsertWithoutCoursesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<LecturerWhereUniqueInput>;
+}
+
+export interface StudentCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  email: String;
+  regNo: String;
+  gender?: Maybe<String>;
+  department?: Maybe<DepartmentCreateOneWithoutStudentsInput>;
+  faculty?: Maybe<FacultyCreateOneInput>;
+  courses?: Maybe<CourseCreateManyWithoutStudentsInput>;
+  level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  history?: Maybe<CourseHistoryCreateManyWithoutStudentInput>;
+  graduated?: Maybe<Boolean>;
+  password: String;
+  nextOfKin?: Maybe<NextOfKinCreateOneWithoutStudentInput>;
 }
 
 export interface LecturerUpdateWithoutCoursesDataInput {
@@ -1804,9 +1901,15 @@ export interface LecturerUpdateWithoutCoursesDataInput {
   password?: Maybe<String>;
 }
 
-export interface CourseHistoryUpdateWithoutSessionsDataInput {
-  students?: Maybe<StudentUpdateManyWithoutHistoryInput>;
-  courses?: Maybe<CourseUpdateManyInput>;
+export interface CourseCreateWithoutStudentsInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  department: DepartmentCreateOneWithoutCoursesInput;
+  creditUnit: Int;
+  description: String;
+  level: String;
+  semester: Semester;
+  lecturer?: Maybe<LecturerCreateOneWithoutCoursesInput>;
 }
 
 export interface LecturerUpsertWithoutCoursesInput {
@@ -1814,10 +1917,12 @@ export interface LecturerUpsertWithoutCoursesInput {
   create: LecturerCreateWithoutCoursesInput;
 }
 
-export interface SessionUpdateInput {
-  year?: Maybe<String>;
-  students?: Maybe<StudentUpdateManyInput>;
-  courseHistory?: Maybe<CourseHistoryUpdateManyWithoutSessionsInput>;
+export interface LecturerCreateWithoutCoursesInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  role?: Maybe<UserRole>;
+  email: String;
+  password: String;
 }
 
 export interface CourseUpsertWithWhereUniqueWithoutStudentsInput {
@@ -1826,11 +1931,13 @@ export interface CourseUpsertWithWhereUniqueWithoutStudentsInput {
   create: CourseCreateWithoutStudentsInput;
 }
 
-export interface SessionCreateInput {
+export interface NextOfKinCreateWithoutStudentInput {
   id?: Maybe<ID_Input>;
-  year: String;
-  students?: Maybe<StudentCreateManyInput>;
-  courseHistory?: Maybe<CourseHistoryCreateManyWithoutSessionsInput>;
+  name: String;
+  email: String;
+  address: String;
+  phone: String;
+  relationship: String;
 }
 
 export interface CourseScalarWhereInput {
@@ -1909,10 +2016,9 @@ export interface CourseScalarWhereInput {
 
 export interface ResultCreateInput {
   id?: Maybe<ID_Input>;
-  students?: Maybe<StudentCreateManyInput>;
-  grade: Grade;
-  cleared: Boolean;
-  course?: Maybe<CourseCreateManyInput>;
+  students: StudentCreateOneInput;
+  grades?: Maybe<GradeCreateManyInput>;
+  semester: Semester;
 }
 
 export interface CourseUpdateManyWithWhereNestedInput {
@@ -1920,9 +2026,10 @@ export interface CourseUpdateManyWithWhereNestedInput {
   data: CourseUpdateManyDataInput;
 }
 
-export type ResultWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface GradeCreateManyInput {
+  create?: Maybe<GradeCreateInput[] | GradeCreateInput>;
+  connect?: Maybe<GradeWhereUniqueInput[] | GradeWhereUniqueInput>;
+}
 
 export interface CourseUpdateManyDataInput {
   name?: Maybe<String>;
@@ -1932,27 +2039,82 @@ export interface CourseUpdateManyDataInput {
   semester?: Maybe<Semester>;
 }
 
-export interface CourseUpdateManyWithoutLecturerInput {
-  create?: Maybe<
-    CourseCreateWithoutLecturerInput[] | CourseCreateWithoutLecturerInput
-  >;
-  delete?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  set?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  disconnect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  update?: Maybe<
-    | CourseUpdateWithWhereUniqueWithoutLecturerInput[]
-    | CourseUpdateWithWhereUniqueWithoutLecturerInput
-  >;
-  upsert?: Maybe<
-    | CourseUpsertWithWhereUniqueWithoutLecturerInput[]
-    | CourseUpsertWithWhereUniqueWithoutLecturerInput
-  >;
-  deleteMany?: Maybe<CourseScalarWhereInput[] | CourseScalarWhereInput>;
-  updateMany?: Maybe<
-    | CourseUpdateManyWithWhereNestedInput[]
-    | CourseUpdateManyWithWhereNestedInput
-  >;
+export interface CourseHistoryWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  student?: Maybe<StudentWhereInput>;
+  session?: Maybe<SessionWhereInput>;
+  result?: Maybe<ResultWhereInput>;
+  AND?: Maybe<CourseHistoryWhereInput[] | CourseHistoryWhereInput>;
+  OR?: Maybe<CourseHistoryWhereInput[] | CourseHistoryWhereInput>;
+  NOT?: Maybe<CourseHistoryWhereInput[] | CourseHistoryWhereInput>;
+}
+
+export interface NextOfKinUpdateOneWithoutStudentInput {
+  create?: Maybe<NextOfKinCreateWithoutStudentInput>;
+  update?: Maybe<NextOfKinUpdateWithoutStudentDataInput>;
+  upsert?: Maybe<NextOfKinUpsertWithoutStudentInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<NextOfKinWhereUniqueInput>;
+}
+
+export interface ResultSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ResultWhereInput>;
+  AND?: Maybe<ResultSubscriptionWhereInput[] | ResultSubscriptionWhereInput>;
+  OR?: Maybe<ResultSubscriptionWhereInput[] | ResultSubscriptionWhereInput>;
+  NOT?: Maybe<ResultSubscriptionWhereInput[] | ResultSubscriptionWhereInput>;
+}
+
+export interface NextOfKinUpdateWithoutStudentDataInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  address?: Maybe<String>;
+  phone?: Maybe<String>;
+  relationship?: Maybe<String>;
+}
+
+export interface GradeSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<GradeWhereInput>;
+  AND?: Maybe<GradeSubscriptionWhereInput[] | GradeSubscriptionWhereInput>;
+  OR?: Maybe<GradeSubscriptionWhereInput[] | GradeSubscriptionWhereInput>;
+  NOT?: Maybe<GradeSubscriptionWhereInput[] | GradeSubscriptionWhereInput>;
+}
+
+export interface NextOfKinUpsertWithoutStudentInput {
+  update: NextOfKinUpdateWithoutStudentDataInput;
+  create: NextOfKinCreateWithoutStudentInput;
+}
+
+export interface CourseSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<CourseWhereInput>;
+  AND?: Maybe<CourseSubscriptionWhereInput[] | CourseSubscriptionWhereInput>;
+  OR?: Maybe<CourseSubscriptionWhereInput[] | CourseSubscriptionWhereInput>;
+  NOT?: Maybe<CourseSubscriptionWhereInput[] | CourseSubscriptionWhereInput>;
 }
 
 export interface StudentUpsertWithWhereUniqueNestedInput {
@@ -1961,9 +2123,9 @@ export interface StudentUpsertWithWhereUniqueNestedInput {
   create: StudentCreateInput;
 }
 
-export type SessionWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface SessionUpdateManyMutationInput {
+  year?: Maybe<String>;
+}
 
 export interface StudentScalarWhereInput {
   id?: Maybe<ID_Input>;
@@ -2117,137 +2279,18 @@ export interface StudentScalarWhereInput {
   NOT?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
 }
 
-export type StudentWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  regNo?: Maybe<String>;
-}>;
+export interface ResultUpdateInput {
+  students?: Maybe<StudentUpdateOneRequiredInput>;
+  grades?: Maybe<GradeUpdateManyInput>;
+  semester?: Maybe<Semester>;
+}
 
 export interface StudentUpdateManyWithWhereNestedInput {
   where: StudentScalarWhereInput;
   data: StudentUpdateManyDataInput;
 }
 
-export interface StudentUpsertWithWhereUniqueWithoutHistoryInput {
-  where: StudentWhereUniqueInput;
-  update: StudentUpdateWithoutHistoryDataInput;
-  create: StudentCreateWithoutHistoryInput;
-}
-
-export interface StudentUpdateManyDataInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  regNo?: Maybe<String>;
-  gender?: Maybe<String>;
-  level?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  image?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  graduated?: Maybe<Boolean>;
-  password?: Maybe<String>;
-}
-
-export interface DepartmentCreateWithoutCoursesInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  faculty: FacultyCreateOneWithoutDepartmentsInput;
-  students?: Maybe<StudentCreateManyWithoutDepartmentInput>;
-}
-
-export interface SessionUpsertWithWhereUniqueWithoutCourseHistoryInput {
-  where: SessionWhereUniqueInput;
-  update: SessionUpdateWithoutCourseHistoryDataInput;
-  create: SessionCreateWithoutCourseHistoryInput;
-}
-
-export interface StudentCreateWithoutDepartmentInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  email: String;
-  regNo: String;
-  gender?: Maybe<String>;
-  faculty?: Maybe<FacultyCreateOneInput>;
-  courses?: Maybe<CourseCreateManyWithoutStudentsInput>;
-  level?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  image?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  history?: Maybe<CourseHistoryCreateManyWithoutStudentsInput>;
-  graduated?: Maybe<Boolean>;
-  password: String;
-}
-
-export interface SessionScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  year?: Maybe<String>;
-  year_not?: Maybe<String>;
-  year_in?: Maybe<String[] | String>;
-  year_not_in?: Maybe<String[] | String>;
-  year_lt?: Maybe<String>;
-  year_lte?: Maybe<String>;
-  year_gt?: Maybe<String>;
-  year_gte?: Maybe<String>;
-  year_contains?: Maybe<String>;
-  year_not_contains?: Maybe<String>;
-  year_starts_with?: Maybe<String>;
-  year_not_starts_with?: Maybe<String>;
-  year_ends_with?: Maybe<String>;
-  year_not_ends_with?: Maybe<String>;
-  AND?: Maybe<SessionScalarWhereInput[] | SessionScalarWhereInput>;
-  OR?: Maybe<SessionScalarWhereInput[] | SessionScalarWhereInput>;
-  NOT?: Maybe<SessionScalarWhereInput[] | SessionScalarWhereInput>;
-}
-
-export interface DepartmentCreateWithoutFacultyInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  courses?: Maybe<CourseCreateManyWithoutDepartmentInput>;
-  students?: Maybe<StudentCreateManyWithoutDepartmentInput>;
-}
-
-export interface SessionUpdateManyWithWhereNestedInput {
-  where: SessionScalarWhereInput;
-  data: SessionUpdateManyDataInput;
-}
-
-export interface StudentCreateWithoutCoursesInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  email: String;
-  regNo: String;
-  gender?: Maybe<String>;
-  department?: Maybe<DepartmentCreateOneWithoutStudentsInput>;
-  faculty?: Maybe<FacultyCreateOneInput>;
-  level?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  image?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  history?: Maybe<CourseHistoryCreateManyWithoutStudentsInput>;
-  graduated?: Maybe<Boolean>;
-  password: String;
-}
-
-export interface SessionUpdateManyDataInput {
-  year?: Maybe<String>;
-}
-
-export interface DepartmentWhereInput {
+export interface FacultyWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -2276,59 +2319,352 @@ export interface DepartmentWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
-  faculty?: Maybe<FacultyWhereInput>;
-  courses_every?: Maybe<CourseWhereInput>;
-  courses_some?: Maybe<CourseWhereInput>;
-  courses_none?: Maybe<CourseWhereInput>;
-  students_every?: Maybe<StudentWhereInput>;
-  students_some?: Maybe<StudentWhereInput>;
-  students_none?: Maybe<StudentWhereInput>;
-  AND?: Maybe<DepartmentWhereInput[] | DepartmentWhereInput>;
-  OR?: Maybe<DepartmentWhereInput[] | DepartmentWhereInput>;
-  NOT?: Maybe<DepartmentWhereInput[] | DepartmentWhereInput>;
+  departments_every?: Maybe<DepartmentWhereInput>;
+  departments_some?: Maybe<DepartmentWhereInput>;
+  departments_none?: Maybe<DepartmentWhereInput>;
+  AND?: Maybe<FacultyWhereInput[] | FacultyWhereInput>;
+  OR?: Maybe<FacultyWhereInput[] | FacultyWhereInput>;
+  NOT?: Maybe<FacultyWhereInput[] | FacultyWhereInput>;
 }
 
-export interface CourseUpdateManyInput {
-  create?: Maybe<CourseCreateInput[] | CourseCreateInput>;
-  update?: Maybe<
-    | CourseUpdateWithWhereUniqueNestedInput[]
-    | CourseUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | CourseUpsertWithWhereUniqueNestedInput[]
-    | CourseUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  set?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  disconnect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
-  deleteMany?: Maybe<CourseScalarWhereInput[] | CourseScalarWhereInput>;
-  updateMany?: Maybe<
-    | CourseUpdateManyWithWhereNestedInput[]
-    | CourseUpdateManyWithWhereNestedInput
-  >;
-}
-
-export type CourseWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
+export interface StudentUpdateManyDataInput {
   name?: Maybe<String>;
+  email?: Maybe<String>;
+  regNo?: Maybe<String>;
+  gender?: Maybe<String>;
+  level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  graduated?: Maybe<Boolean>;
+  password?: Maybe<String>;
+}
+
+export type GradeWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
 }>;
 
-export interface CourseUpdateWithWhereUniqueNestedInput {
-  where: CourseWhereUniqueInput;
-  data: CourseUpdateDataInput;
+export interface SessionUpsertWithoutCourseHistoryInput {
+  update: SessionUpdateWithoutCourseHistoryDataInput;
+  create: SessionCreateWithoutCourseHistoryInput;
 }
 
-export interface AdminSubscriptionWhereInput {
+export type LecturerWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+}>;
+
+export interface ResultUpdateOneRequiredInput {
+  create?: Maybe<ResultCreateInput>;
+  update?: Maybe<ResultUpdateDataInput>;
+  upsert?: Maybe<ResultUpsertNestedInput>;
+  connect?: Maybe<ResultWhereUniqueInput>;
+}
+
+export interface CourseUpdateWithoutLecturerDataInput {
+  name?: Maybe<String>;
+  department?: Maybe<DepartmentUpdateOneRequiredWithoutCoursesInput>;
+  creditUnit?: Maybe<Int>;
+  students?: Maybe<StudentUpdateManyWithoutCoursesInput>;
+  description?: Maybe<String>;
+  level?: Maybe<String>;
+  semester?: Maybe<Semester>;
+}
+
+export interface ResultUpdateDataInput {
+  students?: Maybe<StudentUpdateOneRequiredInput>;
+  grades?: Maybe<GradeUpdateManyInput>;
+  semester?: Maybe<Semester>;
+}
+
+export interface LecturerUpdateInput {
+  name?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  courses?: Maybe<CourseUpdateManyWithoutLecturerInput>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+}
+
+export interface StudentUpdateOneRequiredInput {
+  create?: Maybe<StudentCreateInput>;
+  update?: Maybe<StudentUpdateDataInput>;
+  upsert?: Maybe<StudentUpsertNestedInput>;
+  connect?: Maybe<StudentWhereUniqueInput>;
+}
+
+export interface LecturerCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  role?: Maybe<UserRole>;
+  courses?: Maybe<CourseCreateManyWithoutLecturerInput>;
+  email: String;
+  password: String;
+}
+
+export interface StudentUpsertNestedInput {
+  update: StudentUpdateDataInput;
+  create: StudentCreateInput;
+}
+
+export interface FacultyUpdateManyMutationInput {
+  name?: Maybe<String>;
+}
+
+export interface GradeUpdateManyInput {
+  create?: Maybe<GradeCreateInput[] | GradeCreateInput>;
+  update?: Maybe<
+    | GradeUpdateWithWhereUniqueNestedInput[]
+    | GradeUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | GradeUpsertWithWhereUniqueNestedInput[]
+    | GradeUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<GradeWhereUniqueInput[] | GradeWhereUniqueInput>;
+  connect?: Maybe<GradeWhereUniqueInput[] | GradeWhereUniqueInput>;
+  set?: Maybe<GradeWhereUniqueInput[] | GradeWhereUniqueInput>;
+  disconnect?: Maybe<GradeWhereUniqueInput[] | GradeWhereUniqueInput>;
+  deleteMany?: Maybe<GradeScalarWhereInput[] | GradeScalarWhereInput>;
+  updateMany?: Maybe<
+    GradeUpdateManyWithWhereNestedInput[] | GradeUpdateManyWithWhereNestedInput
+  >;
+}
+
+export type StudentWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+  regNo?: Maybe<String>;
+}>;
+
+export interface GradeUpdateWithWhereUniqueNestedInput {
+  where: GradeWhereUniqueInput;
+  data: GradeUpdateDataInput;
+}
+
+export interface FacultyCreateOneWithoutDepartmentsInput {
+  create?: Maybe<FacultyCreateWithoutDepartmentsInput>;
+  connect?: Maybe<FacultyWhereUniqueInput>;
+}
+
+export interface GradeUpdateDataInput {
+  session?: Maybe<SessionUpdateOneRequiredInput>;
+  semester?: Maybe<Semester>;
+  student?: Maybe<StudentUpdateOneRequiredInput>;
+  course?: Maybe<CourseUpdateOneRequiredInput>;
+  test?: Maybe<Int>;
+  exam?: Maybe<Int>;
+  grade?: Maybe<GradeType>;
+  cleared?: Maybe<Boolean>;
+}
+
+export interface FacultyCreateOneInput {
+  create?: Maybe<FacultyCreateInput>;
+  connect?: Maybe<FacultyWhereUniqueInput>;
+}
+
+export interface SessionUpdateOneRequiredInput {
+  create?: Maybe<SessionCreateInput>;
+  update?: Maybe<SessionUpdateDataInput>;
+  upsert?: Maybe<SessionUpsertNestedInput>;
+  connect?: Maybe<SessionWhereUniqueInput>;
+}
+
+export interface CourseCreateManyWithoutDepartmentInput {
+  create?: Maybe<
+    CourseCreateWithoutDepartmentInput[] | CourseCreateWithoutDepartmentInput
+  >;
+  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+}
+
+export interface SessionUpdateDataInput {
+  year?: Maybe<String>;
+  students?: Maybe<StudentUpdateManyInput>;
+  courseHistory?: Maybe<CourseHistoryUpdateManyWithoutSessionInput>;
+}
+
+export interface DepartmentCreateOneWithoutStudentsInput {
+  create?: Maybe<DepartmentCreateWithoutStudentsInput>;
+  connect?: Maybe<DepartmentWhereUniqueInput>;
+}
+
+export interface CourseHistoryUpdateManyWithoutSessionInput {
+  create?: Maybe<
+    | CourseHistoryCreateWithoutSessionInput[]
+    | CourseHistoryCreateWithoutSessionInput
+  >;
+  delete?: Maybe<
+    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
+  >;
+  connect?: Maybe<
+    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
+  >;
+  set?: Maybe<CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput>;
+  disconnect?: Maybe<
+    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
+  >;
+  update?: Maybe<
+    | CourseHistoryUpdateWithWhereUniqueWithoutSessionInput[]
+    | CourseHistoryUpdateWithWhereUniqueWithoutSessionInput
+  >;
+  upsert?: Maybe<
+    | CourseHistoryUpsertWithWhereUniqueWithoutSessionInput[]
+    | CourseHistoryUpsertWithWhereUniqueWithoutSessionInput
+  >;
+  deleteMany?: Maybe<
+    CourseHistoryScalarWhereInput[] | CourseHistoryScalarWhereInput
+  >;
+}
+
+export interface SessionCreateOneWithoutCourseHistoryInput {
+  create?: Maybe<SessionCreateWithoutCourseHistoryInput>;
+  connect?: Maybe<SessionWhereUniqueInput>;
+}
+
+export interface CourseHistoryUpdateWithWhereUniqueWithoutSessionInput {
+  where: CourseHistoryWhereUniqueInput;
+  data: CourseHistoryUpdateWithoutSessionDataInput;
+}
+
+export interface CourseCreateManyWithoutStudentsInput {
+  create?: Maybe<
+    CourseCreateWithoutStudentsInput[] | CourseCreateWithoutStudentsInput
+  >;
+  connect?: Maybe<CourseWhereUniqueInput[] | CourseWhereUniqueInput>;
+}
+
+export interface CourseHistoryUpdateWithoutSessionDataInput {
+  student?: Maybe<StudentUpdateOneRequiredWithoutHistoryInput>;
+  result?: Maybe<ResultUpdateOneRequiredInput>;
+}
+
+export interface NextOfKinCreateOneWithoutStudentInput {
+  create?: Maybe<NextOfKinCreateWithoutStudentInput>;
+  connect?: Maybe<NextOfKinWhereUniqueInput>;
+}
+
+export interface StudentUpdateOneRequiredWithoutHistoryInput {
+  create?: Maybe<StudentCreateWithoutHistoryInput>;
+  update?: Maybe<StudentUpdateWithoutHistoryDataInput>;
+  upsert?: Maybe<StudentUpsertWithoutHistoryInput>;
+  connect?: Maybe<StudentWhereUniqueInput>;
+}
+
+export interface StudentCreateOneInput {
+  create?: Maybe<StudentCreateInput>;
+  connect?: Maybe<StudentWhereUniqueInput>;
+}
+
+export interface StudentUpdateWithoutHistoryDataInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  regNo?: Maybe<String>;
+  gender?: Maybe<String>;
+  department?: Maybe<DepartmentUpdateOneWithoutStudentsInput>;
+  faculty?: Maybe<FacultyUpdateOneInput>;
+  courses?: Maybe<CourseUpdateManyWithoutStudentsInput>;
+  level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  graduated?: Maybe<Boolean>;
+  password?: Maybe<String>;
+  nextOfKin?: Maybe<NextOfKinUpdateOneWithoutStudentInput>;
+}
+
+export interface StudentSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<AdminWhereInput>;
-  AND?: Maybe<AdminSubscriptionWhereInput[] | AdminSubscriptionWhereInput>;
-  OR?: Maybe<AdminSubscriptionWhereInput[] | AdminSubscriptionWhereInput>;
-  NOT?: Maybe<AdminSubscriptionWhereInput[] | AdminSubscriptionWhereInput>;
+  node?: Maybe<StudentWhereInput>;
+  AND?: Maybe<StudentSubscriptionWhereInput[] | StudentSubscriptionWhereInput>;
+  OR?: Maybe<StudentSubscriptionWhereInput[] | StudentSubscriptionWhereInput>;
+  NOT?: Maybe<StudentSubscriptionWhereInput[] | StudentSubscriptionWhereInput>;
 }
+
+export interface StudentUpsertWithoutHistoryInput {
+  update: StudentUpdateWithoutHistoryDataInput;
+  create: StudentCreateWithoutHistoryInput;
+}
+
+export interface DepartmentSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<DepartmentWhereInput>;
+  AND?: Maybe<
+    DepartmentSubscriptionWhereInput[] | DepartmentSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    DepartmentSubscriptionWhereInput[] | DepartmentSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    DepartmentSubscriptionWhereInput[] | DepartmentSubscriptionWhereInput
+  >;
+}
+
+export interface CourseHistoryUpsertWithWhereUniqueWithoutSessionInput {
+  where: CourseHistoryWhereUniqueInput;
+  update: CourseHistoryUpdateWithoutSessionDataInput;
+  create: CourseHistoryCreateWithoutSessionInput;
+}
+
+export interface ResultUpdateManyMutationInput {
+  semester?: Maybe<Semester>;
+}
+
+export interface CourseHistoryScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  AND?: Maybe<CourseHistoryScalarWhereInput[] | CourseHistoryScalarWhereInput>;
+  OR?: Maybe<CourseHistoryScalarWhereInput[] | CourseHistoryScalarWhereInput>;
+  NOT?: Maybe<CourseHistoryScalarWhereInput[] | CourseHistoryScalarWhereInput>;
+}
+
+export interface StudentUpdateOneRequiredWithoutNextOfKinInput {
+  create?: Maybe<StudentCreateWithoutNextOfKinInput>;
+  update?: Maybe<StudentUpdateWithoutNextOfKinDataInput>;
+  upsert?: Maybe<StudentUpsertWithoutNextOfKinInput>;
+  connect?: Maybe<StudentWhereUniqueInput>;
+}
+
+export interface SessionUpsertNestedInput {
+  update: SessionUpdateDataInput;
+  create: SessionCreateInput;
+}
+
+export interface LecturerUpdateManyMutationInput {
+  name?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+}
+
+export interface CourseUpdateOneRequiredInput {
+  create?: Maybe<CourseCreateInput>;
+  update?: Maybe<CourseUpdateDataInput>;
+  upsert?: Maybe<CourseUpsertNestedInput>;
+  connect?: Maybe<CourseWhereUniqueInput>;
+}
+
+export type ResultWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface CourseUpdateDataInput {
   name?: Maybe<String>;
@@ -2341,31 +2677,108 @@ export interface CourseUpdateDataInput {
   lecturer?: Maybe<LecturerUpdateOneWithoutCoursesInput>;
 }
 
-export type DepartmentWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
+export interface DepartmentUpdateManyMutationInput {
   name?: Maybe<String>;
-}>;
+}
 
-export interface CourseUpsertWithWhereUniqueNestedInput {
-  where: CourseWhereUniqueInput;
+export interface CourseUpsertNestedInput {
   update: CourseUpdateDataInput;
   create: CourseCreateInput;
 }
 
-export interface ResultUpdateInput {
-  students?: Maybe<StudentUpdateManyInput>;
-  grade?: Maybe<Grade>;
+export interface DepartmentCreateOneWithoutCoursesInput {
+  create?: Maybe<DepartmentCreateWithoutCoursesInput>;
+  connect?: Maybe<DepartmentWhereUniqueInput>;
+}
+
+export interface GradeUpsertWithWhereUniqueNestedInput {
+  where: GradeWhereUniqueInput;
+  update: GradeUpdateDataInput;
+  create: GradeCreateInput;
+}
+
+export interface DepartmentCreateManyWithoutFacultyInput {
+  create?: Maybe<
+    DepartmentCreateWithoutFacultyInput[] | DepartmentCreateWithoutFacultyInput
+  >;
+  connect?: Maybe<DepartmentWhereUniqueInput[] | DepartmentWhereUniqueInput>;
+}
+
+export interface GradeScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  semester?: Maybe<Semester>;
+  semester_not?: Maybe<Semester>;
+  semester_in?: Maybe<Semester[] | Semester>;
+  semester_not_in?: Maybe<Semester[] | Semester>;
+  test?: Maybe<Int>;
+  test_not?: Maybe<Int>;
+  test_in?: Maybe<Int[] | Int>;
+  test_not_in?: Maybe<Int[] | Int>;
+  test_lt?: Maybe<Int>;
+  test_lte?: Maybe<Int>;
+  test_gt?: Maybe<Int>;
+  test_gte?: Maybe<Int>;
+  exam?: Maybe<Int>;
+  exam_not?: Maybe<Int>;
+  exam_in?: Maybe<Int[] | Int>;
+  exam_not_in?: Maybe<Int[] | Int>;
+  exam_lt?: Maybe<Int>;
+  exam_lte?: Maybe<Int>;
+  exam_gt?: Maybe<Int>;
+  exam_gte?: Maybe<Int>;
+  grade?: Maybe<GradeType>;
+  grade_not?: Maybe<GradeType>;
+  grade_in?: Maybe<GradeType[] | GradeType>;
+  grade_not_in?: Maybe<GradeType[] | GradeType>;
   cleared?: Maybe<Boolean>;
-  course?: Maybe<CourseUpdateManyInput>;
+  cleared_not?: Maybe<Boolean>;
+  AND?: Maybe<GradeScalarWhereInput[] | GradeScalarWhereInput>;
+  OR?: Maybe<GradeScalarWhereInput[] | GradeScalarWhereInput>;
+  NOT?: Maybe<GradeScalarWhereInput[] | GradeScalarWhereInput>;
 }
 
-export interface CourseHistoryUpsertWithWhereUniqueWithoutStudentsInput {
-  where: CourseHistoryWhereUniqueInput;
-  update: CourseHistoryUpdateWithoutStudentsDataInput;
-  create: CourseHistoryCreateWithoutStudentsInput;
+export interface CourseHistoryCreateManyWithoutStudentInput {
+  create?: Maybe<
+    | CourseHistoryCreateWithoutStudentInput[]
+    | CourseHistoryCreateWithoutStudentInput
+  >;
+  connect?: Maybe<
+    CourseHistoryWhereUniqueInput[] | CourseHistoryWhereUniqueInput
+  >;
 }
 
-export interface AdminWhereInput {
+export interface GradeUpdateManyWithWhereNestedInput {
+  where: GradeScalarWhereInput;
+  data: GradeUpdateManyDataInput;
+}
+
+export interface LecturerCreateOneWithoutCoursesInput {
+  create?: Maybe<LecturerCreateWithoutCoursesInput>;
+  connect?: Maybe<LecturerWhereUniqueInput>;
+}
+
+export interface GradeUpdateManyDataInput {
+  semester?: Maybe<Semester>;
+  test?: Maybe<Int>;
+  exam?: Maybe<Int>;
+  grade?: Maybe<GradeType>;
+  cleared?: Maybe<Boolean>;
+}
+
+export interface LecturerWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -2398,6 +2811,9 @@ export interface AdminWhereInput {
   role_not?: Maybe<UserRole>;
   role_in?: Maybe<UserRole[] | UserRole>;
   role_not_in?: Maybe<UserRole[] | UserRole>;
+  courses_every?: Maybe<CourseWhereInput>;
+  courses_some?: Maybe<CourseWhereInput>;
+  courses_none?: Maybe<CourseWhereInput>;
   email?: Maybe<String>;
   email_not?: Maybe<String>;
   email_in?: Maybe<String[] | String>;
@@ -2426,33 +2842,44 @@ export interface AdminWhereInput {
   password_not_starts_with?: Maybe<String>;
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
-  AND?: Maybe<AdminWhereInput[] | AdminWhereInput>;
-  OR?: Maybe<AdminWhereInput[] | AdminWhereInput>;
-  NOT?: Maybe<AdminWhereInput[] | AdminWhereInput>;
+  AND?: Maybe<LecturerWhereInput[] | LecturerWhereInput>;
+  OR?: Maybe<LecturerWhereInput[] | LecturerWhereInput>;
+  NOT?: Maybe<LecturerWhereInput[] | LecturerWhereInput>;
 }
 
-export interface CourseHistoryScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  AND?: Maybe<CourseHistoryScalarWhereInput[] | CourseHistoryScalarWhereInput>;
-  OR?: Maybe<CourseHistoryScalarWhereInput[] | CourseHistoryScalarWhereInput>;
-  NOT?: Maybe<CourseHistoryScalarWhereInput[] | CourseHistoryScalarWhereInput>;
+export interface ResultUpsertNestedInput {
+  update: ResultUpdateDataInput;
+  create: ResultCreateInput;
 }
 
-export interface FacultyUpdateManyMutationInput {
+export interface StudentUpdateInput {
   name?: Maybe<String>;
+  email?: Maybe<String>;
+  regNo?: Maybe<String>;
+  gender?: Maybe<String>;
+  department?: Maybe<DepartmentUpdateOneWithoutStudentsInput>;
+  faculty?: Maybe<FacultyUpdateOneInput>;
+  courses?: Maybe<CourseUpdateManyWithoutStudentsInput>;
+  level?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  image?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  history?: Maybe<CourseHistoryUpdateManyWithoutStudentInput>;
+  graduated?: Maybe<Boolean>;
+  password?: Maybe<String>;
+  nextOfKin?: Maybe<NextOfKinUpdateOneWithoutStudentInput>;
+}
+
+export interface CourseHistoryUpsertWithWhereUniqueWithoutStudentInput {
+  where: CourseHistoryWhereUniqueInput;
+  update: CourseHistoryUpdateWithoutStudentDataInput;
+  create: CourseHistoryCreateWithoutStudentInput;
+}
+
+export interface StudentCreateOneWithoutNextOfKinInput {
+  create?: Maybe<StudentCreateWithoutNextOfKinInput>;
+  connect?: Maybe<StudentWhereUniqueInput>;
 }
 
 export interface StudentUpsertWithWhereUniqueWithoutCoursesInput {
@@ -2461,11 +2888,15 @@ export interface StudentUpsertWithWhereUniqueWithoutCoursesInput {
   create: StudentCreateWithoutCoursesInput;
 }
 
-export interface AdminUpdateInput {
-  name?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
+export interface GradeUpdateInput {
+  session?: Maybe<SessionUpdateOneRequiredInput>;
+  semester?: Maybe<Semester>;
+  student?: Maybe<StudentUpdateOneRequiredInput>;
+  course?: Maybe<CourseUpdateOneRequiredInput>;
+  test?: Maybe<Int>;
+  exam?: Maybe<Int>;
+  grade?: Maybe<GradeType>;
+  cleared?: Maybe<Boolean>;
 }
 
 export interface CourseUpsertWithWhereUniqueWithoutDepartmentInput {
@@ -2474,9 +2905,11 @@ export interface CourseUpsertWithWhereUniqueWithoutDepartmentInput {
   create: CourseCreateWithoutDepartmentInput;
 }
 
-export interface FacultyCreateWithoutDepartmentsInput {
-  id?: Maybe<ID_Input>;
-  name: String;
+export interface StudentCreateManyWithoutDepartmentInput {
+  create?: Maybe<
+    StudentCreateWithoutDepartmentInput[] | StudentCreateWithoutDepartmentInput
+  >;
+  connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
 }
 
 export interface DepartmentUpsertWithWhereUniqueWithoutFacultyInput {
@@ -2485,15 +2918,9 @@ export interface DepartmentUpsertWithWhereUniqueWithoutFacultyInput {
   create: DepartmentCreateWithoutFacultyInput;
 }
 
-export interface CourseCreateWithoutDepartmentInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  creditUnit: Int;
-  students?: Maybe<StudentCreateManyWithoutCoursesInput>;
-  description: String;
-  level: String;
-  semester: Semester;
-  lecturer?: Maybe<LecturerCreateOneWithoutCoursesInput>;
+export interface StudentCreateManyInput {
+  create?: Maybe<StudentCreateInput[] | StudentCreateInput>;
+  connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
 }
 
 export interface DepartmentScalarWhereInput {
@@ -2530,64 +2957,19 @@ export interface DepartmentScalarWhereInput {
   NOT?: Maybe<DepartmentScalarWhereInput[] | DepartmentScalarWhereInput>;
 }
 
-export interface CourseHistoryWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  students_every?: Maybe<StudentWhereInput>;
-  students_some?: Maybe<StudentWhereInput>;
-  students_none?: Maybe<StudentWhereInput>;
-  sessions_every?: Maybe<SessionWhereInput>;
-  sessions_some?: Maybe<SessionWhereInput>;
-  sessions_none?: Maybe<SessionWhereInput>;
-  courses_every?: Maybe<CourseWhereInput>;
-  courses_some?: Maybe<CourseWhereInput>;
-  courses_none?: Maybe<CourseWhereInput>;
-  AND?: Maybe<CourseHistoryWhereInput[] | CourseHistoryWhereInput>;
-  OR?: Maybe<CourseHistoryWhereInput[] | CourseHistoryWhereInput>;
-  NOT?: Maybe<CourseHistoryWhereInput[] | CourseHistoryWhereInput>;
-}
-
-export interface DepartmentUpdateManyWithWhereNestedInput {
-  where: DepartmentScalarWhereInput;
-  data: DepartmentUpdateManyDataInput;
-}
-
-export type CourseHistoryWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface DepartmentUpdateManyDataInput {
-  name?: Maybe<String>;
-}
-
-export interface CourseUpsertWithWhereUniqueWithoutLecturerInput {
-  where: CourseWhereUniqueInput;
-  update: CourseUpdateWithoutLecturerDataInput;
-  create: CourseCreateWithoutLecturerInput;
-}
-
-export interface FacultyUpsertNestedInput {
-  update: FacultyUpdateDataInput;
-  create: FacultyCreateInput;
-}
-
-export interface DepartmentUpdateInput {
-  name?: Maybe<String>;
-  faculty?: Maybe<FacultyUpdateOneRequiredWithoutDepartmentsInput>;
-  courses?: Maybe<CourseUpdateManyWithoutDepartmentInput>;
-  students?: Maybe<StudentUpdateManyWithoutDepartmentInput>;
+export interface LecturerSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<LecturerWhereInput>;
+  AND?: Maybe<
+    LecturerSubscriptionWhereInput[] | LecturerSubscriptionWhereInput
+  >;
+  OR?: Maybe<LecturerSubscriptionWhereInput[] | LecturerSubscriptionWhereInput>;
+  NOT?: Maybe<
+    LecturerSubscriptionWhereInput[] | LecturerSubscriptionWhereInput
+  >;
 }
 
 export interface StudentUpsertWithWhereUniqueWithoutDepartmentInput {
@@ -2596,101 +2978,46 @@ export interface StudentUpsertWithWhereUniqueWithoutDepartmentInput {
   create: StudentCreateWithoutDepartmentInput;
 }
 
-export interface FacultyCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  departments?: Maybe<DepartmentCreateManyWithoutFacultyInput>;
+export interface FacultyUpsertNestedInput {
+  update: FacultyUpdateDataInput;
+  create: FacultyCreateInput;
 }
 
-export interface DepartmentUpsertWithoutCoursesInput {
-  update: DepartmentUpdateWithoutCoursesDataInput;
-  create: DepartmentCreateWithoutCoursesInput;
+export interface DepartmentUpdateManyDataInput {
+  name?: Maybe<String>;
 }
 
-export interface FacultySubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<FacultyWhereInput>;
-  AND?: Maybe<FacultySubscriptionWhereInput[] | FacultySubscriptionWhereInput>;
-  OR?: Maybe<FacultySubscriptionWhereInput[] | FacultySubscriptionWhereInput>;
-  NOT?: Maybe<FacultySubscriptionWhereInput[] | FacultySubscriptionWhereInput>;
+export interface DepartmentUpdateManyWithWhereNestedInput {
+  where: DepartmentScalarWhereInput;
+  data: DepartmentUpdateManyDataInput;
 }
 
-export interface StudentCreateWithoutHistoryInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  email: String;
-  regNo: String;
-  gender?: Maybe<String>;
-  department?: Maybe<DepartmentCreateOneWithoutStudentsInput>;
-  faculty?: Maybe<FacultyCreateOneInput>;
-  courses?: Maybe<CourseCreateManyWithoutStudentsInput>;
-  level?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  image?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  graduated?: Maybe<Boolean>;
-  password: String;
+export interface StudentUpsertWithoutNextOfKinInput {
+  update: StudentUpdateWithoutNextOfKinDataInput;
+  create: StudentCreateWithoutNextOfKinInput;
 }
 
-export interface StudentCreateManyWithoutHistoryInput {
+export interface ResultCreateOneInput {
+  create?: Maybe<ResultCreateInput>;
+  connect?: Maybe<ResultWhereUniqueInput>;
+}
+
+export interface StudentCreateManyWithoutCoursesInput {
   create?: Maybe<
-    StudentCreateWithoutHistoryInput[] | StudentCreateWithoutHistoryInput
+    StudentCreateWithoutCoursesInput[] | StudentCreateWithoutCoursesInput
   >;
   connect?: Maybe<StudentWhereUniqueInput[] | StudentWhereUniqueInput>;
 }
 
-export interface CourseHistoryCreateInput {
-  id?: Maybe<ID_Input>;
-  students?: Maybe<StudentCreateManyWithoutHistoryInput>;
-  sessions?: Maybe<SessionCreateManyWithoutCourseHistoryInput>;
-  courses?: Maybe<CourseCreateManyInput>;
+export interface CourseHistoryUpdateInput {
+  student?: Maybe<StudentUpdateOneRequiredWithoutHistoryInput>;
+  session?: Maybe<SessionUpdateOneRequiredWithoutCourseHistoryInput>;
+  result?: Maybe<ResultUpdateOneRequiredInput>;
 }
 
-export interface CourseUpdateManyMutationInput {
-  name?: Maybe<String>;
-  creditUnit?: Maybe<Int>;
-  description?: Maybe<String>;
-  level?: Maybe<String>;
-  semester?: Maybe<Semester>;
-}
-
-export type FacultyWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  name?: Maybe<String>;
-}>;
-
-export interface DepartmentCreateWithoutStudentsInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  faculty: FacultyCreateOneWithoutDepartmentsInput;
-  courses?: Maybe<CourseCreateManyWithoutDepartmentInput>;
-}
-
-export interface CourseCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  department: DepartmentCreateOneWithoutCoursesInput;
-  creditUnit: Int;
-  students?: Maybe<StudentCreateManyWithoutCoursesInput>;
-  description: String;
-  level: String;
-  semester: Semester;
-  lecturer?: Maybe<LecturerCreateOneWithoutCoursesInput>;
-}
-
-export interface CourseCreateWithoutLecturerInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  department: DepartmentCreateOneWithoutCoursesInput;
-  creditUnit: Int;
-  students?: Maybe<StudentCreateManyWithoutCoursesInput>;
-  description: String;
-  level: String;
-  semester: Semester;
+export interface CourseUpdateWithWhereUniqueWithoutLecturerInput {
+  where: CourseWhereUniqueInput;
+  data: CourseUpdateWithoutLecturerDataInput;
 }
 
 export interface NodeNode {
@@ -2746,6 +3073,119 @@ export interface StudentPreviousValuesSubscription
   password: () => Promise<AsyncIterator<String>>;
 }
 
+export interface CourseHistoryEdge {
+  node: CourseHistory;
+  cursor: String;
+}
+
+export interface CourseHistoryEdgePromise
+  extends Promise<CourseHistoryEdge>,
+    Fragmentable {
+  node: <T = CourseHistoryPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CourseHistoryEdgeSubscription
+  extends Promise<AsyncIterator<CourseHistoryEdge>>,
+    Fragmentable {
+  node: <T = CourseHistorySubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SessionSubscriptionPayload {
+  mutation: MutationType;
+  node: Session;
+  updatedFields: String[];
+  previousValues: SessionPreviousValues;
+}
+
+export interface SessionSubscriptionPayloadPromise
+  extends Promise<SessionSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = SessionPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = SessionPreviousValuesPromise>() => T;
+}
+
+export interface SessionSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<SessionSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = SessionSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = SessionPreviousValuesSubscription>() => T;
+}
+
+export interface CourseHistoryConnection {
+  pageInfo: PageInfo;
+  edges: CourseHistoryEdge[];
+}
+
+export interface CourseHistoryConnectionPromise
+  extends Promise<CourseHistoryConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CourseHistoryEdge>>() => T;
+  aggregate: <T = AggregateCourseHistoryPromise>() => T;
+}
+
+export interface CourseHistoryConnectionSubscription
+  extends Promise<AsyncIterator<CourseHistoryConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CourseHistoryEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCourseHistorySubscription>() => T;
+}
+
+export interface AggregateCourse {
+  count: Int;
+}
+
+export interface AggregateCoursePromise
+  extends Promise<AggregateCourse>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCourseSubscription
+  extends Promise<AsyncIterator<AggregateCourse>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface AggregateStudent {
+  count: Int;
+}
+
+export interface AggregateStudentPromise
+  extends Promise<AggregateStudent>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateStudentSubscription
+  extends Promise<AsyncIterator<AggregateStudent>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface CourseEdge {
   node: Course;
   cursor: String;
@@ -2761,6 +3201,340 @@ export interface CourseEdgeSubscription
     Fragmentable {
   node: <T = CourseSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface StudentConnection {
+  pageInfo: PageInfo;
+  edges: StudentEdge[];
+}
+
+export interface StudentConnectionPromise
+  extends Promise<StudentConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<StudentEdge>>() => T;
+  aggregate: <T = AggregateStudentPromise>() => T;
+}
+
+export interface StudentConnectionSubscription
+  extends Promise<AsyncIterator<StudentConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<StudentEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateStudentSubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface SessionEdge {
+  node: Session;
+  cursor: String;
+}
+
+export interface SessionEdgePromise extends Promise<SessionEdge>, Fragmentable {
+  node: <T = SessionPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface SessionEdgeSubscription
+  extends Promise<AsyncIterator<SessionEdge>>,
+    Fragmentable {
+  node: <T = SessionSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface Student {
+  id: ID_Output;
+  name: String;
+  email: String;
+  regNo: String;
+  gender?: String;
+  level?: String;
+  phone?: String;
+  address?: String;
+  image?: String;
+  role: UserRole;
+  graduated?: Boolean;
+  password: String;
+}
+
+export interface StudentPromise extends Promise<Student>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  regNo: () => Promise<String>;
+  gender: () => Promise<String>;
+  department: <T = DepartmentPromise>() => T;
+  faculty: <T = FacultyPromise>() => T;
+  courses: <T = FragmentableArray<Course>>(args?: {
+    where?: CourseWhereInput;
+    orderBy?: CourseOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  level: () => Promise<String>;
+  phone: () => Promise<String>;
+  address: () => Promise<String>;
+  image: () => Promise<String>;
+  role: () => Promise<UserRole>;
+  history: <T = FragmentableArray<CourseHistory>>(args?: {
+    where?: CourseHistoryWhereInput;
+    orderBy?: CourseHistoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  graduated: () => Promise<Boolean>;
+  password: () => Promise<String>;
+  nextOfKin: <T = NextOfKinPromise>() => T;
+}
+
+export interface StudentSubscription
+  extends Promise<AsyncIterator<Student>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  regNo: () => Promise<AsyncIterator<String>>;
+  gender: () => Promise<AsyncIterator<String>>;
+  department: <T = DepartmentSubscription>() => T;
+  faculty: <T = FacultySubscription>() => T;
+  courses: <T = Promise<AsyncIterator<CourseSubscription>>>(args?: {
+    where?: CourseWhereInput;
+    orderBy?: CourseOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  level: () => Promise<AsyncIterator<String>>;
+  phone: () => Promise<AsyncIterator<String>>;
+  address: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
+  role: () => Promise<AsyncIterator<UserRole>>;
+  history: <T = Promise<AsyncIterator<CourseHistorySubscription>>>(args?: {
+    where?: CourseHistoryWhereInput;
+    orderBy?: CourseHistoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  graduated: () => Promise<AsyncIterator<Boolean>>;
+  password: () => Promise<AsyncIterator<String>>;
+  nextOfKin: <T = NextOfKinSubscription>() => T;
+}
+
+export interface StudentNullablePromise
+  extends Promise<Student | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  regNo: () => Promise<String>;
+  gender: () => Promise<String>;
+  department: <T = DepartmentPromise>() => T;
+  faculty: <T = FacultyPromise>() => T;
+  courses: <T = FragmentableArray<Course>>(args?: {
+    where?: CourseWhereInput;
+    orderBy?: CourseOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  level: () => Promise<String>;
+  phone: () => Promise<String>;
+  address: () => Promise<String>;
+  image: () => Promise<String>;
+  role: () => Promise<UserRole>;
+  history: <T = FragmentableArray<CourseHistory>>(args?: {
+    where?: CourseHistoryWhereInput;
+    orderBy?: CourseHistoryOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  graduated: () => Promise<Boolean>;
+  password: () => Promise<String>;
+  nextOfKin: <T = NextOfKinPromise>() => T;
+}
+
+export interface Course {
+  id: ID_Output;
+  name: String;
+  creditUnit: Int;
+  description: String;
+  level: String;
+  semester: Semester;
+}
+
+export interface CoursePromise extends Promise<Course>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  department: <T = DepartmentPromise>() => T;
+  creditUnit: () => Promise<Int>;
+  students: <T = FragmentableArray<Student>>(args?: {
+    where?: StudentWhereInput;
+    orderBy?: StudentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  description: () => Promise<String>;
+  level: () => Promise<String>;
+  semester: () => Promise<Semester>;
+  lecturer: <T = LecturerPromise>() => T;
+}
+
+export interface CourseSubscription
+  extends Promise<AsyncIterator<Course>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  department: <T = DepartmentSubscription>() => T;
+  creditUnit: () => Promise<AsyncIterator<Int>>;
+  students: <T = Promise<AsyncIterator<StudentSubscription>>>(args?: {
+    where?: StudentWhereInput;
+    orderBy?: StudentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  description: () => Promise<AsyncIterator<String>>;
+  level: () => Promise<AsyncIterator<String>>;
+  semester: () => Promise<AsyncIterator<Semester>>;
+  lecturer: <T = LecturerSubscription>() => T;
+}
+
+export interface CourseNullablePromise
+  extends Promise<Course | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  department: <T = DepartmentPromise>() => T;
+  creditUnit: () => Promise<Int>;
+  students: <T = FragmentableArray<Student>>(args?: {
+    where?: StudentWhereInput;
+    orderBy?: StudentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  description: () => Promise<String>;
+  level: () => Promise<String>;
+  semester: () => Promise<Semester>;
+  lecturer: <T = LecturerPromise>() => T;
+}
+
+export interface CourseSubscriptionPayload {
+  mutation: MutationType;
+  node: Course;
+  updatedFields: String[];
+  previousValues: CoursePreviousValues;
+}
+
+export interface CourseSubscriptionPayloadPromise
+  extends Promise<CourseSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CoursePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CoursePreviousValuesPromise>() => T;
+}
+
+export interface CourseSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CourseSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CourseSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CoursePreviousValuesSubscription>() => T;
+}
+
+export interface ResultEdge {
+  node: Result;
+  cursor: String;
+}
+
+export interface ResultEdgePromise extends Promise<ResultEdge>, Fragmentable {
+  node: <T = ResultPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ResultEdgeSubscription
+  extends Promise<AsyncIterator<ResultEdge>>,
+    Fragmentable {
+  node: <T = ResultSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CoursePreviousValues {
+  id: ID_Output;
+  name: String;
+  creditUnit: Int;
+  description: String;
+  level: String;
+  semester: Semester;
+}
+
+export interface CoursePreviousValuesPromise
+  extends Promise<CoursePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  creditUnit: () => Promise<Int>;
+  description: () => Promise<String>;
+  level: () => Promise<String>;
+  semester: () => Promise<Semester>;
+}
+
+export interface CoursePreviousValuesSubscription
+  extends Promise<AsyncIterator<CoursePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  creditUnit: () => Promise<AsyncIterator<Int>>;
+  description: () => Promise<AsyncIterator<String>>;
+  level: () => Promise<AsyncIterator<String>>;
+  semester: () => Promise<AsyncIterator<Semester>>;
 }
 
 export interface Department {
@@ -2865,6 +3639,50 @@ export interface CourseConnectionSubscription
   aggregate: <T = AggregateCourseSubscription>() => T;
 }
 
+export interface NextOfKinEdge {
+  node: NextOfKin;
+  cursor: String;
+}
+
+export interface NextOfKinEdgePromise
+  extends Promise<NextOfKinEdge>,
+    Fragmentable {
+  node: <T = NextOfKinPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface NextOfKinEdgeSubscription
+  extends Promise<AsyncIterator<NextOfKinEdge>>,
+    Fragmentable {
+  node: <T = NextOfKinSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CourseHistorySubscriptionPayload {
+  mutation: MutationType;
+  node: CourseHistory;
+  updatedFields: String[];
+  previousValues: CourseHistoryPreviousValues;
+}
+
+export interface CourseHistorySubscriptionPayloadPromise
+  extends Promise<CourseHistorySubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CourseHistoryPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CourseHistoryPreviousValuesPromise>() => T;
+}
+
+export interface CourseHistorySubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CourseHistorySubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CourseHistorySubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CourseHistoryPreviousValuesSubscription>() => T;
+}
+
 export interface Faculty {
   id: ID_Output;
   name: String;
@@ -2914,6 +3732,41 @@ export interface FacultyNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
+}
+
+export interface CourseHistoryPreviousValues {
+  id: ID_Output;
+}
+
+export interface CourseHistoryPreviousValuesPromise
+  extends Promise<CourseHistoryPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+}
+
+export interface CourseHistoryPreviousValuesSubscription
+  extends Promise<AsyncIterator<CourseHistoryPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+}
+
+export interface LecturerEdge {
+  node: Lecturer;
+  cursor: String;
+}
+
+export interface LecturerEdgePromise
+  extends Promise<LecturerEdge>,
+    Fragmentable {
+  node: <T = LecturerPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface LecturerEdgeSubscription
+  extends Promise<AsyncIterator<LecturerEdge>>,
+    Fragmentable {
+  node: <T = LecturerSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface Lecturer {
@@ -2979,99 +3832,300 @@ export interface LecturerNullablePromise
   password: () => Promise<String>;
 }
 
-export interface AggregateStudent {
+export interface AggregateGrade {
   count: Int;
 }
 
-export interface AggregateStudentPromise
-  extends Promise<AggregateStudent>,
+export interface AggregateGradePromise
+  extends Promise<AggregateGrade>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateStudentSubscription
-  extends Promise<AsyncIterator<AggregateStudent>>,
+export interface AggregateGradeSubscription
+  extends Promise<AsyncIterator<AggregateGrade>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface SessionSubscriptionPayload {
+export interface DepartmentSubscriptionPayload {
   mutation: MutationType;
-  node: Session;
+  node: Department;
   updatedFields: String[];
-  previousValues: SessionPreviousValues;
+  previousValues: DepartmentPreviousValues;
 }
 
-export interface SessionSubscriptionPayloadPromise
-  extends Promise<SessionSubscriptionPayload>,
+export interface DepartmentSubscriptionPayloadPromise
+  extends Promise<DepartmentSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = SessionPromise>() => T;
+  node: <T = DepartmentPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = SessionPreviousValuesPromise>() => T;
+  previousValues: <T = DepartmentPreviousValuesPromise>() => T;
 }
 
-export interface SessionSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<SessionSubscriptionPayload>>,
+export interface DepartmentSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<DepartmentSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = SessionSubscription>() => T;
+  node: <T = DepartmentSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = SessionPreviousValuesSubscription>() => T;
+  previousValues: <T = DepartmentPreviousValuesSubscription>() => T;
 }
 
-export interface StudentEdge {
-  node: Student;
+export interface GradeConnection {
+  pageInfo: PageInfo;
+  edges: GradeEdge[];
+}
+
+export interface GradeConnectionPromise
+  extends Promise<GradeConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<GradeEdge>>() => T;
+  aggregate: <T = AggregateGradePromise>() => T;
+}
+
+export interface GradeConnectionSubscription
+  extends Promise<AsyncIterator<GradeConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<GradeEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateGradeSubscription>() => T;
+}
+
+export interface DepartmentPreviousValues {
+  id: ID_Output;
+  name: String;
+}
+
+export interface DepartmentPreviousValuesPromise
+  extends Promise<DepartmentPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface DepartmentPreviousValuesSubscription
+  extends Promise<AsyncIterator<DepartmentPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface FacultyEdge {
+  node: Faculty;
   cursor: String;
 }
 
-export interface StudentEdgePromise extends Promise<StudentEdge>, Fragmentable {
-  node: <T = StudentPromise>() => T;
+export interface FacultyEdgePromise extends Promise<FacultyEdge>, Fragmentable {
+  node: <T = FacultyPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface StudentEdgeSubscription
-  extends Promise<AsyncIterator<StudentEdge>>,
+export interface FacultyEdgeSubscription
+  extends Promise<AsyncIterator<FacultyEdge>>,
     Fragmentable {
-  node: <T = StudentSubscription>() => T;
+  node: <T = FacultySubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface StudentConnection {
-  pageInfo: PageInfo;
-  edges: StudentEdge[];
+export interface NextOfKin {
+  id: ID_Output;
+  name: String;
+  email: String;
+  address: String;
+  phone: String;
+  relationship: String;
 }
 
-export interface StudentConnectionPromise
-  extends Promise<StudentConnection>,
+export interface NextOfKinPromise extends Promise<NextOfKin>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  student: <T = StudentPromise>() => T;
+  email: () => Promise<String>;
+  address: () => Promise<String>;
+  phone: () => Promise<String>;
+  relationship: () => Promise<String>;
+}
+
+export interface NextOfKinSubscription
+  extends Promise<AsyncIterator<NextOfKin>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  student: <T = StudentSubscription>() => T;
+  email: () => Promise<AsyncIterator<String>>;
+  address: () => Promise<AsyncIterator<String>>;
+  phone: () => Promise<AsyncIterator<String>>;
+  relationship: () => Promise<AsyncIterator<String>>;
+}
+
+export interface NextOfKinNullablePromise
+  extends Promise<NextOfKin | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  student: <T = StudentPromise>() => T;
+  email: () => Promise<String>;
+  address: () => Promise<String>;
+  phone: () => Promise<String>;
+  relationship: () => Promise<String>;
+}
+
+export interface AggregateDepartment {
+  count: Int;
+}
+
+export interface AggregateDepartmentPromise
+  extends Promise<AggregateDepartment>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateDepartmentSubscription
+  extends Promise<AsyncIterator<AggregateDepartment>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface FacultySubscriptionPayload {
+  mutation: MutationType;
+  node: Faculty;
+  updatedFields: String[];
+  previousValues: FacultyPreviousValues;
+}
+
+export interface FacultySubscriptionPayloadPromise
+  extends Promise<FacultySubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = FacultyPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = FacultyPreviousValuesPromise>() => T;
+}
+
+export interface FacultySubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<FacultySubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = FacultySubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = FacultyPreviousValuesSubscription>() => T;
+}
+
+export interface DepartmentConnection {
+  pageInfo: PageInfo;
+  edges: DepartmentEdge[];
+}
+
+export interface DepartmentConnectionPromise
+  extends Promise<DepartmentConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<StudentEdge>>() => T;
-  aggregate: <T = AggregateStudentPromise>() => T;
+  edges: <T = FragmentableArray<DepartmentEdge>>() => T;
+  aggregate: <T = AggregateDepartmentPromise>() => T;
 }
 
-export interface StudentConnectionSubscription
-  extends Promise<AsyncIterator<StudentConnection>>,
+export interface DepartmentConnectionSubscription
+  extends Promise<AsyncIterator<DepartmentConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<StudentEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateStudentSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<DepartmentEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateDepartmentSubscription>() => T;
+}
+
+export interface FacultyPreviousValues {
+  id: ID_Output;
+  name: String;
+}
+
+export interface FacultyPreviousValuesPromise
+  extends Promise<FacultyPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface FacultyPreviousValuesSubscription
+  extends Promise<AsyncIterator<FacultyPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface StudentSubscriptionPayload {
+  mutation: MutationType;
+  node: Student;
+  updatedFields: String[];
+  previousValues: StudentPreviousValues;
+}
+
+export interface StudentSubscriptionPayloadPromise
+  extends Promise<StudentSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = StudentPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = StudentPreviousValuesPromise>() => T;
+}
+
+export interface StudentSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<StudentSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = StudentSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = StudentPreviousValuesSubscription>() => T;
+}
+
+export interface Grade {
+  id: ID_Output;
+  semester: Semester;
+  test?: Int;
+  exam?: Int;
+  grade: GradeType;
+  cleared: Boolean;
+}
+
+export interface GradePromise extends Promise<Grade>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  session: <T = SessionPromise>() => T;
+  semester: () => Promise<Semester>;
+  student: <T = StudentPromise>() => T;
+  course: <T = CoursePromise>() => T;
+  test: () => Promise<Int>;
+  exam: () => Promise<Int>;
+  grade: () => Promise<GradeType>;
+  cleared: () => Promise<Boolean>;
+}
+
+export interface GradeSubscription
+  extends Promise<AsyncIterator<Grade>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  session: <T = SessionSubscription>() => T;
+  semester: () => Promise<AsyncIterator<Semester>>;
+  student: <T = StudentSubscription>() => T;
+  course: <T = CourseSubscription>() => T;
+  test: () => Promise<AsyncIterator<Int>>;
+  exam: () => Promise<AsyncIterator<Int>>;
+  grade: () => Promise<AsyncIterator<GradeType>>;
+  cleared: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface GradeNullablePromise
+  extends Promise<Grade | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  session: <T = SessionPromise>() => T;
+  semester: () => Promise<Semester>;
+  student: <T = StudentPromise>() => T;
+  course: <T = CoursePromise>() => T;
+  test: () => Promise<Int>;
+  exam: () => Promise<Int>;
+  grade: () => Promise<GradeType>;
+  cleared: () => Promise<Boolean>;
 }
 
 export interface AggregateSession {
@@ -3090,70 +4144,207 @@ export interface AggregateSessionSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface SessionConnection {
-  pageInfo: PageInfo;
-  edges: SessionEdge[];
-}
-
-export interface SessionConnectionPromise
-  extends Promise<SessionConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<SessionEdge>>() => T;
-  aggregate: <T = AggregateSessionPromise>() => T;
-}
-
-export interface SessionConnectionSubscription
-  extends Promise<AsyncIterator<SessionConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<SessionEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateSessionSubscription>() => T;
-}
-
-export interface AdminSubscriptionPayload {
+export interface GradeSubscriptionPayload {
   mutation: MutationType;
-  node: Admin;
+  node: Grade;
   updatedFields: String[];
-  previousValues: AdminPreviousValues;
+  previousValues: GradePreviousValues;
 }
 
-export interface AdminSubscriptionPayloadPromise
-  extends Promise<AdminSubscriptionPayload>,
+export interface GradeSubscriptionPayloadPromise
+  extends Promise<GradeSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = AdminPromise>() => T;
+  node: <T = GradePromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = AdminPreviousValuesPromise>() => T;
+  previousValues: <T = GradePreviousValuesPromise>() => T;
 }
 
-export interface AdminSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<AdminSubscriptionPayload>>,
+export interface GradeSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<GradeSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = AdminSubscription>() => T;
+  node: <T = GradeSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = AdminPreviousValuesSubscription>() => T;
+  previousValues: <T = GradePreviousValuesSubscription>() => T;
 }
 
-export interface ResultEdge {
-  node: Result;
+export interface AggregateResult {
+  count: Int;
+}
+
+export interface AggregateResultPromise
+  extends Promise<AggregateResult>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateResultSubscription
+  extends Promise<AsyncIterator<AggregateResult>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface GradePreviousValues {
+  id: ID_Output;
+  semester: Semester;
+  test?: Int;
+  exam?: Int;
+  grade: GradeType;
+  cleared: Boolean;
+}
+
+export interface GradePreviousValuesPromise
+  extends Promise<GradePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  semester: () => Promise<Semester>;
+  test: () => Promise<Int>;
+  exam: () => Promise<Int>;
+  grade: () => Promise<GradeType>;
+  cleared: () => Promise<Boolean>;
+}
+
+export interface GradePreviousValuesSubscription
+  extends Promise<AsyncIterator<GradePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  semester: () => Promise<AsyncIterator<Semester>>;
+  test: () => Promise<AsyncIterator<Int>>;
+  exam: () => Promise<AsyncIterator<Int>>;
+  grade: () => Promise<AsyncIterator<GradeType>>;
+  cleared: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface AggregateNextOfKin {
+  count: Int;
+}
+
+export interface AggregateNextOfKinPromise
+  extends Promise<AggregateNextOfKin>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateNextOfKinSubscription
+  extends Promise<AsyncIterator<AggregateNextOfKin>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Result {
+  id: ID_Output;
+  semester: Semester;
+}
+
+export interface ResultPromise extends Promise<Result>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  students: <T = StudentPromise>() => T;
+  grades: <T = FragmentableArray<Grade>>(args?: {
+    where?: GradeWhereInput;
+    orderBy?: GradeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  semester: () => Promise<Semester>;
+}
+
+export interface ResultSubscription
+  extends Promise<AsyncIterator<Result>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  students: <T = StudentSubscription>() => T;
+  grades: <T = Promise<AsyncIterator<GradeSubscription>>>(args?: {
+    where?: GradeWhereInput;
+    orderBy?: GradeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  semester: () => Promise<AsyncIterator<Semester>>;
+}
+
+export interface ResultNullablePromise
+  extends Promise<Result | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  students: <T = StudentPromise>() => T;
+  grades: <T = FragmentableArray<Grade>>(args?: {
+    where?: GradeWhereInput;
+    orderBy?: GradeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  semester: () => Promise<Semester>;
+}
+
+export interface AggregateLecturer {
+  count: Int;
+}
+
+export interface AggregateLecturerPromise
+  extends Promise<AggregateLecturer>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateLecturerSubscription
+  extends Promise<AsyncIterator<AggregateLecturer>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface LecturerSubscriptionPayload {
+  mutation: MutationType;
+  node: Lecturer;
+  updatedFields: String[];
+  previousValues: LecturerPreviousValues;
+}
+
+export interface LecturerSubscriptionPayloadPromise
+  extends Promise<LecturerSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = LecturerPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = LecturerPreviousValuesPromise>() => T;
+}
+
+export interface LecturerSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<LecturerSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = LecturerSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = LecturerPreviousValuesSubscription>() => T;
+}
+
+export interface GradeEdge {
+  node: Grade;
   cursor: String;
 }
 
-export interface ResultEdgePromise extends Promise<ResultEdge>, Fragmentable {
-  node: <T = ResultPromise>() => T;
+export interface GradeEdgePromise extends Promise<GradeEdge>, Fragmentable {
+  node: <T = GradePromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface ResultEdgeSubscription
-  extends Promise<AsyncIterator<ResultEdge>>,
+export interface GradeEdgeSubscription
+  extends Promise<AsyncIterator<GradeEdge>>,
     Fragmentable {
-  node: <T = ResultSubscription>() => T;
+  node: <T = GradeSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AdminPreviousValues {
+export interface LecturerPreviousValues {
   id: ID_Output;
   name: String;
   role: UserRole;
@@ -3161,8 +4352,8 @@ export interface AdminPreviousValues {
   password: String;
 }
 
-export interface AdminPreviousValuesPromise
-  extends Promise<AdminPreviousValues>,
+export interface LecturerPreviousValuesPromise
+  extends Promise<LecturerPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
@@ -3171,8 +4362,8 @@ export interface AdminPreviousValuesPromise
   password: () => Promise<String>;
 }
 
-export interface AdminPreviousValuesSubscription
-  extends Promise<AsyncIterator<AdminPreviousValues>>,
+export interface LecturerPreviousValuesSubscription
+  extends Promise<AsyncIterator<LecturerPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
@@ -3181,40 +4372,25 @@ export interface AdminPreviousValuesSubscription
   password: () => Promise<AsyncIterator<String>>;
 }
 
-export interface Admin {
-  id: ID_Output;
-  name: String;
-  role: UserRole;
-  email: String;
-  password: String;
+export interface FacultyConnection {
+  pageInfo: PageInfo;
+  edges: FacultyEdge[];
 }
 
-export interface AdminPromise extends Promise<Admin>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  role: () => Promise<UserRole>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-}
-
-export interface AdminSubscription
-  extends Promise<AsyncIterator<Admin>>,
+export interface FacultyConnectionPromise
+  extends Promise<FacultyConnection>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  role: () => Promise<AsyncIterator<UserRole>>;
-  email: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<FacultyEdge>>() => T;
+  aggregate: <T = AggregateFacultyPromise>() => T;
 }
 
-export interface AdminNullablePromise
-  extends Promise<Admin | null>,
+export interface FacultyConnectionSubscription
+  extends Promise<AsyncIterator<FacultyConnection>>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  role: () => Promise<UserRole>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<FacultyEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateFacultySubscription>() => T;
 }
 
 export interface Session {
@@ -3297,97 +4473,118 @@ export interface SessionNullablePromise
   }) => T;
 }
 
-export interface AggregateLecturer {
+export interface AggregateCourseHistory {
   count: Int;
 }
 
-export interface AggregateLecturerPromise
-  extends Promise<AggregateLecturer>,
+export interface AggregateCourseHistoryPromise
+  extends Promise<AggregateCourseHistory>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateLecturerSubscription
-  extends Promise<AsyncIterator<AggregateLecturer>>,
+export interface AggregateCourseHistorySubscription
+  extends Promise<AsyncIterator<AggregateCourseHistory>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface CourseSubscriptionPayload {
+export interface NextOfKinSubscriptionPayload {
   mutation: MutationType;
-  node: Course;
+  node: NextOfKin;
   updatedFields: String[];
-  previousValues: CoursePreviousValues;
+  previousValues: NextOfKinPreviousValues;
 }
 
-export interface CourseSubscriptionPayloadPromise
-  extends Promise<CourseSubscriptionPayload>,
+export interface NextOfKinSubscriptionPayloadPromise
+  extends Promise<NextOfKinSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = CoursePromise>() => T;
+  node: <T = NextOfKinPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = CoursePreviousValuesPromise>() => T;
+  previousValues: <T = NextOfKinPreviousValuesPromise>() => T;
 }
 
-export interface CourseSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CourseSubscriptionPayload>>,
+export interface NextOfKinSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<NextOfKinSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CourseSubscription>() => T;
+  node: <T = NextOfKinSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CoursePreviousValuesSubscription>() => T;
+  previousValues: <T = NextOfKinPreviousValuesSubscription>() => T;
 }
 
-export interface LecturerConnection {
+export interface SessionConnection {
   pageInfo: PageInfo;
-  edges: LecturerEdge[];
+  edges: SessionEdge[];
 }
 
-export interface LecturerConnectionPromise
-  extends Promise<LecturerConnection>,
+export interface SessionConnectionPromise
+  extends Promise<SessionConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<LecturerEdge>>() => T;
-  aggregate: <T = AggregateLecturerPromise>() => T;
+  edges: <T = FragmentableArray<SessionEdge>>() => T;
+  aggregate: <T = AggregateSessionPromise>() => T;
 }
 
-export interface LecturerConnectionSubscription
-  extends Promise<AsyncIterator<LecturerConnection>>,
+export interface SessionConnectionSubscription
+  extends Promise<AsyncIterator<SessionConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<LecturerEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateLecturerSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<SessionEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateSessionSubscription>() => T;
 }
 
-export interface CoursePreviousValues {
+export interface NextOfKinPreviousValues {
   id: ID_Output;
   name: String;
-  creditUnit: Int;
-  description: String;
-  level: String;
-  semester: Semester;
+  email: String;
+  address: String;
+  phone: String;
+  relationship: String;
 }
 
-export interface CoursePreviousValuesPromise
-  extends Promise<CoursePreviousValues>,
+export interface NextOfKinPreviousValuesPromise
+  extends Promise<NextOfKinPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
-  creditUnit: () => Promise<Int>;
-  description: () => Promise<String>;
-  level: () => Promise<String>;
-  semester: () => Promise<Semester>;
+  email: () => Promise<String>;
+  address: () => Promise<String>;
+  phone: () => Promise<String>;
+  relationship: () => Promise<String>;
 }
 
-export interface CoursePreviousValuesSubscription
-  extends Promise<AsyncIterator<CoursePreviousValues>>,
+export interface NextOfKinPreviousValuesSubscription
+  extends Promise<AsyncIterator<NextOfKinPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
-  creditUnit: () => Promise<AsyncIterator<Int>>;
-  description: () => Promise<AsyncIterator<String>>;
-  level: () => Promise<AsyncIterator<String>>;
-  semester: () => Promise<AsyncIterator<Semester>>;
+  email: () => Promise<AsyncIterator<String>>;
+  address: () => Promise<AsyncIterator<String>>;
+  phone: () => Promise<AsyncIterator<String>>;
+  relationship: () => Promise<AsyncIterator<String>>;
+}
+
+export interface NextOfKinConnection {
+  pageInfo: PageInfo;
+  edges: NextOfKinEdge[];
+}
+
+export interface NextOfKinConnectionPromise
+  extends Promise<NextOfKinConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<NextOfKinEdge>>() => T;
+  aggregate: <T = AggregateNextOfKinPromise>() => T;
+}
+
+export interface NextOfKinConnectionSubscription
+  extends Promise<AsyncIterator<NextOfKinConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<NextOfKinEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateNextOfKinSubscription>() => T;
 }
 
 export interface AggregateFaculty {
@@ -3404,327 +4601,6 @@ export interface AggregateFacultySubscription
   extends Promise<AsyncIterator<AggregateFaculty>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface FacultyConnection {
-  pageInfo: PageInfo;
-  edges: FacultyEdge[];
-}
-
-export interface FacultyConnectionPromise
-  extends Promise<FacultyConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<FacultyEdge>>() => T;
-  aggregate: <T = AggregateFacultyPromise>() => T;
-}
-
-export interface FacultyConnectionSubscription
-  extends Promise<AsyncIterator<FacultyConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<FacultyEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateFacultySubscription>() => T;
-}
-
-export interface CourseHistorySubscriptionPayload {
-  mutation: MutationType;
-  node: CourseHistory;
-  updatedFields: String[];
-  previousValues: CourseHistoryPreviousValues;
-}
-
-export interface CourseHistorySubscriptionPayloadPromise
-  extends Promise<CourseHistorySubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = CourseHistoryPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = CourseHistoryPreviousValuesPromise>() => T;
-}
-
-export interface CourseHistorySubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CourseHistorySubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CourseHistorySubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CourseHistoryPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateDepartment {
-  count: Int;
-}
-
-export interface AggregateDepartmentPromise
-  extends Promise<AggregateDepartment>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateDepartmentSubscription
-  extends Promise<AsyncIterator<AggregateDepartment>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface CourseHistoryPreviousValues {
-  id: ID_Output;
-}
-
-export interface CourseHistoryPreviousValuesPromise
-  extends Promise<CourseHistoryPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-}
-
-export interface CourseHistoryPreviousValuesSubscription
-  extends Promise<AsyncIterator<CourseHistoryPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-}
-
-export interface DepartmentConnection {
-  pageInfo: PageInfo;
-  edges: DepartmentEdge[];
-}
-
-export interface DepartmentConnectionPromise
-  extends Promise<DepartmentConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<DepartmentEdge>>() => T;
-  aggregate: <T = AggregateDepartmentPromise>() => T;
-}
-
-export interface DepartmentConnectionSubscription
-  extends Promise<AsyncIterator<DepartmentConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<DepartmentEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateDepartmentSubscription>() => T;
-}
-
-export interface CourseHistory {
-  id: ID_Output;
-}
-
-export interface CourseHistoryPromise
-  extends Promise<CourseHistory>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  students: <T = FragmentableArray<Student>>(args?: {
-    where?: StudentWhereInput;
-    orderBy?: StudentOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  sessions: <T = FragmentableArray<Session>>(args?: {
-    where?: SessionWhereInput;
-    orderBy?: SessionOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  courses: <T = FragmentableArray<Course>>(args?: {
-    where?: CourseWhereInput;
-    orderBy?: CourseOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface CourseHistorySubscription
-  extends Promise<AsyncIterator<CourseHistory>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  students: <T = Promise<AsyncIterator<StudentSubscription>>>(args?: {
-    where?: StudentWhereInput;
-    orderBy?: StudentOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  sessions: <T = Promise<AsyncIterator<SessionSubscription>>>(args?: {
-    where?: SessionWhereInput;
-    orderBy?: SessionOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  courses: <T = Promise<AsyncIterator<CourseSubscription>>>(args?: {
-    where?: CourseWhereInput;
-    orderBy?: CourseOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface CourseHistoryNullablePromise
-  extends Promise<CourseHistory | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  students: <T = FragmentableArray<Student>>(args?: {
-    where?: StudentWhereInput;
-    orderBy?: StudentOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  sessions: <T = FragmentableArray<Session>>(args?: {
-    where?: SessionWhereInput;
-    orderBy?: SessionOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  courses: <T = FragmentableArray<Course>>(args?: {
-    where?: CourseWhereInput;
-    orderBy?: CourseOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface CourseHistoryEdge {
-  node: CourseHistory;
-  cursor: String;
-}
-
-export interface CourseHistoryEdgePromise
-  extends Promise<CourseHistoryEdge>,
-    Fragmentable {
-  node: <T = CourseHistoryPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface CourseHistoryEdgeSubscription
-  extends Promise<AsyncIterator<CourseHistoryEdge>>,
-    Fragmentable {
-  node: <T = CourseHistorySubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface DepartmentSubscriptionPayload {
-  mutation: MutationType;
-  node: Department;
-  updatedFields: String[];
-  previousValues: DepartmentPreviousValues;
-}
-
-export interface DepartmentSubscriptionPayloadPromise
-  extends Promise<DepartmentSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = DepartmentPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = DepartmentPreviousValuesPromise>() => T;
-}
-
-export interface DepartmentSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<DepartmentSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = DepartmentSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = DepartmentPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateCourse {
-  count: Int;
-}
-
-export interface AggregateCoursePromise
-  extends Promise<AggregateCourse>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateCourseSubscription
-  extends Promise<AsyncIterator<AggregateCourse>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface DepartmentPreviousValues {
-  id: ID_Output;
-  name: String;
-}
-
-export interface DepartmentPreviousValuesPromise
-  extends Promise<DepartmentPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface DepartmentPreviousValuesSubscription
-  extends Promise<AsyncIterator<DepartmentPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface SessionEdge {
-  node: Session;
-  cursor: String;
-}
-
-export interface SessionEdgePromise extends Promise<SessionEdge>, Fragmentable {
-  node: <T = SessionPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface SessionEdgeSubscription
-  extends Promise<AsyncIterator<SessionEdge>>,
-    Fragmentable {
-  node: <T = SessionSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface SessionPreviousValues {
@@ -3746,401 +4622,23 @@ export interface SessionPreviousValuesSubscription
   year: () => Promise<AsyncIterator<String>>;
 }
 
-export interface ResultConnection {
-  pageInfo: PageInfo;
-  edges: ResultEdge[];
-}
-
-export interface ResultConnectionPromise
-  extends Promise<ResultConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ResultEdge>>() => T;
-  aggregate: <T = AggregateResultPromise>() => T;
-}
-
-export interface ResultConnectionSubscription
-  extends Promise<AsyncIterator<ResultConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ResultEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateResultSubscription>() => T;
-}
-
-export interface FacultySubscriptionPayload {
-  mutation: MutationType;
-  node: Faculty;
-  updatedFields: String[];
-  previousValues: FacultyPreviousValues;
-}
-
-export interface FacultySubscriptionPayloadPromise
-  extends Promise<FacultySubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = FacultyPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = FacultyPreviousValuesPromise>() => T;
-}
-
-export interface FacultySubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<FacultySubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = FacultySubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = FacultyPreviousValuesSubscription>() => T;
-}
-
-export interface LecturerEdge {
-  node: Lecturer;
-  cursor: String;
-}
-
-export interface LecturerEdgePromise
-  extends Promise<LecturerEdge>,
-    Fragmentable {
-  node: <T = LecturerPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface LecturerEdgeSubscription
-  extends Promise<AsyncIterator<LecturerEdge>>,
-    Fragmentable {
-  node: <T = LecturerSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface FacultyPreviousValues {
-  id: ID_Output;
-  name: String;
-}
-
-export interface FacultyPreviousValuesPromise
-  extends Promise<FacultyPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface FacultyPreviousValuesSubscription
-  extends Promise<AsyncIterator<FacultyPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface FacultyEdge {
-  node: Faculty;
-  cursor: String;
-}
-
-export interface FacultyEdgePromise extends Promise<FacultyEdge>, Fragmentable {
-  node: <T = FacultyPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface FacultyEdgeSubscription
-  extends Promise<AsyncIterator<FacultyEdge>>,
-    Fragmentable {
-  node: <T = FacultySubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface Student {
-  id: ID_Output;
-  name: String;
-  email: String;
-  regNo: String;
-  gender?: String;
-  level?: String;
-  phone?: String;
-  address?: String;
-  image?: String;
-  role: UserRole;
-  graduated?: Boolean;
-  password: String;
-}
-
-export interface StudentPromise extends Promise<Student>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  regNo: () => Promise<String>;
-  gender: () => Promise<String>;
-  department: <T = DepartmentPromise>() => T;
-  faculty: <T = FacultyPromise>() => T;
-  courses: <T = FragmentableArray<Course>>(args?: {
-    where?: CourseWhereInput;
-    orderBy?: CourseOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  level: () => Promise<String>;
-  phone: () => Promise<String>;
-  address: () => Promise<String>;
-  image: () => Promise<String>;
-  role: () => Promise<UserRole>;
-  history: <T = FragmentableArray<CourseHistory>>(args?: {
-    where?: CourseHistoryWhereInput;
-    orderBy?: CourseHistoryOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  graduated: () => Promise<Boolean>;
-  password: () => Promise<String>;
-}
-
-export interface StudentSubscription
-  extends Promise<AsyncIterator<Student>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  regNo: () => Promise<AsyncIterator<String>>;
-  gender: () => Promise<AsyncIterator<String>>;
-  department: <T = DepartmentSubscription>() => T;
-  faculty: <T = FacultySubscription>() => T;
-  courses: <T = Promise<AsyncIterator<CourseSubscription>>>(args?: {
-    where?: CourseWhereInput;
-    orderBy?: CourseOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  level: () => Promise<AsyncIterator<String>>;
-  phone: () => Promise<AsyncIterator<String>>;
-  address: () => Promise<AsyncIterator<String>>;
-  image: () => Promise<AsyncIterator<String>>;
-  role: () => Promise<AsyncIterator<UserRole>>;
-  history: <T = Promise<AsyncIterator<CourseHistorySubscription>>>(args?: {
-    where?: CourseHistoryWhereInput;
-    orderBy?: CourseHistoryOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  graduated: () => Promise<AsyncIterator<Boolean>>;
-  password: () => Promise<AsyncIterator<String>>;
-}
-
-export interface StudentNullablePromise
-  extends Promise<Student | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  regNo: () => Promise<String>;
-  gender: () => Promise<String>;
-  department: <T = DepartmentPromise>() => T;
-  faculty: <T = FacultyPromise>() => T;
-  courses: <T = FragmentableArray<Course>>(args?: {
-    where?: CourseWhereInput;
-    orderBy?: CourseOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  level: () => Promise<String>;
-  phone: () => Promise<String>;
-  address: () => Promise<String>;
-  image: () => Promise<String>;
-  role: () => Promise<UserRole>;
-  history: <T = FragmentableArray<CourseHistory>>(args?: {
-    where?: CourseHistoryWhereInput;
-    orderBy?: CourseHistoryOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  graduated: () => Promise<Boolean>;
-  password: () => Promise<String>;
-}
-
-export interface DepartmentEdge {
-  node: Department;
-  cursor: String;
-}
-
-export interface DepartmentEdgePromise
-  extends Promise<DepartmentEdge>,
-    Fragmentable {
-  node: <T = DepartmentPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface DepartmentEdgeSubscription
-  extends Promise<AsyncIterator<DepartmentEdge>>,
-    Fragmentable {
-  node: <T = DepartmentSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface LecturerSubscriptionPayload {
-  mutation: MutationType;
-  node: Lecturer;
-  updatedFields: String[];
-  previousValues: LecturerPreviousValues;
-}
-
-export interface LecturerSubscriptionPayloadPromise
-  extends Promise<LecturerSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = LecturerPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = LecturerPreviousValuesPromise>() => T;
-}
-
-export interface LecturerSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<LecturerSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = LecturerSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = LecturerPreviousValuesSubscription>() => T;
-}
-
-export interface CourseHistoryConnection {
-  pageInfo: PageInfo;
-  edges: CourseHistoryEdge[];
-}
-
-export interface CourseHistoryConnectionPromise
-  extends Promise<CourseHistoryConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CourseHistoryEdge>>() => T;
-  aggregate: <T = AggregateCourseHistoryPromise>() => T;
-}
-
-export interface CourseHistoryConnectionSubscription
-  extends Promise<AsyncIterator<CourseHistoryConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CourseHistoryEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCourseHistorySubscription>() => T;
-}
-
-export interface LecturerPreviousValues {
-  id: ID_Output;
-  name: String;
-  role: UserRole;
-  email: String;
-  password: String;
-}
-
-export interface LecturerPreviousValuesPromise
-  extends Promise<LecturerPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  role: () => Promise<UserRole>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-}
-
-export interface LecturerPreviousValuesSubscription
-  extends Promise<AsyncIterator<LecturerPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  role: () => Promise<AsyncIterator<UserRole>>;
-  email: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateResult {
-  count: Int;
-}
-
-export interface AggregateResultPromise
-  extends Promise<AggregateResult>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateResultSubscription
-  extends Promise<AsyncIterator<AggregateResult>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface StudentSubscriptionPayload {
-  mutation: MutationType;
-  node: Student;
-  updatedFields: String[];
-  previousValues: StudentPreviousValues;
-}
-
-export interface StudentSubscriptionPayloadPromise
-  extends Promise<StudentSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = StudentPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = StudentPreviousValuesPromise>() => T;
-}
-
-export interface StudentSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<StudentSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = StudentSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = StudentPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateAdmin {
-  count: Int;
-}
-
-export interface AggregateAdminPromise
-  extends Promise<AggregateAdmin>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateAdminSubscription
-  extends Promise<AsyncIterator<AggregateAdmin>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
 export interface ResultPreviousValues {
   id: ID_Output;
-  grade: Grade;
-  cleared: Boolean;
+  semester: Semester;
 }
 
 export interface ResultPreviousValuesPromise
   extends Promise<ResultPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  grade: () => Promise<Grade>;
-  cleared: () => Promise<Boolean>;
+  semester: () => Promise<Semester>;
 }
 
 export interface ResultPreviousValuesSubscription
   extends Promise<AsyncIterator<ResultPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  grade: () => Promise<AsyncIterator<Grade>>;
-  cleared: () => Promise<AsyncIterator<Boolean>>;
+  semester: () => Promise<AsyncIterator<Semester>>;
 }
 
 export interface ResultSubscriptionPayload {
@@ -4168,226 +4666,119 @@ export interface ResultSubscriptionPayloadSubscription
   previousValues: <T = ResultPreviousValuesSubscription>() => T;
 }
 
-export interface AdminEdge {
-  node: Admin;
+export interface CourseHistory {
+  id: ID_Output;
+}
+
+export interface CourseHistoryPromise
+  extends Promise<CourseHistory>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  student: <T = StudentPromise>() => T;
+  session: <T = SessionPromise>() => T;
+  result: <T = ResultPromise>() => T;
+}
+
+export interface CourseHistorySubscription
+  extends Promise<AsyncIterator<CourseHistory>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  student: <T = StudentSubscription>() => T;
+  session: <T = SessionSubscription>() => T;
+  result: <T = ResultSubscription>() => T;
+}
+
+export interface CourseHistoryNullablePromise
+  extends Promise<CourseHistory | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  student: <T = StudentPromise>() => T;
+  session: <T = SessionPromise>() => T;
+  result: <T = ResultPromise>() => T;
+}
+
+export interface DepartmentEdge {
+  node: Department;
   cursor: String;
 }
 
-export interface AdminEdgePromise extends Promise<AdminEdge>, Fragmentable {
-  node: <T = AdminPromise>() => T;
+export interface DepartmentEdgePromise
+  extends Promise<DepartmentEdge>,
+    Fragmentable {
+  node: <T = DepartmentPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface AdminEdgeSubscription
-  extends Promise<AsyncIterator<AdminEdge>>,
+export interface DepartmentEdgeSubscription
+  extends Promise<AsyncIterator<DepartmentEdge>>,
     Fragmentable {
-  node: <T = AdminSubscription>() => T;
+  node: <T = DepartmentSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AdminConnection {
+export interface LecturerConnection {
   pageInfo: PageInfo;
-  edges: AdminEdge[];
+  edges: LecturerEdge[];
 }
 
-export interface AdminConnectionPromise
-  extends Promise<AdminConnection>,
+export interface LecturerConnectionPromise
+  extends Promise<LecturerConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<AdminEdge>>() => T;
-  aggregate: <T = AggregateAdminPromise>() => T;
+  edges: <T = FragmentableArray<LecturerEdge>>() => T;
+  aggregate: <T = AggregateLecturerPromise>() => T;
 }
 
-export interface AdminConnectionSubscription
-  extends Promise<AsyncIterator<AdminConnection>>,
+export interface LecturerConnectionSubscription
+  extends Promise<AsyncIterator<LecturerConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<AdminEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateAdminSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<LecturerEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateLecturerSubscription>() => T;
 }
 
-export interface Result {
-  id: ID_Output;
-  grade: Grade;
-  cleared: Boolean;
+export interface ResultConnection {
+  pageInfo: PageInfo;
+  edges: ResultEdge[];
 }
 
-export interface ResultPromise extends Promise<Result>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  students: <T = FragmentableArray<Student>>(args?: {
-    where?: StudentWhereInput;
-    orderBy?: StudentOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  grade: () => Promise<Grade>;
-  cleared: () => Promise<Boolean>;
-  course: <T = FragmentableArray<Course>>(args?: {
-    where?: CourseWhereInput;
-    orderBy?: CourseOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface ResultSubscription
-  extends Promise<AsyncIterator<Result>>,
+export interface ResultConnectionPromise
+  extends Promise<ResultConnection>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  students: <T = Promise<AsyncIterator<StudentSubscription>>>(args?: {
-    where?: StudentWhereInput;
-    orderBy?: StudentOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  grade: () => Promise<AsyncIterator<Grade>>;
-  cleared: () => Promise<AsyncIterator<Boolean>>;
-  course: <T = Promise<AsyncIterator<CourseSubscription>>>(args?: {
-    where?: CourseWhereInput;
-    orderBy?: CourseOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ResultEdge>>() => T;
+  aggregate: <T = AggregateResultPromise>() => T;
 }
 
-export interface ResultNullablePromise
-  extends Promise<Result | null>,
+export interface ResultConnectionSubscription
+  extends Promise<AsyncIterator<ResultConnection>>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  students: <T = FragmentableArray<Student>>(args?: {
-    where?: StudentWhereInput;
-    orderBy?: StudentOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  grade: () => Promise<Grade>;
-  cleared: () => Promise<Boolean>;
-  course: <T = FragmentableArray<Course>>(args?: {
-    where?: CourseWhereInput;
-    orderBy?: CourseOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ResultEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateResultSubscription>() => T;
 }
 
-export interface Course {
-  id: ID_Output;
-  name: String;
-  creditUnit: Int;
-  description: String;
-  level: String;
-  semester: Semester;
+export interface StudentEdge {
+  node: Student;
+  cursor: String;
 }
 
-export interface CoursePromise extends Promise<Course>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  department: <T = DepartmentPromise>() => T;
-  creditUnit: () => Promise<Int>;
-  students: <T = FragmentableArray<Student>>(args?: {
-    where?: StudentWhereInput;
-    orderBy?: StudentOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  description: () => Promise<String>;
-  level: () => Promise<String>;
-  semester: () => Promise<Semester>;
-  lecturer: <T = LecturerPromise>() => T;
+export interface StudentEdgePromise extends Promise<StudentEdge>, Fragmentable {
+  node: <T = StudentPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface CourseSubscription
-  extends Promise<AsyncIterator<Course>>,
+export interface StudentEdgeSubscription
+  extends Promise<AsyncIterator<StudentEdge>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  department: <T = DepartmentSubscription>() => T;
-  creditUnit: () => Promise<AsyncIterator<Int>>;
-  students: <T = Promise<AsyncIterator<StudentSubscription>>>(args?: {
-    where?: StudentWhereInput;
-    orderBy?: StudentOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  description: () => Promise<AsyncIterator<String>>;
-  level: () => Promise<AsyncIterator<String>>;
-  semester: () => Promise<AsyncIterator<Semester>>;
-  lecturer: <T = LecturerSubscription>() => T;
-}
-
-export interface CourseNullablePromise
-  extends Promise<Course | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  department: <T = DepartmentPromise>() => T;
-  creditUnit: () => Promise<Int>;
-  students: <T = FragmentableArray<Student>>(args?: {
-    where?: StudentWhereInput;
-    orderBy?: StudentOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-  description: () => Promise<String>;
-  level: () => Promise<String>;
-  semester: () => Promise<Semester>;
-  lecturer: <T = LecturerPromise>() => T;
-}
-
-export interface AggregateCourseHistory {
-  count: Int;
-}
-
-export interface AggregateCourseHistoryPromise
-  extends Promise<AggregateCourseHistory>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateCourseHistorySubscription
-  extends Promise<AsyncIterator<AggregateCourseHistory>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  node: <T = StudentSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 /*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+The `Boolean` scalar type represents `true` or `false`.
 */
-export type String = string;
-
-export type Long = string;
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
+export type Boolean = boolean;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -4395,10 +4786,17 @@ The `ID` scalar type represents a unique identifier, often used to refetch an ob
 export type ID_Input = string | number;
 export type ID_Output = string;
 
+export type Long = string;
+
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
-export type Boolean = boolean;
+export type String = string;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+*/
+export type Int = number;
 
 /**
  * Model Metadata
@@ -4406,15 +4804,15 @@ export type Boolean = boolean;
 
 export const models: Model[] = [
   {
-    name: "Admin",
-    embedded: false
-  },
-  {
     name: "Lecturer",
     embedded: false
   },
   {
     name: "Student",
+    embedded: false
+  },
+  {
+    name: "NextOfKin",
     embedded: false
   },
   {
@@ -4438,6 +4836,10 @@ export const models: Model[] = [
     embedded: false
   },
   {
+    name: "Grade",
+    embedded: false
+  },
+  {
     name: "Result",
     embedded: false
   },
@@ -4450,7 +4852,7 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "Grade",
+    name: "GradeType",
     embedded: false
   }
 ];

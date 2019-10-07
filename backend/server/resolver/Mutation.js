@@ -37,9 +37,9 @@ const Mutation = {
 
     const id = await getUserId(context);
     const { data } = args;
-    const user = await context.prisma.updateStudent({ data, where: { id } });
+    const student = await context.prisma.updateStudent({ data, where: { id } });
 
-    return { user };
+    return student;
   },
 
   updateStudentFacultyAndDept: async (parent, args, context) => {
@@ -50,9 +50,9 @@ const Mutation = {
     await confirmDepartment(data.department, context);
     data.faculty = { connect: { id: data.faculty } };
     data.department = { connect: { id: data.department } };
-    const user = await context.prisma.updateStudent({ data, where: { id } });
+    const student = await context.prisma.updateStudent({ data, where: { id } });
 
-    return { user };
+    return student;
   },
 
   registerCourse: async (parent, args, context) => {
@@ -69,9 +69,26 @@ const Mutation = {
     });
 
     const courses = { courses: { [connector]: courseList } };
-    const user = await context.prisma.updateStudent({ data: courses, where: { id } });
+    const student = await context.prisma.updateStudent({ data: courses, where: { id } });
 
-    return { user };
+    return student;
+  },
+
+  addNextOfKin: async (parent, args, context) => {
+    const id = await getUserId(context);
+    const { data } = args;
+    data.student = { connect: { id } };
+
+    const nextOfKin = await context.prisma.createNextOfKin({ ...data });
+    return nextOfKin;
+  },
+
+  updateNextOfKin: async (parent, args, context) => {
+    await getUserId(context);
+    const { data, id } = args;
+    const nextOfKin = await context.prisma.updateNextOfKin({ where: { id }, data });
+
+    return nextOfKin;
   },
 };
 

@@ -6,9 +6,11 @@ type Query {
 type Mutation {
   createStudent(data: CreateStudentPayload): AuthPayload
   login(email: String!, password: String!): AuthPayload
-  updateStudentProfile(data: EditStudentProfile): AuthPayload
-  updateStudentFacultyAndDept(data: EditStudentFacultyAndDepartmentPayload): AuthPayload
-  registerCourse(data: RegisterCoursesPayload): AuthPayload
+  updateStudentProfile(data: EditStudentProfile): Student
+  updateStudentFacultyAndDept(data: EditStudentFacultyAndDepartmentPayload): Student
+  registerCourse(data: RegisterCoursesPayload): Student
+  addNextOfKin(data: NextOfKinPayload): NextOfKin
+  updateNextOfKin(data: NextOfKinPayload, id: String): NextOfKin
 }
 
 type AuthPayload {
@@ -19,12 +21,6 @@ type AuthPayload {
 type StudentsPayload {
   students: [Student]!
   count: Int!
-}
-
-type Admin {
-  id: ID!
-  name: String!
-  role: UserRole!
 }
 
 type Lecturer {
@@ -49,6 +45,7 @@ type Student {
   image: String
   role: UserRole!
   history: [CourseHistory]!
+  nextOfKin: NextOfKin
 }
 
 type Course {
@@ -77,6 +74,57 @@ type Department {
   students: [Student]!
 }
 
+type Session {
+  id: ID!
+  year: String!
+  students: [Student]!
+  courseHistory: [CourseHistory]!
+}
+
+type CourseHistory {
+  id: ID!
+  student: Student!
+  session: Session!
+  result: Result!
+}
+
+type Grade {
+  id: ID!
+  session: Session!
+  semester: Semester!
+  student: Student!
+  course: Course!
+  test: Int
+  exam: Int
+  grade: GradeType!
+  cleared: Boolean!
+}
+
+type Result {
+  id: ID! 
+  student: Student!
+  grades: [Grade]!
+  semester: Semester!
+}
+
+type NextOfKin {
+  id: ID!
+  name: String!
+  student: Student!
+  email: String!
+  address: String!
+  phone: String!
+  relationship: String!
+}
+
+input NextOfKinPayload{
+  name: String!
+  email: String!
+  address: String!
+  relationship: String!
+  phone: String!
+}
+
 input CreateStudentPayload {
   name: String!
   email: String!
@@ -102,28 +150,6 @@ input RegisterCoursesPayload {
   type: CourseRegistrationType
 }
 
-type Session {
-  id: ID!
-  year: String!
-  students: [Student]!
-  courseHistory: [CourseHistory]!
-}
-
-type CourseHistory {
-  id: ID!
-  students: [Student]!
-  sessions: [Session]!
-  courses: [Course]!
-}
-
-type Result {
-  id: ID! 
-  students: [Student]!
-  grade: Grade!
-  cleared: Boolean!
-  course: [Course]!
-}
-
 enum UserRole {
   ADMIN
   STUDENT
@@ -136,7 +162,7 @@ enum Semester {
   SECOND_SEMESTER
 }
 
-enum Grade {
+enum GradeType {
   A
   B
   C

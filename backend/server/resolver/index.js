@@ -6,6 +6,7 @@ import {
   CourseHistory,
   Faculty,
   Department,
+  NextOfKin,
 } from './TypesResolver';
 
 const resolvers = {
@@ -16,6 +17,7 @@ const resolvers = {
   CourseHistory,
   Faculty,
   Department,
+  NextOfKin,
 };
 
 export default resolvers;

@@ -2,6 +2,7 @@ export const Student = {
   faculty: async ({ id }, args, context) => context.prisma.student({ id }).faculty(),
   department: async ({ id }, args, context) => context.prisma.student({ id }).department(),
   courses: async ({ id }, args, context) => context.prisma.student({ id }).courses(),
+  nextOfKin: async ({ id }, args, context) => context.prisma.student({ id }).nextOfKin(),
 };
 
 export const Faculty = {
@@ -21,7 +22,11 @@ export const Course = {
 };
 
 export const CourseHistory = {
-  students: async ({ id }, args, context) => context.prisma.courseHistory({ id }).students(),
-  sessions: async ({ id }, args, context) => context.prisma.courseHistory({ id }).sessions(),
-  courses: async ({ id }, args, context) => context.prisma.courseHistory({ id }).courses(),
+  student: async ({ id }, args, context) => context.prisma.courseHistory({ id }).student(),
+  session: async ({ id }, args, context) => context.prisma.courseHistory({ id }).session(),
+  result: async ({ id }, args, context) => context.prisma.courseHistory({ id }).result(),
+};
+
+export const NextOfKin = {
+  student: async ({ id }, args, context) => context.prisma.nextOfKin({ id }).student(),
 };

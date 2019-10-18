@@ -3,16 +3,27 @@
     "eslint:recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "airbnb-base"
+    "airbnb-base",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "extends:react-app"
   ],
   "plugins": [
-    "import"
+    "import",
+    "react",
+    "jsx-a11y"
   ],
   "env": {
     "mocha": true,
-    "es6": true
+    "es6": true,
+    "browser": true
   },
   "rules": {
     "strict": 2
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

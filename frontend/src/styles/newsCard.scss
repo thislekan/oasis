@@ -1,0 +1,70 @@
+.card {
+  height: 30rem;
+  width: 22rem;
+  margin: 0 auto;
+  background-color: white;
+  flex: 0 0 auto;
+  margin: 0 0.5rem;
+
+  &__wrapper {
+    &__card-topic {
+      padding: 1rem;
+      display: grid;
+      width: calc(100% - 2rem);
+      grid-template-columns: 15% 70%;
+      grid-column-gap: 5%;
+
+      .date {
+        color: #5e4f4f;
+        padding: 0 0.5rem;
+        .content {
+          margin: 0;
+        }
+
+        &__month {
+          font-size: 1.1rem;
+        }
+
+        &__day {
+          font-weight: bold;
+          margin: -0.35rem 0;
+        }
+
+        &__year {
+          font-weight: 200;
+          font-size: 1rem;
+        }
+      }
+
+      .topic-title {
+        padding: 1rem 0 0;
+        width: 100%;
+
+        h4 {
+          margin: 0;
+          color: #a49393;
+        }
+        .line {
+          border: 0.4px solid #a49393;
+        }
+      }
+    }
+
+    &__card-title {
+      color: #494e65;
+      font-weight: 900;
+      padding: 1rem 1.5rem;
+
+      .title {
+        margin: 0;
+      }
+    }
+
+    &__card-cover-image {
+      background-image: url("../assets/capped.jpg");
+      background-position: center;
+      background-size: cover;
+      height: 17.8rem;
+    }
+  }
+}

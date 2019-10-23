@@ -1,0 +1,118 @@
+type Lecturer {
+  id: ID! @id
+  name: String!
+  role: UserRole! @default(value: LECTURER)
+  courses: [Course]
+  email: String! @unique
+  password: String!
+}
+
+type Student {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  regNo: String! @unique
+  gender: String
+  department: Department @relation(onDelete: CASCADE)
+  faculty: Faculty @relation(onDelete: CASCADE)
+  courses: [Course]
+  level: String
+  phone: String
+  address: String
+  image: String
+  role: UserRole! @default(value: STUDENT)
+  history: [CourseHistory]
+  graduated: Boolean @default(value: false)
+  password: String!
+  nextOfKin: NextOfKin @relation(link: INLINE, onDelete: CASCADE)
+}
+
+type NextOfKin {
+  id: ID! @id
+  name: String!
+  student: Student!
+  email: String! @unique
+  address: String!
+  phone: String!
+  relationship: String!
+}
+
+type Course {
+  id: ID! @id
+  name: String! @unique
+  department: Department!
+  creditUnit: Int!
+  students: [Student]
+  description: String!
+  level: String!
+  semester: Semester!
+  lecturer: Lecturer
+}
+
+type Faculty {
+  id: ID! @id
+  name: String! @unique
+  departments: [Department!]!
+}
+
+type Department {
+  id: ID! @id
+  name: String! @unique
+  faculty: Faculty!
+  courses: [Course!]!
+  students: [Student!]!
+}
+
+type Session {
+  id: ID! @id
+  year: String!
+  students: [Student]!
+  courseHistory: [CourseHistory]!
+}
+
+type CourseHistory {
+  id: ID! @id
+  student: Student! 
+  session: Session!
+  result: Result!
+}
+
+type Grade {
+  id: ID! @id
+  session: Session!
+  semester: Semester!
+  student: Student!
+  course: Course!
+  test: Int
+  exam: Int
+  grade: GradeType!
+  cleared: Boolean!
+}
+
+type Result {
+  id: ID! @id
+  students: Student!
+  grades: [Grade]!
+  semester: Semester!
+}
+
+enum UserRole {
+  ADMIN
+  STUDENT
+  LECTURER
+  OTHERS
+}
+
+enum Semester {
+  FIRST_SEMESTER
+  SECOND_SEMESTER
+}
+
+enum GradeType {
+  A
+  B
+  C
+  D
+  E
+  F
+}

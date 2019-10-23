@@ -1,0 +1,112 @@
+@import "./variables.scss";
+
+.contact-card {
+  height: 25rem;
+  box-shadow: 0px 0px 2rem #c1c5d2;
+  margin: 2rem 0;
+  box-sizing: border-box;
+
+  &__wrapper {
+    padding: 1.5rem 1rem;
+    box-sizing: border-box;
+  }
+
+  &__header {
+    h4 {
+      color: map-get($colors, text-brown);
+      letter-spacing: 0.02rem;
+      border-bottom: 1px solid map-get($colors, text-brown);
+      width: fit-content;
+      width: intrinsic; /* Safari/WebKit uses a non-standard name */
+      width: -moz-max-content;
+      padding: 0 0 0.5rem 0;
+      margin: 0;
+    }
+  }
+
+  &__footer {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: flex-end;
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 3.5rem;
+      width: 10rem;
+      text-decoration: none;
+      background: map-get($colors, dark-grey);
+      border-radius: 2px;
+      color: map-get($colors, plain-white);
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media screen and (min-width: 360px) {
+  .contact-card {
+    // height: 25rem;
+    &__wrapper {
+      padding: 1.5rem;
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .contact-card {
+    height: 30rem;
+    font-size: 1.4rem;
+
+    &__wrapper {
+      padding: 1rem 1.5rem;
+    }
+    &__body {
+      margin: 1.3rem 0;
+    }
+    &__footer {
+      margin-top: unset;
+      .link-btn {
+        font-size: 1rem;
+        width: 10rem;
+        height: 3rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .contact-card {
+    font-size: 1.4rem;
+    height: 28rem;
+
+    &__wrapper {
+      padding: 1.9rem 2.2rem;
+    }
+    &__body {
+      margin: 1.8rem 0;
+    }
+  }
+  &__footer {
+    .link-btn {
+      width: 12.4rem;
+      height: 3.5rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .contact-card {
+    font-size: 1.6rem;
+
+    &__body {
+      // width: 32.7rem;
+      margin: 2.5rem 0;
+    }
+    &__footer {
+      .link-btn {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

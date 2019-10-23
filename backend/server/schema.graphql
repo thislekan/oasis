@@ -1,0 +1,186 @@
+type Query {
+  student(id: ID!): Student
+  fetchStudents(filter: String, skip: Int, first: Int, orderBy: StudentOrderByInput): StudentsPayload
+}
+
+type Mutation {
+  createStudent(data: CreateStudentPayload): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+  updateStudentProfile(data: EditStudentProfile): Student
+  updateStudentFacultyAndDept(data: EditStudentFacultyAndDepartmentPayload): Student
+  registerCourse(data: RegisterCoursesPayload): Student
+  addNextOfKin(data: NextOfKinPayload): NextOfKin
+  updateNextOfKin(data: NextOfKinPayload, id: String): NextOfKin
+}
+
+type AuthPayload {
+  token: String
+  user: Student
+}
+
+type StudentsPayload {
+  students: [Student]!
+  count: Int!
+}
+
+type Lecturer {
+  id: ID!
+  name: String!
+  role: UserRole!
+  courses: [Course]!
+}
+
+type Student {
+  id: ID!
+  name: String!
+  email: String!
+  regNo: String!
+  gender: String
+  department: Department
+  faculty: Faculty
+  courses: [Course]!
+  level: String
+  phone: String
+  address: String
+  image: String
+  role: UserRole!
+  history: [CourseHistory]!
+  nextOfKin: NextOfKin
+}
+
+type Course {
+  id: ID!
+  name: String!
+  department: Department!
+  creditUnit: Int!
+  students: [Student]!
+  description: String!
+  level: String!
+  semester: Semester!
+  lecturer: Lecturer
+}
+
+type Faculty {
+  id: ID!
+  name: String!
+  departments: [Department!]!
+}
+
+type Department {
+  id: ID!
+  name: String!
+  faculty: Faculty!
+  courses: [Course!]!
+  students: [Student]!
+}
+
+type Session {
+  id: ID!
+  year: String!
+  students: [Student]!
+  courseHistory: [CourseHistory]!
+}
+
+type CourseHistory {
+  id: ID!
+  student: Student!
+  session: Session!
+  result: Result!
+}
+
+type Grade {
+  id: ID!
+  session: Session!
+  semester: Semester!
+  student: Student!
+  course: Course!
+  test: Int
+  exam: Int
+  grade: GradeType!
+  cleared: Boolean!
+}
+
+type Result {
+  id: ID! 
+  student: Student!
+  grades: [Grade]!
+  semester: Semester!
+}
+
+type NextOfKin {
+  id: ID!
+  name: String!
+  student: Student!
+  email: String!
+  address: String!
+  phone: String!
+  relationship: String!
+}
+
+input NextOfKinPayload{
+  name: String!
+  email: String!
+  address: String!
+  relationship: String!
+  phone: String!
+}
+
+input CreateStudentPayload {
+  name: String!
+  email: String!
+  password: String!
+  regNo: String!
+}
+
+input EditStudentProfile {
+  name: String
+  gender: String
+  address: String
+  phone: String
+  image: String
+}
+
+input EditStudentFacultyAndDepartmentPayload {
+  department: String!
+  faculty: String!
+}
+
+input RegisterCoursesPayload {
+  courses: [String!]!
+  type: CourseRegistrationType
+}
+
+enum UserRole {
+  ADMIN
+  STUDENT
+  LECTURER
+  OTHERS
+}
+
+enum Semester {
+  FIRST_SEMESTER
+  SECOND_SEMESTER
+}
+
+enum GradeType {
+  A
+  B
+  C
+  D
+  E
+  F
+}
+
+enum CourseRegistrationType {
+  ADD
+  REMOVE
+}
+
+enum StudentOrderByInput {
+  name_ASC
+  name_DESC
+  regNo_ASC
+  regNo_DESC
+  level_ASC
+  level_DESC
+}

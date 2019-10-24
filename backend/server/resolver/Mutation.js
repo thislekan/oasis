@@ -20,14 +20,20 @@ const Mutation = {
 
     const password = await bcrypt.hash(data.password, 10);
     const user = await context.prisma.createStudent({ ...data, password });
-    const token = jwt.sign({ userId: user.id, exp: expiryDate }, dotEnv.JWT_SECRET);
+    const token = jwt.sign(
+      { userId: user.id, exp: expiryDate },
+      dotEnv.JWT_SECRET
+    );
 
     return { user, token };
   },
 
   login: async (parent, args, context) => {
     const user = await loginMiddleware(args, context);
-    const token = jwt.sign({ userId: user.id, exp: expiryDate }, dotEnv.JWT_SECRET);
+    const token = jwt.sign(
+      { userId: user.id, exp: expiryDate },
+      dotEnv.JWT_SECRET
+    );
 
     return { token, user };
   },
@@ -56,11 +62,13 @@ const Mutation = {
   },
 
   registerCourse: async (parent, args, context) => {
-    const connector = (args.data.type === 'ADD') ? 'connect' : 'disconnect';
+    const connector = args.data.type === 'ADD' ? 'connect' : 'disconnect';
     const id = await getUserId(context);
     const { data } = args;
     const courseList = [];
-    const courseLoader = new DataLoader((list) => courseValidator.batchingFunc(list, context));
+    const courseLoader = new DataLoader((list) =>
+      courseValidator.batchingFunc(list, context)
+    );
 
     await courseValidator.isEmpty(args);
     data.courses.forEach((element) => {
@@ -69,7 +77,10 @@ const Mutation = {
     });
 
     const courses = { courses: { [connector]: courseList } };
-    const student = await context.prisma.updateStudent({ data: courses, where: { id } });
+    const student = await context.prisma.updateStudent({
+      data: courses,
+      where: { id }
+    });
 
     return student;
   },
@@ -86,10 +97,13 @@ const Mutation = {
   updateNextOfKin: async (parent, args, context) => {
     await getUserId(context);
     const { data, id } = args;
-    const nextOfKin = await context.prisma.updateNextOfKin({ where: { id }, data });
+    const nextOfKin = await context.prisma.updateNextOfKin({
+      where: { id },
+      data
+    });
 
     return nextOfKin;
-  },
+  }
 };
 
 export { Mutation as default };

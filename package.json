@@ -4,7 +4,13 @@
   "description": "Project Oasis",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd backend && yarn build",
+    "start": "cd backend && yarn start"
+  },
+  "engines": {
+    "node": "10.15.3",
+    "yarn": "1.17.3"
   },
   "repository": {
     "type": "git",

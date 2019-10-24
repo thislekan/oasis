@@ -13,27 +13,37 @@
     "prisma:start": "docker-compose up",
     "prisma:deploy": "prisma deploy",
     "prisma:generate": "prisma generate",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:frontend": "cd ../frontend && rm -rf build && rm -rf node_modules && yarn install && yarn build",
+    "build:backend": "rm -rf build && rm -rf node_modules && yarn install && babel . --ignore node_modules,build --out-dir build",
+    "build": "yarn build:frontend && yarn build:backend && cp -r ../frontend/build/ build/public/",
+    "start": "cross-env NODE_ENV=production node build/server/app.js"
+  },
+  "engines": {
+    "node": "10.15.3",
+    "yarn": "1.17.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",
     "@babel/node": "^7.6.2",
-    "@babel/preset-env": "^7.6.0",
     "babel-eslint": "^10.0.3",
-    "babel-preset-airbnb": "^4.0.1",
     "babel-watch": "^7.0.0",
     "eslint": "^6.4.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2"
   },
   "dependencies": {
+    "@babel/cli": "^7.6.4",
     "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.3",
     "@babel/runtime": "^7.6.2",
     "apollo-errors": "^1.9.0",
+    "babel-preset-airbnb": "^4.1.0",
     "bcryptjs": "^2.4.3",
+    "cross-env": "^6.0.3",
     "dataloader": "^1.4.0",
     "dotenv": "^8.1.0",
+    "express": "^4.17.1",
     "graphql-yoga": "^1.18.3",
     "jsonwebtoken": "^8.5.1",
     "node-cron": "^2.0.3",

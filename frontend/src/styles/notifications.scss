@@ -1,0 +1,46 @@
+@import './variables.scss';
+
+.notification {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  color: map-get($colors, dark-grey);
+
+  &--hidden {
+    display: none;
+  }
+
+  &__wrapper {
+    height: fit-content;
+    width: 25rem;
+    padding: 2rem;
+    box-shadow: 0px 0px 4px 0px map-get($colors, dull-grey);
+    text-align: center;
+    background: map-get($colors, plain-white);
+  }
+
+  &__text {
+    h4 {
+      font-size: 2rem;
+      color: map-get($colors, danger);
+    }
+  }
+
+  &__btn {
+    margin-top: 2.5rem;
+    .btn {
+      height: 3.5rem;
+      width: 8rem;
+      background-color: map-get($colors, cool-grey);
+      color: map-get($colors, plain-white);
+      outline: none;
+    }
+  }
+}

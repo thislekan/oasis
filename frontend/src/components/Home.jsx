@@ -1,18 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import NewsCard from "./NewsCard";
-import QuickLinkCard from "./QuickLinkCard";
-import ContactCard from "./ContactCard";
-import LibraryImage from "../assets/shelf.jpg";
-import NextButton from "../assets/Polygon.svg";
-import StudentImage from "../assets/student.jpg";
-import TwitterImage from "../assets/twitter.svg";
-import FacebookImage from "../assets/facebook.svg";
-import InstagramImage from "../assets/instagram.svg";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import NewsCard from './NewsCard';
+import QuickLinkCard from './QuickLinkCard';
+import ContactCard from './ContactCard';
+import LibraryImage from '../assets/shelf.jpg';
+import NextButton from '../assets/Polygon.svg';
+import StudentImage from '../assets/student.jpg';
+import TwitterImage from '../assets/twitter.svg';
+import FacebookImage from '../assets/facebook.svg';
+import InstagramImage from '../assets/instagram.svg';
 
 const Home = () => (
   <div className="home">
-    {console.log(window.innerWidth)}
     <section className="landing-page">
       <div className="landing-page__wrapper container">
         <div className="landing-page__wrapper__content">
@@ -26,7 +25,9 @@ const Home = () => (
             amenities as well as our staff, who hold degrees
             from the most reputable institutions across the globe.`}
           </p>
-          <button className="enroll-btn">Enroll Now</button>
+          <Link className="enroll-btn" to="/signup">
+            Enroll Now
+          </Link>
           <p className="link-text">
             Returning student? <Link to="/login">click here</Link>
           </p>

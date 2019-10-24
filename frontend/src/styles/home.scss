@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import './variables.scss';
 
 .home {
   margin-top: 3.8rem;
@@ -8,7 +8,7 @@
   }
 
   .landing-page {
-    background-image: url("../assets/black-student.jpg");
+    background-image: url('../assets/black-student.jpg');
     background-size: cover;
     background-position: center;
     height: calc(100vh - 3.8rem);
@@ -51,6 +51,11 @@
           color: map-get($colors, plain-white);
           font-weight: bold;
           border-radius: 0.2rem;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.2rem;
         }
 
         .link-text {
@@ -125,7 +130,7 @@
     &__content {
       &__vc {
         height: 45rem;
-        background-image: url("../assets/vc.jpg");
+        background-image: url('../assets/vc.jpg');
         background-position: center;
         background-size: cover;
 
@@ -503,7 +508,7 @@
       margin: 5rem 0;
 
       &__wrapper {
-        background-image: url("../assets/backpack.jpg");
+        background-image: url('../assets/backpack.jpg');
         background-position: center;
         background-size: cover;
 

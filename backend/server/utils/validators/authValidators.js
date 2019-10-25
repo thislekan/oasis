@@ -1,11 +1,10 @@
 import InputValidator from './inputValidator';
 
 export default class AuthValidator {
-  static validateRegNo(args) {
-    const isEmpty = args.regNo && InputValidator.isEmpty('regNo', args.regNo);
-    const isAlphanumeric = args.regNo && InputValidator.isAlphanumeric('regNo', args.regNo);
-    const minLength = args.regNo && InputValidator.isMinimumLength('regNo', args.regNo, 6);
-    const errorMsg = isEmpty || isAlphanumeric || minLength;
+  static validatePhoneNumber(args) {
+    const isEmpty = args.phone && InputValidator.isEmpty('regNo', args.phone);
+    const minLength = args.phone && InputValidator.isMinimumLength('regNo', args.phone, 11);
+    const errorMsg = isEmpty || minLength;
 
     return errorMsg;
   }
@@ -38,8 +37,8 @@ export default class AuthValidator {
     const nameError = AuthValidator.validateName(args);
     const emailError = AuthValidator.validateEmail(args);
     const passwordError = AuthValidator.validatePassword(args);
-    const regNoError = AuthValidator.validateRegNo(args);
-    const errorMsg = nameError || emailError || passwordError || regNoError;
+    const phoneNumberError = AuthValidator.validatePhoneNumber(args);
+    const errorMsg = nameError || emailError || passwordError || phoneNumberError;
 
     return errorMsg;
   }

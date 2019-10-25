@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 
 import AuthValidator from '../utils/validators/authValidators';
 import ProfileValidator from '../utils/validators/profileValidator';
+import regNumberGenerator from '../utils/regNumberGenerator';
 import errorFormat from '../utils/errorFormat';
 
 export const validateUser = async (inputPassword, userPassword) => {
@@ -18,14 +19,16 @@ export const findUser = async (args, context) => {
   return user;
 };
 
-export const signupMiddleware = (args) => {
+export const signupMiddleware = async (context, args) => {
   const errors = AuthValidator.validateSignup(args);
+  const regNo = await regNumberGenerator(context);
   if (errors) return errors;
 
   return {
     ...args,
+    regNo,
     email: args.email.trim(),
-    regNo: args.regNo.trim(),
+    phone: args.phone.trim(),
     name: args.name.trim(),
   };
 };
@@ -49,19 +52,31 @@ export const profileMiddleware = (args) => {
 
 export const confirmFaculty = async (id, context) => {
   const faculty = await context.prisma.faculty({ id });
-  if (!faculty) return errorFormat('faculty', 'The faculty provided does not exist on our database');
+  if (!faculty)
+    return errorFormat(
+      'faculty',
+      'The faculty provided does not exist on our database'
+    );
 
   return faculty;
 };
 
 export const confirmDepartment = async (id, context) => {
   const department = await context.prisma.department({ id });
-  if (!department) return errorFormat('department', 'The department provided does not exist on our database');
+  if (!department)
+    return errorFormat(
+      'department',
+      'The department provided does not exist on our database'
+    );
 
   return department;
 };
 
 export const verifyUser = (tokenId, payloadId) => {
-  if (tokenId !== payloadId) return errorFormat('authorization', 'You do not have access to this information');
+  if (tokenId !== payloadId)
+    return errorFormat(
+      'authorization',
+      'You do not have access to this information'
+    );
   return true;
 };

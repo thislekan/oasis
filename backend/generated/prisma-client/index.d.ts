@@ -949,7 +949,7 @@ export interface StudentCreateWithoutHistoryInput {
   faculty?: Maybe<FacultyCreateOneInput>;
   courses?: Maybe<CourseCreateManyWithoutStudentsInput>;
   level?: Maybe<String>;
-  phone?: Maybe<String>;
+  phone: String;
   address?: Maybe<String>;
   image?: Maybe<String>;
   role?: Maybe<UserRole>;
@@ -1244,7 +1244,7 @@ export interface StudentCreateWithoutNextOfKinInput {
   faculty?: Maybe<FacultyCreateOneInput>;
   courses?: Maybe<CourseCreateManyWithoutStudentsInput>;
   level?: Maybe<String>;
-  phone?: Maybe<String>;
+  phone: String;
   address?: Maybe<String>;
   image?: Maybe<String>;
   role?: Maybe<UserRole>;
@@ -1705,7 +1705,7 @@ export interface StudentCreateWithoutDepartmentInput {
   faculty?: Maybe<FacultyCreateOneInput>;
   courses?: Maybe<CourseCreateManyWithoutStudentsInput>;
   level?: Maybe<String>;
-  phone?: Maybe<String>;
+  phone: String;
   address?: Maybe<String>;
   image?: Maybe<String>;
   role?: Maybe<UserRole>;
@@ -1798,7 +1798,7 @@ export interface StudentCreateWithoutCoursesInput {
   department?: Maybe<DepartmentCreateOneWithoutStudentsInput>;
   faculty?: Maybe<FacultyCreateOneInput>;
   level?: Maybe<String>;
-  phone?: Maybe<String>;
+  phone: String;
   address?: Maybe<String>;
   image?: Maybe<String>;
   role?: Maybe<UserRole>;
@@ -1884,7 +1884,7 @@ export interface StudentCreateInput {
   faculty?: Maybe<FacultyCreateOneInput>;
   courses?: Maybe<CourseCreateManyWithoutStudentsInput>;
   level?: Maybe<String>;
-  phone?: Maybe<String>;
+  phone: String;
   address?: Maybe<String>;
   image?: Maybe<String>;
   role?: Maybe<UserRole>;
@@ -3031,7 +3031,7 @@ export interface StudentPreviousValues {
   regNo: String;
   gender?: String;
   level?: String;
-  phone?: String;
+  phone: String;
   address?: String;
   image?: String;
   role: UserRole;
@@ -3271,7 +3271,7 @@ export interface Student {
   regNo: String;
   gender?: String;
   level?: String;
-  phone?: String;
+  phone: String;
   address?: String;
   image?: String;
   role: UserRole;

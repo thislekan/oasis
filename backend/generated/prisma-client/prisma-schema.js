@@ -2163,7 +2163,7 @@ type Student {
   faculty: Faculty
   courses(where: CourseWhereInput, orderBy: CourseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Course!]
   level: String
-  phone: String
+  phone: String!
   address: String
   image: String
   role: UserRole!
@@ -2189,7 +2189,7 @@ input StudentCreateInput {
   faculty: FacultyCreateOneInput
   courses: CourseCreateManyWithoutStudentsInput
   level: String
-  phone: String
+  phone: String!
   address: String
   image: String
   role: UserRole
@@ -2238,7 +2238,7 @@ input StudentCreateWithoutCoursesInput {
   department: DepartmentCreateOneWithoutStudentsInput
   faculty: FacultyCreateOneInput
   level: String
-  phone: String
+  phone: String!
   address: String
   image: String
   role: UserRole
@@ -2257,7 +2257,7 @@ input StudentCreateWithoutDepartmentInput {
   faculty: FacultyCreateOneInput
   courses: CourseCreateManyWithoutStudentsInput
   level: String
-  phone: String
+  phone: String!
   address: String
   image: String
   role: UserRole
@@ -2277,7 +2277,7 @@ input StudentCreateWithoutHistoryInput {
   faculty: FacultyCreateOneInput
   courses: CourseCreateManyWithoutStudentsInput
   level: String
-  phone: String
+  phone: String!
   address: String
   image: String
   role: UserRole
@@ -2296,7 +2296,7 @@ input StudentCreateWithoutNextOfKinInput {
   faculty: FacultyCreateOneInput
   courses: CourseCreateManyWithoutStudentsInput
   level: String
-  phone: String
+  phone: String!
   address: String
   image: String
   role: UserRole
@@ -2344,7 +2344,7 @@ type StudentPreviousValues {
   regNo: String!
   gender: String
   level: String
-  phone: String
+  phone: String!
   address: String
   image: String
   role: UserRole!

@@ -17,7 +17,7 @@ type Student {
   faculty: Faculty @relation(onDelete: CASCADE)
   courses: [Course]
   level: String
-  phone: String
+  phone: String!
   address: String
   image: String
   role: UserRole! @default(value: STUDENT)

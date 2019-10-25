@@ -15,8 +15,8 @@ import {
 
 const Mutation = {
   createStudent: async (parent, args, context) => {
-    const { data } = args;
-    signupMiddleware(data);
+    const payload = args.data;
+    const data = await signupMiddleware(context, payload);
 
     const password = await bcrypt.hash(data.password, 10);
     const user = await context.prisma.createStudent({ ...data, password });
@@ -79,7 +79,7 @@ const Mutation = {
     const courses = { courses: { [connector]: courseList } };
     const student = await context.prisma.updateStudent({
       data: courses,
-      where: { id }
+      where: { id },
     });
 
     return student;
@@ -99,11 +99,11 @@ const Mutation = {
     const { data, id } = args;
     const nextOfKin = await context.prisma.updateNextOfKin({
       where: { id },
-      data
+      data,
     });
 
     return nextOfKin;
-  }
+  },
 };
 
 export { Mutation as default };

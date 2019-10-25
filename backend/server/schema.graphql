@@ -1,13 +1,20 @@
 type Query {
   student(id: ID!): Student
-  fetchStudents(filter: String, skip: Int, first: Int, orderBy: StudentOrderByInput): StudentsPayload
+  fetchStudents(
+    filter: String
+    skip: Int
+    first: Int
+    orderBy: StudentOrderByInput
+  ): StudentsPayload
 }
 
 type Mutation {
   createStudent(data: CreateStudentPayload): AuthPayload
   login(email: String!, password: String!): AuthPayload
   updateStudentProfile(data: EditStudentProfile): Student
-  updateStudentFacultyAndDept(data: EditStudentFacultyAndDepartmentPayload): Student
+  updateStudentFacultyAndDept(
+    data: EditStudentFacultyAndDepartmentPayload
+  ): Student
   registerCourse(data: RegisterCoursesPayload): Student
   addNextOfKin(data: NextOfKinPayload): NextOfKin
   updateNextOfKin(data: NextOfKinPayload, id: String): NextOfKin
@@ -101,7 +108,7 @@ type Grade {
 }
 
 type Result {
-  id: ID! 
+  id: ID!
   student: Student!
   grades: [Grade]!
   semester: Semester!
@@ -117,7 +124,7 @@ type NextOfKin {
   relationship: String!
 }
 
-input NextOfKinPayload{
+input NextOfKinPayload {
   name: String!
   email: String!
   address: String!
@@ -129,7 +136,8 @@ input CreateStudentPayload {
   name: String!
   email: String!
   password: String!
-  regNo: String!
+  regNo: String
+  phone: String!
 }
 
 input EditStudentProfile {

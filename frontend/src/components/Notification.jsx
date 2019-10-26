@@ -16,8 +16,9 @@ const Notification = (props) => {
         </div>
         <div className="notification__btn">
           <button
+            type="button"
             className="btn"
-            onClick={() => setHideNotification(!hideNotification)}
+            onClick={() => setHideNotification(true)}
           >
             Ok
           </button>

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Home from '../components/Home';
-import UserForm from '../components/UserForm';
+import StudentAuthForm from '../containers/StudentAuthForm';
 import StudentDashboard from '../components/student/StudentDashboard';
 
 const AppRouter = () => (
@@ -12,8 +12,8 @@ const AppRouter = () => (
       <Header />
       <Switch>
         <Route component={Home} path="/" exact />
-        <Route component={UserForm} path="/login" exact />
-        <Route component={UserForm} path="/signup" exact />
+        <Route component={StudentAuthForm} path="/login" exact />
+        <Route component={StudentAuthForm} path="/signup" exact />
         <Route component={StudentDashboard} path="/home/me" exact />
       </Switch>
     </div>

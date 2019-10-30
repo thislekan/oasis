@@ -84,7 +84,12 @@ const StudentAuthFormInputs = (props) => {
           </div>
           {props.loading && <Loader />}
           {props.data && <Redirect to="/home/me" push />}
-          {props.error && <Notification message={props.error} />}
+          {props.error && (
+            <Notification
+              message={props.error}
+              onModalClick={props.clearError}
+            />
+          )}
           <div className="footer">
             <input
               type="submit"

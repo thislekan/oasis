@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import errorFormat from './errorFormat';
 import dotEnv from '../../config/config';
 
-export const expiryDate = Math.floor(Date.now() / 1000) + (60 * 60 * 72);
+export const expiryDate = Math.floor(Date.now() / 1000) + 60 * 60 * 72;
 
 const getUserId = (context) => {
   const Authorization = context.request.get('Authorization');

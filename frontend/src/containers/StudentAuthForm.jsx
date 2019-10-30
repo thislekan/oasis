@@ -5,14 +5,6 @@ import { useMutation } from '@apollo/react-hooks';
 import StudentAuthFormInput from '../components/StudentAuthForm';
 import { CREATE_STUDENT, STUDENT_LOGIN } from '../utils/utils';
 
-const initialState = {
-  name: '',
-  password: '',
-  email: '',
-  phone: '',
-  error: '',
-};
-
 const verifyForm = (formState) => {
   for (const key in formState) {
     if (formState.hasOwnProperty(key)) {
@@ -23,8 +15,16 @@ const verifyForm = (formState) => {
   }
 };
 
+const formatError = (signUpResponse, loginResponse, route) => {
+  if (signUpResponse.error && route === '/signup')
+    return signUpResponse.error.graphQLErrors[0].message;
+  if (loginResponse.error && route === '/login')
+    return loginResponse.error.graphQLErrors[0].message;
+  return;
+};
+
 const StudentAuthForm = ({ location }) => {
-  const [formState, setFormState] = useState(initialState);
+  const [formState, setFormState] = useState({});
   const [signUp, signUpResponse] = useMutation(CREATE_STUDENT);
   const [login, loginResponse] = useMutation(STUDENT_LOGIN);
 
@@ -34,6 +34,8 @@ const StudentAuthForm = ({ location }) => {
     setFormState(state);
   };
 
+  const clearError = () => setFormState({ ...formState, error: '' });
+
   const submitForm = (e) => {
     e.preventDefault();
     const error = verifyForm(formState);
@@ -42,14 +44,9 @@ const StudentAuthForm = ({ location }) => {
     delete data.error;
     location.pathname === '/signup'
       ? signUp({ variables: { data } })
-      : login({
-          variables: { data: { email: data.email, password: data.password } },
-        });
+      : login({ variables: { email: data.email, password: data.password } });
   };
 
-  const error =
-    (loginResponse.error && loginResponse.error.graphQLErrors[0].message) ||
-    (signUpResponse.error && signUpResponse.error.graphQLErrors[0].message);
   const loading = signUpResponse.loading || loginResponse.loading;
   const data = signUpResponse.data || loginResponse.data;
 
@@ -60,7 +57,11 @@ const StudentAuthForm = ({ location }) => {
         onChangeHandler={onChangeHandler}
         loading={loading}
         data={data}
-        error={error}
+        error={
+          formState.error ||
+          formatError(signUpResponse, loginResponse, location.pathname)
+        }
+        clearError={clearError}
       />
     </form>
   );

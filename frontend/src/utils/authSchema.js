@@ -1,3 +1,5 @@
+import validator from 'validator';
+
 class AuthSchema {
   static name(value) {
     const isEmpty = !!value.trim();
@@ -9,11 +11,9 @@ class AuthSchema {
 
   static email(value) {
     const isEmpty = !!value.trim();
-    // const isEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-    //   value
-    // );
+    const isEmail = validator.isEmail(value);
     if (!isEmpty) return 'The email field cannot be empty';
-    // if (!isEmail) return 'The emil provided is invalid';
+    if (!isEmail) return 'The emil provided is invalid';
     return;
   }
 

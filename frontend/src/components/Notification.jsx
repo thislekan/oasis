@@ -18,7 +18,10 @@ const Notification = (props) => {
           <button
             type="button"
             className="btn"
-            onClick={() => setHideNotification(true)}
+            onClick={() => {
+              setHideNotification(true);
+              props.onModalClick();
+            }}
           >
             Ok
           </button>

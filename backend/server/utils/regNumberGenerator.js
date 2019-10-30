@@ -5,8 +5,8 @@ const countGenerator = async (context) => {
     .aggregate()
     .count();
   if (!count) return '0001';
-  if (count <= 9) return `00${count}`;
-  if (count >= 100) return `0${count}`;
+  if (count <= 9) return `000${count + 1}`;
+  if (count >= 100) return `0${count + 1}`;
   return count;
 };
 

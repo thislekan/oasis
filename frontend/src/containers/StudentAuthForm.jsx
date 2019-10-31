@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import AuthSchema from '../utils/authSchema';
 import { useMutation } from '@apollo/react-hooks';
 import StudentAuthFormInput from '../components/StudentAuthForm';
@@ -20,6 +20,24 @@ const formatError = (signUpResponse, loginResponse, route) => {
     return signUpResponse.error.graphQLErrors[0].message;
   if (loginResponse.error && route === '/login')
     return loginResponse.error.graphQLErrors[0].message;
+  return;
+};
+
+const loginData = (loginResponse, route) => {
+  if (loginResponse.data && route === '/login') {
+    sessionStorage.setItem('token', loginResponse.data.login.token);
+    sessionStorage.setItem('id', loginResponse.data.login.user.id);
+    return loginResponse.data;
+  }
+  return;
+};
+
+const signUpData = (signUpResponse, route) => {
+  if (signUpResponse.data && route === '/signup') {
+    sessionStorage.setItem('token', signUpResponse.data.createStudent.token);
+    sessionStorage.setItem('id', signUpResponse.data.createStudent.user.id);
+    return signUpResponse.data;
+  }
   return;
 };
 
@@ -48,15 +66,17 @@ const StudentAuthForm = ({ location }) => {
   };
 
   const loading = signUpResponse.loading || loginResponse.loading;
-  const data = signUpResponse.data || loginResponse.data;
 
   return (
     <form onSubmit={submitForm}>
+      {signUpData(signUpResponse, location.pathname) && (
+        <Redirect to="/faculty/select" push />
+      )}
       <StudentAuthFormInput
         location={location.pathname}
         onChangeHandler={onChangeHandler}
         loading={loading}
-        data={data}
+        data={loginData(loginResponse, location.pathname)}
         error={
           formState.error ||
           formatError(signUpResponse, loginResponse, location.pathname)

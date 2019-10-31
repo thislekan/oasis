@@ -6,6 +6,12 @@ type Query {
     first: Int
     orderBy: StudentOrderByInput
   ): StudentsPayload
+  faculties(
+    filter: String
+    skip: Int
+    first: Int
+    orderBy: FacultyOrderByInput
+  ): [Faculty!]!
 }
 
 type Mutation {
@@ -191,4 +197,11 @@ enum StudentOrderByInput {
   regNo_DESC
   level_ASC
   level_DESC
+}
+
+enum FacultyOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
 }

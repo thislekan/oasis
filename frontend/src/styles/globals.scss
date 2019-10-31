@@ -1,15 +1,25 @@
-html{
+html {
   font-size: 10px;
 }
-body{
+body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.4rem;
   // padding: 0 1rem;
 }
 
+button {
+  cursor: pointer;
+}
+
+button,
+input,
+select {
+  outline: none;
+}
+
 @media screen and (min-width: 1000px) {
-  body{
+  body {
     font-size: 1.8rem;
   }
 }

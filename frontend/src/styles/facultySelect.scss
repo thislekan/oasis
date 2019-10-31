@@ -1,0 +1,65 @@
+@import './variables.scss';
+
+.fac-select {
+  height: 100vh;
+  background-color: map-get($colors, dark-grey);
+  &__wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &__dropdown-div {
+      .select-div {
+        height: 7rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin-bottom: 2rem;
+      }
+      label {
+        font-size: 1.3rem;
+        font-weight: bold;
+        letter-spacing: 0.1rem;
+        color: map-get($colors, plain-white);
+      }
+      select {
+        height: 3rem;
+        width: 100%;
+        border-radius: 0.25rem;
+        color: map-get($colors, dark-grey);
+        border: 1px solid map-get($colors, light-grey);
+      }
+    }
+    .submit-btn-div {
+      text-align: center;
+      margin-top: 3rem;
+      input {
+        height: 3rem;
+        width: 12rem;
+        background-color: transparent;
+        border: 1px solid map-get($colors, light-grey);
+        color: map-get($colors, plain-white);
+        letter-spacing: 0.1rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .fac-select {
+    margin-top: 4rem;
+    &__wrapper {
+      &__dropdown-div {
+        select {
+          height: 3.5rem;
+          font-size: 1.6rem;
+          width: 25rem;
+        }
+        label {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}

@@ -20,7 +20,7 @@ const Notification = (props) => {
             className="btn"
             onClick={() => {
               setHideNotification(true);
-              props.onModalClick();
+              props.onModalClick && props.onModalClick();
             }}
           >
             Ok

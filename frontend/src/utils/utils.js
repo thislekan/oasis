@@ -27,3 +27,64 @@ export const STUDENT_LOGIN = gql`
     }
   }
 `;
+
+export const FACULTY_SELECT_PAYLOAD = gql`
+  mutation UpdateFaculty($data: FacultyPayload) {
+    updateStudentFacultyAndDept(data: $data) {
+      id
+      department {
+        name
+        id
+      }
+      faculty {
+        name
+        id
+      }
+    }
+  }
+`;
+
+export const GET_STUDENT = gql`
+  query getStudent($id: ID!) {
+    student(id: $id) {
+      id
+      department {
+        name
+        id
+      }
+      faculty {
+        name
+        id
+      }
+    }
+  }
+`;
+
+export const GET_FACULTIES = gql`
+  query getFaculties($orderBy: FacultyOrderByInput) {
+    faculties(orderBy: $orderBy) {
+      name
+      id
+      departments {
+        name
+        id
+      }
+    }
+  }
+`;
+
+export const UPDATE_STUDENT_FACULTY = gql`
+  mutation facultySelect($data: EditStudentFacultyAndDepartmentPayload) {
+    updateStudentFacultyAndDept(data: $data) {
+      id
+      department {
+        name
+        id
+      }
+      faculty {
+        name
+        id
+      }
+    }
+  }
+`;

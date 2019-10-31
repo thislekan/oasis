@@ -1,12 +1,10 @@
 import '@babel/polyfill';
 import express from 'express';
 import path from 'path';
-import { config } from 'dotenv';
 import { GraphQLServer } from 'graphql-yoga';
 import { formatError } from 'apollo-errors';
 
 import dotEnv from '../config/config';
-config();
 import { prisma } from '../generated/prisma-client/index';
 import resolvers from './resolver';
 

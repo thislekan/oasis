@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const environment = process.env.NODE_ENV;
@@ -14,8 +15,19 @@ const httpLink = createHttpLink({
   uri:
     environment === 'production' ? '/graphql' : process.env.REACT_APP_ENDPOINT,
 });
+
+const authLink = setContext((_, { headers }) => {
+  const token = sessionStorage.getItem('token');
+  return {
+    headers: {
+      ...headers,
+      Authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

@@ -1,8 +1,28 @@
-@import "./variables.scss";
+@import './variables.scss';
 
 .navbar {
   .home {
     &__nav {
+      .link {
+        text-decoration: none;
+        color: map-get($colors, dark-grey);
+
+        &--avatar {
+          background: #c1c5d2;
+          height: 2.5rem;
+          width: 2.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 100%;
+
+          img {
+            height: 1.2rem;
+            width: 1.2rem;
+          }
+        }
+      }
+
       &--top-nav {
         display: flex;
         align-items: center;
@@ -27,6 +47,39 @@
         padding: 2rem 1rem;
         display: none;
         z-index: 5;
+      }
+
+      &--student-nav {
+        display: none;
+        &__options {
+          display: flex;
+          flex-direction: column;
+          height: 100vh;
+          align-items: center;
+          justify-content: space-evenly;
+          position: fixed;
+          z-index: 5;
+          width: 100%;
+          background: white;
+          top: 0;
+
+          a {
+            text-decoration: none;
+            color: #494e65;
+            font-weight: bold;
+          }
+
+          .log-out {
+            height: 3rem;
+            width: 9rem;
+            background: #eb353c;
+            border: 1px solid #eb353c;
+            color: white;
+            font-size: 1rem;
+            border-radius: 0.2rem;
+            letter-spacing: 0.05rem;
+          }
+        }
       }
 
       .logo {
@@ -61,11 +114,6 @@
     align-items: center;
     justify-content: space-evenly;
     height: 100%;
-
-    .link {
-      text-decoration: none;
-      color: map-get($colors, dark-grey);
-    }
   }
 
   .auth {
@@ -148,6 +196,7 @@
         left: 0;
         background: map-get($colors, plain-white);
         font-size: 1.3rem;
+        box-shadow: 0px 0px 2px 1px #c1c5d2;
 
         &--top-nav {
           box-shadow: unset;
@@ -169,6 +218,20 @@
           background-color: unset;
           position: unset;
           padding: unset;
+        }
+
+        &--student-nav {
+          display: unset;
+          &__options {
+            display: flex;
+            flex-direction: row;
+            width: 35rem;
+            align-items: center;
+            justify-content: space-between;
+            height: unset;
+            top: unset;
+            position: unset;
+          }
         }
 
         .menu {

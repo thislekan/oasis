@@ -1,0 +1,268 @@
+@import './variables.scss';
+
+.student-home {
+  margin-top: 7rem;
+  color: map-get($colors, dark-grey);
+
+  &__wrapper {
+    padding: $mobile;
+
+    &__content {
+      .details-div {
+        &__bio {
+          text-align: center;
+          padding: 1rem 0;
+          box-sizing: border-box;
+
+          .bio__img {
+            img {
+              height: 20rem;
+              width: 20rem;
+              object-fit: scale-down;
+              object-position: center;
+            }
+          }
+
+          .bio__text {
+            margin-top: 1rem;
+            p {
+              margin: 0.5rem 0;
+              font-weight: bold;
+            }
+          }
+        }
+
+        &__courses {
+          margin-top: 2.5rem;
+          border-bottom: 1px solid map-get($colors, light-grey);
+          border-top: 1px solid map-get($colors, light-grey);
+          div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            p {
+              margin: 0.5rem 0;
+              font-weight: bold;
+            }
+
+            span {
+              font-size: 1.3rem;
+            }
+          }
+        }
+      }
+
+      .courses-div {
+        .session {
+          margin: 3rem 0;
+
+          p {
+            color: map-get($colors, text-brown);
+            font-weight: 900;
+          }
+        }
+        .table {
+          width: 100%;
+          overflow-x: scroll;
+
+          table {
+            width: 100rem;
+            border-collapse: collapse;
+
+            .centered {
+              text-align: center;
+            }
+            .padded {
+              padding-left: 1rem;
+            }
+
+            tr {
+              height: 4.5rem;
+            }
+
+            .head-row {
+              text-align: left;
+              background-color: map-get($colors, dull-grey);
+              color: map-get($colors, dark-grey);
+
+              th:nth-of-type(1) {
+                width: 5rem;
+              }
+            }
+
+            tbody {
+              tr {
+                font-size: 1.3rem;
+              }
+
+              tr:nth-of-type(even) {
+                background-color: map-get($colors, table-grey);
+              }
+            }
+          }
+        }
+      }
+      .footer-div {
+        margin: 3rem 0;
+        text-align: right;
+        display: flex;
+        justify-content: flex-end;
+
+        a {
+          height: 3.5rem;
+          display: flex;
+          width: 12rem;
+          border: 1px solid #494e65;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          justify-self: flex-end;
+          background: #494e65;
+          color: white;
+          font-size: 1.1rem;
+          letter-spacing: 0.1rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .student-home {
+    margin-top: 12rem;
+
+    &__wrapper {
+      padding: $tablet;
+
+      &__content {
+        .details-div {
+          display: grid;
+          grid-template-columns: 60% 40%;
+          align-items: center;
+          border-left: 2px solid #c1c5d2;
+          border-right: 2px solid #c1c5d2;
+
+          &__bio {
+            text-align: unset;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            .bio__text {
+              margin: 0;
+              p {
+                margin: 1rem 0;
+              }
+            }
+
+            .bio__img {
+              img {
+                object-fit: cover;
+                height: 15rem;
+                width: 15rem;
+              }
+            }
+          }
+
+          &__courses {
+            margin: 0;
+            border: unset;
+            padding: 0.5rem 1rem;
+            border-left: 1px solid #dcdee6;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 865px) {
+  .student-home {
+    &__wrapper {
+      &__content {
+        .details-div {
+          &__bio {
+            justify-content: unset;
+            padding: 0 2rem;
+
+            .bio__text {
+              margin-left: 4.6rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .student-home {
+    margin-top: 19rem;
+
+    &__wrapper {
+      padding: $laptop;
+      &__content {
+        .details-div {
+          &__bio {
+            .bio__img {
+              img {
+                height: 14rem;
+              }
+            }
+            .bio__text {
+              font-size: 1.4rem;
+            }
+          }
+
+          &__courses {
+            font-size: 1.4rem;
+          }
+        }
+        .courses-div {
+          .session {
+            font-size: 1.5rem;
+          }
+          .table {
+            table {
+              width: 100%;
+              thead {
+                font-size: 1.5rem;
+              }
+              tr {
+                height: 7rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .student-home {
+    &__wrapper {
+      // padding: $desktop;
+
+      &__content {
+        .courses-div {
+          .table {
+            table {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .student-home {
+    &__wrapper {
+      padding: $desktop;
+    }
+  }
+}

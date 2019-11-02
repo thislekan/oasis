@@ -34,10 +34,8 @@ const FacultySelect = () => {
   return (
     <form
       onSubmit={(e) => {
-        console.log('clicked');
         e.preventDefault();
         if (!state.department || !state.faculty) {
-          console.log('got here');
           return setState({
             ...state,
             error: 'Both faculty and department are required fields',

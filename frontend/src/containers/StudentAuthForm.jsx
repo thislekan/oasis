@@ -4,6 +4,12 @@ import AuthSchema from '../utils/authSchema';
 import { useMutation } from '@apollo/react-hooks';
 import StudentAuthFormInput from '../components/StudentAuthForm';
 import { CREATE_STUDENT, STUDENT_LOGIN } from '../utils/utils';
+import userAuth from '../utils/userAuth';
+
+const storeUserDetails = (token, id) => {
+  sessionStorage.setItem('token', token);
+  sessionStorage.setItem('id', id);
+};
 
 const verifyForm = (formState) => {
   for (const key in formState) {
@@ -25,8 +31,9 @@ const formatError = (signUpResponse, loginResponse, route) => {
 
 const loginData = (loginResponse, route) => {
   if (loginResponse.data && route === '/login') {
-    sessionStorage.setItem('token', loginResponse.data.login.token);
-    sessionStorage.setItem('id', loginResponse.data.login.user.id);
+    const { token, user } = loginResponse.data.login;
+    storeUserDetails(token, user.id);
+    userAuth.authenticate();
     return loginResponse.data;
   }
   return;
@@ -34,8 +41,9 @@ const loginData = (loginResponse, route) => {
 
 const signUpData = (signUpResponse, route) => {
   if (signUpResponse.data && route === '/signup') {
-    sessionStorage.setItem('token', signUpResponse.data.createStudent.token);
-    sessionStorage.setItem('id', signUpResponse.data.createStudent.user.id);
+    const { token, user } = signUpResponse.data.createStudent;
+    storeUserDetails(token, user.id);
+    userAuth.authenticate();
     return signUpResponse.data;
   }
   return;
@@ -70,7 +78,7 @@ const StudentAuthForm = ({ location }) => {
   return (
     <form onSubmit={submitForm}>
       {signUpData(signUpResponse, location.pathname) && (
-        <Redirect to="/faculty/select" push />
+        <Redirect to="me/faculty/select" push />
       )}
       <StudentAuthFormInput
         location={location.pathname}

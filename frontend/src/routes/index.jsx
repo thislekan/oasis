@@ -1,22 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Header from '../components/Header';
+import NavBar from '../components/NavBar';
 import Home from '../components/Home';
 import StudentAuthForm from '../containers/StudentAuthForm';
-import StudentDashboard from '../components/student/StudentDashboard';
-import FacultySelect from '../components/FacultySelect';
+import ProtectedRoutes from './ProtectedRoute';
+import RestrictedPages from './RestrictedPages';
 
 const AppRouter = () => (
   <BrowserRouter>
     <div>
-      <Header />
+      <NavBar />
       <Switch>
         <Route component={Home} path="/" exact />
         <Route component={StudentAuthForm} path="/login" exact />
         <Route component={StudentAuthForm} path="/signup" exact />
-        <Route component={StudentDashboard} path="/home/me" exact />
-        <Route component={FacultySelect} path="/faculty/select" exact />
+        <ProtectedRoutes children={<RestrictedPages />} />
       </Switch>
     </div>
   </BrowserRouter>

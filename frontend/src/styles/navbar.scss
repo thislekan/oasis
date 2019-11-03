@@ -278,9 +278,29 @@
   .navbar {
     .home {
       &__nav {
+        .link {
+          &--avatar {
+            height: 3rem;
+            width: 3rem;
+
+            img {
+              height: 1.5rem;
+              width: 1.5rem;
+            }
+          }
+        }
         &--bottom-nav {
           width: 57rem;
           margin-right: 2rem;
+        }
+
+        &--student-nav {
+          &__options {
+            .log-out {
+              height: 3.5rem;
+              font-size: 1.25rem;
+            }
+          }
         }
       }
     }
@@ -289,6 +309,15 @@
 
 @media screen and (min-width: 1400px) {
   .navbar {
+    .home {
+      &__nav {
+        &--student-nav {
+          &__options {
+            width: 45rem;
+          }
+        }
+      }
+    }
     .auth {
       &__nav {
         &__wrapper {

@@ -83,7 +83,7 @@ const StudentAuthFormInputs = (props) => {
             />
           </div>
           {props.loading && <Loader />}
-          {props.data && <Redirect to="/home/me" push />}
+          {props.data && <Redirect to="/me" push />}
           {props.error && (
             <Notification
               message={props.error}

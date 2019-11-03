@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Redirect } from 'react-router-dom';
 
-import Loader from './Loader';
-import Notification from './Notification';
-import { GET_FACULTIES, UPDATE_STUDENT_FACULTY } from '../utils/utils';
+import Loader from '../Loader';
+import Notification from '../Notification';
+import { GET_FACULTIES, UPDATE_STUDENT_FACULTY } from '../../utils/utils';
 
 const FacultySelect = () => {
   const { loading, data, error } = useQuery(GET_FACULTIES, {

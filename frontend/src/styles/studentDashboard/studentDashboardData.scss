@@ -1,0 +1,71 @@
+.student-data {
+  transition: 500ms ease;
+  height: 100%;
+
+  &--displaced {
+    transform: translateX(-105%);
+  }
+
+  &__wrapper {
+    padding: $mobile;
+    padding-top: 6rem;
+
+    .body {
+      &__table {
+        padding: 3rem 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .student-data {
+    height: 100vh;
+    &--displaced {
+      transform: translateX(-30rem);
+    }
+    &__wrapper {
+      .body {
+        &__info {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 2rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .student-data {
+    padding: 10rem 3rem 0;
+    height: calc(100vh - 6rem);
+
+    &__wrapper {
+      padding-top: 3rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .student-data {
+    font-size: 1.6rem;
+    padding: 10rem 1rem 0;
+    &--displaced {
+      transform: unset;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .student-data {
+    padding: 10rem 0 0;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .student-data {
+    font-size: 1.8rem;
+    padding: 10rem 3rem 0;
+  }
+}

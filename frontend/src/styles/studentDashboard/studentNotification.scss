@@ -1,0 +1,127 @@
+@import './variables.scss';
+
+.student-notification {
+  &__wrapper {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 5rem;
+      background: white;
+      z-index: 5;
+      padding: $mobile;
+      width: calc(100% - 2rem);
+      box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+
+      .logo {
+        color: map-get($colors, faded-grey);
+        text-decoration: none;
+        font-size: 1.6rem;
+        font-weight: bold;
+      }
+
+      .dashboard-icons {
+        width: 9rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__icon-wrapper {
+          display: flex;
+          align-items: center;
+
+          p {
+            display: none;
+          }
+        }
+
+        .icon {
+          height: 2rem;
+          width: 2rem;
+        }
+        img:first-of-type {
+          position: relative;
+          bottom: 0.1rem;
+        }
+        .menu {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 0.25rem;
+          height: 2rem;
+          width: 2rem;
+          cursor: pointer;
+
+          &__item {
+            display: flex;
+            height: 0.5rem;
+            width: 0.5rem;
+            border: 0.2rem solid #494e65;
+            border-radius: 0.25rem;
+          }
+        }
+      }
+    }
+
+    &__body {
+      position: fixed;
+      height: 100%;
+      background: white;
+      top: 5rem;
+      left: 105%;
+      width: 100%;
+      opacity: 0;
+      transition: 500ms ease;
+
+      &--displayed {
+        left: 0;
+        opacity: 1;
+      }
+
+      .wrapper {
+        overflow-y: scroll;
+        height: calc(100vh - 5rem);
+        padding: $mobile;
+      }
+
+      #date {
+        text-align: center;
+        color: #494e65;
+        margin-top: 5rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .student-notification {
+    &__wrapper {
+      &__body {
+        &--displayed {
+          opacity: 1;
+          width: 30rem;
+          left: calc(100% - 30rem);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .student-notification {
+    &__wrapper {
+      &__body {
+        font-size: 1.6rem;
+        opacity: unset;
+        position: unset;
+        left: unset;
+        .wrapper {
+          height: calc(100vh - 6rem);
+          padding-top: 10rem;
+        }
+      }
+    }
+  }
+}

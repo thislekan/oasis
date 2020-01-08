@@ -1,0 +1,142 @@
+.student-menu {
+  position: fixed;
+  height: 100vh;
+  background: white;
+  z-index: 10;
+  top: 0;
+  left: -105%;
+  padding: $mobile;
+  width: 20rem;
+  box-shadow: 0 2px 4px 2px #dcdee6;
+  transition: 500ms ease;
+
+  .hide-div {
+    img {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+
+  &--displayed {
+    left: 0;
+
+    .hide-div {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+  }
+
+  .nav-options {
+    padding-left: 1.5rem;
+    margin-top: 4rem;
+    &__user {
+      .wrapper,
+      &__img {
+        display: flex;
+        align-items: center;
+
+        img {
+          height: 3.6rem;
+          width: 3.6rem;
+          border-radius: 100%;
+        }
+      }
+
+      &__name {
+        p {
+          margin: 0;
+        }
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 3.8rem;
+        font-weight: bold;
+        margin-left: 1rem;
+        color: #494e65;
+      }
+
+      .level {
+        font-weight: 300;
+        color: #8c92ac;
+        margin: 0.5rem 0;
+      }
+    }
+
+    &__links {
+      margin-top: 3rem;
+
+      &__course-links,
+      &__results,
+      &__payment {
+        margin-bottom: 3.5rem;
+        div {
+          display: flex;
+          align-items: center;
+          margin: 1rem 0;
+          a {
+            text-decoration: none;
+            color: map-get($colors, faded-grey);
+            font-size: 1.5rem;
+          }
+
+          img {
+            height: 1.6rem;
+            width: 1.6rem;
+            cursor: pointer;
+            margin-right: 1rem;
+          }
+        }
+      }
+    }
+    .log-out {
+      button {
+        background-color: map-get($colors, danger);
+        border: 1px solid map-get($colors, danger);
+        border-radius: 0.2rem;
+        color: map-get($colors, plain-white);
+        height: 3.5rem;
+        width: 10rem;
+        font-size: 1.2rem;
+        margin-top: -1rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .student-menu {
+    &__wrapper {
+      margin-top: 5rem;
+    }
+    .nav-options {
+      &__user {
+        &__name {
+          height: unset;
+          font-size: 1.5rem;
+        }
+        .level {
+          font-size: 1.5rem;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .student-menu {
+    position: unset;
+    padding: 10rem 2rem 0;
+    z-index: unset;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: unset;
+
+    .hide-div {
+      display: none;
+    }
+  }
+}

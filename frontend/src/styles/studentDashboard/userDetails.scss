@@ -1,0 +1,99 @@
+.user-card {
+  padding: 1rem;
+  position: relative;
+  box-shadow: 0px 2px 10px map-get($colors, dull-grey);
+  width: 25rem;
+  margin: 2rem auto;
+  background-color: map-get($colors, plain-white);
+
+  &__wrapper {
+    p {
+      margin: 0;
+    }
+    &__title {
+      h5 {
+        color: map-get($colors, faded-grey);
+        margin: 0;
+        font-size: 2rem;
+      }
+    }
+    &__body {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      grid-gap: 2rem;
+      align-items: center;
+      color: map-get($colors, bluish-grey);
+      margin: 0.75rem 0;
+      p {
+        margin: 0.5rem 0;
+
+        a {
+          text-decoration: none;
+          cursor: pointer;
+          color: inherit;
+        }
+      }
+
+      .img-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+      }
+
+      img {
+        height: 4rem;
+        width: 4rem;
+        border-radius: 100%;
+        position: relative;
+        top: -1rem;
+        left: 0.5rem;
+      }
+    }
+    &__footer {
+      display: flex;
+      align-items: center;
+      color: map-get($colors, light-grey);
+
+      .religion,
+      .dob,
+      .office {
+        margin-right: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        img {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+    .edit-btn {
+      position: absolute;
+      bottom: 1rem;
+      right: 2rem;
+      background: white;
+      border-radius: 100%;
+      box-shadow: 1px 2px 8px 0px map-get($colors, dull-grey);
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .user-card {
+    width: unset;
+
+    &__wrapper {
+      .edit-btn {
+        right: 2.5rem;
+      }
+    }
+  }
+}

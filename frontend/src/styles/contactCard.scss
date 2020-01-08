@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import './variables.scss';
 
 .contact-card {
   height: 25rem;
@@ -46,7 +46,6 @@
 
 @media screen and (min-width: 360px) {
   .contact-card {
-    // height: 25rem;
     &__wrapper {
       padding: 1.5rem;
     }
@@ -100,7 +99,6 @@
     font-size: 1.6rem;
 
     &__body {
-      // width: 32.7rem;
       margin: 2.5rem 0;
     }
     &__footer {

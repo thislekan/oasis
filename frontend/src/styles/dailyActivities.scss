@@ -1,0 +1,134 @@
+@import './variables.scss';
+
+.daily-activities {
+  .hide-div {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+
+    .cancel-btn {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+
+  .image-holder {
+    margin: 2rem 0;
+
+    img {
+      height: 20rem;
+      width: 100%;
+    }
+  }
+
+  .activities {
+    .sub-heading {
+      font-weight: bold;
+      color: #5c6380;
+      font-size: 1.5rem;
+      letter-spacing: 0.1rem;
+    }
+
+    .activity-card {
+      box-shadow: 0 2px 6px #dcdee6;
+      margin: 2rem 0;
+
+      &__wrapper {
+        padding: 1rem;
+
+        .activity {
+          height: 100%;
+
+          .header,
+          .body,
+          .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            p {
+              margin: 0;
+            }
+
+            .coursename {
+              color: #494e65;
+            }
+
+            .credit-unit {
+              font-weight: bold;
+              color: #494e65;
+            }
+          }
+
+          .body {
+            margin: 1rem 0;
+            p {
+              color: #c1c5d2;
+              margin: 0.5rem 0;
+            }
+          }
+
+          .footer {
+            margin: 1rem 0;
+
+            p {
+              color: #717999;
+            }
+
+            .dismiss {
+              width: 7rem;
+              background: #d25757;
+              height: 3rem;
+              font-size: 1rem;
+              color: white;
+              font-weight: bold;
+              letter-spacing: 0.05rem;
+              border: 1px solid #d25757;
+              border-radius: 0.2rem;
+            }
+          }
+        }
+
+        .messages {
+          .header {
+            h5 {
+              margin: 0;
+              font-size: 1.5rem;
+              font-weight: 900;
+            }
+          }
+
+          .body {
+            color: #494e65;
+            font-size: 1.3rem;
+          }
+
+          .footer {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .btn {
+              height: 3rem;
+              width: 8.5rem;
+              font-size: 1rem;
+              color: white;
+              border-radius: 0.2rem;
+
+              &--brown {
+                border: 1px solid #a49393;
+                background: #a49393;
+              }
+
+              &--red {
+                border: 1px solid #d25757;
+                background: #d25757;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

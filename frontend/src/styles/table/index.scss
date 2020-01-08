@@ -1,0 +1,121 @@
+.courses-div {
+  .session {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: map-get($colors, dark-grey);
+  }
+  .table-div {
+    width: 100%;
+
+    margin: 2rem 0;
+
+    .table {
+      p {
+        margin: 0;
+      }
+      .thead {
+        background: map-get($colors, table-grey);
+        color: map-get($colors, dark-grey);
+        font-weight: bold;
+        border-radius: 0.5rem;
+        border: 1px solid map-get($colors, table-grey);
+      }
+
+      .thead,
+      .tbody {
+        &__wrapper {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 2rem;
+          padding: 2rem 1rem;
+
+          .unit {
+            display: flex;
+            justify-content: flex-end;
+          }
+
+          .title,
+          .department,
+          .type,
+          .checkbox {
+            display: none;
+          }
+        }
+
+        &__wrapper:nth-of-type(even) {
+          background-color: map-get($colors, plain-white);
+          border-radius: 0.5rem;
+        }
+      }
+      .tbody {
+        &__wrapper {
+          p {
+            color: map-get($colors, bluish-grey);
+          }
+          .centered {
+            padding: 0 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .courses-div {
+    .table-div {
+      .table {
+        .thead,
+        .tbody {
+          &__wrapper {
+            grid-template-columns: 3fr 1fr 1fr;
+            grid-gap: 1.5rem;
+          }
+          .title {
+            display: unset;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .courses-div {
+    .table-div {
+      .table {
+        .thead,
+        .tbody {
+          &__wrapper {
+            grid-template-columns: 2rem 3fr 1fr 2fr 1fr;
+          }
+          .department,
+          .checkbox {
+            display: unset;
+          }
+        }
+
+        .thead,
+        .tbody {
+          .department {
+            display: flex;
+            justify-content: center;
+          }
+        }
+
+        &--notEditable {
+          .thead,
+          .tbody {
+            &__wrapper {
+              grid-template-columns: 3fr 1fr 2fr 1fr;
+            }
+            .checkbox {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

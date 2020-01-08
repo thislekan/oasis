@@ -7,7 +7,7 @@ const initialState = {
   showBottomNav: false,
 };
 
-const HomeNav = () => {
+const HomeNav = (props) => {
   const [state, setState] = useState(initialState);
 
   const toggleNavbar = () => {
@@ -15,7 +15,7 @@ const HomeNav = () => {
   };
 
   return (
-    <div>
+    <div style={{ display: props.hide ? 'none' : 'initial' }}>
       <nav className="navbar">
         <div className="navbar__wrapper">
           <div className="home__nav">

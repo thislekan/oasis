@@ -2,7 +2,7 @@
   height: 35rem;
   margin: 1rem 0;
   box-sizing: border-box;
-  background-image: url("../assets/capped.jpg");
+  background-image: url('../assets/capped.jpg');
   background-position: center;
   background-size: cover;
 
@@ -56,7 +56,6 @@
 
 @media screen and (min-width: 1000px) {
   .link-card {
-    // height: 24.2rem;
     height: 30rem;
 
     &__wrapper {

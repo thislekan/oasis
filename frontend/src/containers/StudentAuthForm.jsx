@@ -78,7 +78,7 @@ const StudentAuthForm = ({ location }) => {
   return (
     <form onSubmit={submitForm}>
       {signUpData(signUpResponse, location.pathname) && (
-        <Redirect to="me/faculty/select" push />
+        <Redirect to="/me/faculty/select" push />
       )}
       <StudentAuthFormInput
         location={location.pathname}

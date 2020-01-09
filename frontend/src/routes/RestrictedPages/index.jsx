@@ -6,7 +6,7 @@ import StudentDashboard from '../../components/student/dashboard';
 const Pages = () => {
   return (
     <Switch>
-      <Route component={FacultySelect} path="me/faculty/select" exact />
+      <Route component={FacultySelect} path="/me/faculty/select" exact />
       <Route component={StudentDashboard} path="/me" exact />
       <Route component={StudentDashboard} path="/me/courses/edit" exact />
     </Switch>

@@ -49,7 +49,7 @@
         .menu {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          grid-gap: 0.25rem;
+          grid-gap: 0.1rem;
           height: 2rem;
           width: 2rem;
           cursor: pointer;
@@ -58,7 +58,7 @@
             display: flex;
             height: 0.5rem;
             width: 0.5rem;
-            border: 0.2rem solid #494e65;
+            border: 0.2rem solid map-get($colors, faded-grey);
             border-radius: 0.25rem;
           }
         }
@@ -98,6 +98,30 @@
 @media screen and (min-width: 650px) {
   .student-notification {
     &__wrapper {
+      &__header {
+        .dashboard-icons {
+          width: unset;
+          justify-content: space-around;
+          cursor: pointer;
+
+          &__icon-wrapper {
+            p {
+              display: unset;
+              font-weight: bold;
+              color: map-get($colors, faded-grey);
+              margin-right: 0.5rem;
+            }
+          }
+
+          &__icon-wrapper:nth-of-type(2) {
+            margin: 0 1.5rem;
+          }
+
+          img:first-of-type {
+            bottom: unset;
+          }
+        }
+      }
       &__body {
         &--displayed {
           opacity: 1;

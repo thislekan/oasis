@@ -76,6 +76,10 @@
             display: unset;
           }
         }
+        .tbody {
+          height: 38vh;
+          overflow-y: scroll;
+        }
       }
     }
   }
@@ -113,6 +117,96 @@
             .checkbox {
               display: none;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .courses-div {
+    .table-div {
+      .table {
+        .thead,
+        .tbody {
+          &__wrapper {
+            grid-template-columns: 2rem 3fr 1fr 2fr 1fr;
+          }
+          .department,
+          .checkbox {
+            display: unset;
+          }
+        }
+
+        &--notEditable {
+          .thead,
+          .tbody {
+            &__wrapper {
+              grid-template-columns: 3fr 2fr 1fr;
+            }
+            .checkbox,
+            .department {
+              display: none;
+            }
+          }
+        }
+        .thead {
+          .code {
+            padding: 0 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .courses-div {
+    .table-div {
+      .table {
+        &--notEditable {
+          .thead,
+          .tbody {
+            &__wrapper {
+              grid-template-columns: 3fr 1fr 2fr 1fr;
+            }
+            .title,
+            .unit,
+            .code,
+            .department {
+              display: flex;
+              align-items: center;
+            }
+            .department {
+              justify-content: center;
+              text-align: center;
+              padding: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// .thead,
+//         .tbody {
+//           .department {
+//             display: flex;
+//             justify-content: center;
+//             align-items: center;
+//             padding: unset;
+//           }
+//         }
+
+@media screen and (min-width: 1300px) {
+  .courses-div {
+    .table-div {
+      .table {
+        .thead {
+          .code {
+            padding: unset;
           }
         }
       }

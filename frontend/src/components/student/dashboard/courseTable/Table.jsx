@@ -3,7 +3,7 @@ import React from 'react';
 import TableRow from './TableRow';
 import TableHead from './TableHead';
 
-const data = [1, 2];
+const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 const Table = (props) => (
   <div className="courses-div">

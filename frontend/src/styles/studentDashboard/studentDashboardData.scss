@@ -12,7 +12,7 @@
 
     .body {
       &__table {
-        padding: 3rem 0;
+        padding: 1rem 0;
       }
     }
   }
@@ -20,7 +20,7 @@
 
 @media screen and (min-width: 650px) {
   .student-data {
-    height: 100vh;
+    height: calc(100vh - 6rem);
     &--displaced {
       transform: translateX(-30rem);
     }
@@ -31,6 +31,10 @@
           grid-template-columns: 1fr 1fr;
           grid-gap: 2rem;
         }
+
+        &__table {
+          padding: unset;
+        }
       }
     }
   }
@@ -39,7 +43,6 @@
 @media screen and (min-width: 700px) {
   .student-data {
     padding: 10rem 3rem 0;
-    height: calc(100vh - 6rem);
 
     &__wrapper {
       padding-top: 3rem;
